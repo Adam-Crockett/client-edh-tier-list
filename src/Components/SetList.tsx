@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
+import Typography from '@mui/material/Typography';
 
 type SetData = {
   _id: string;
@@ -22,13 +24,40 @@ function SetList() {
         <p>Loading Data...</p>
       ) : (
         <div>
-          {
-            /* typescript-eslint-disable no-implicit-any */
-            sets.sets.map((set: any) => (
-              <p> {set.code} </p>
-            ))
-          }
+          <Accordion>
+            <AccordionSummary>
+              <Typography>Set List</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              {
+                /* typescript-eslint-disable no-implicit-any */
+                sets.sets.map((set: any) => (
+                  <img
+                    src={set.icon_svg_uri}
+                    alt={set.code}
+                    // width="150"
+                    height="50"
+                    width="50"
+                  />
+                ))
+              }
+            </AccordionDetails>
+          </Accordion>
         </div>
+        // <div>
+        //   {
+        //     /* typescript-eslint-disable no-implicit-any */
+        //     sets.sets.map((set: any) => (
+        //       <img
+        //         src={set.icon_svg_uri}
+        //         alt={set.code}
+        //         // width="150"
+        //         height="50"
+        //         width="50"
+        //       />
+        //     ))
+        //   }
+        // </div>
       )}
     </div>
   );
