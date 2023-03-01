@@ -1,19 +1,36 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
+type SetData = {
+  _id: string;
+  createdAt: string;
+  sets: any;
+};
 
 function SetList() {
-  // Resolve state typing for typescript
-  const { sets, isLoading } = useSelector((state: any) => state.sets);
+  const [sets, updateSets] = useState<SetData | null>(null);
 
-  if (!sets.length && !isLoading) {
-    return <div>'No Sets found';</div>;
-  }
-  return isLoading ? (
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_API_URL}/sets`).then(({ data }) => {
+      updateSets(data);
+    });
+  }, []);
+  console.log(sets?.sets[0]);
+  return (
     <div>
-      <p>Loading Sets...</p>
+      {sets === null ? (
+        <p>Loading Data...</p>
+      ) : (
+        <div>
+          {
+            /* typescript-eslint-disable no-implicit-any */
+            sets.sets.map((set: any) => (
+              <p> {set.code} </p>
+            ))
+          }
+        </div>
+      )}
     </div>
-  ) : (
-    <div>{sets}</div>
   );
 }
 
