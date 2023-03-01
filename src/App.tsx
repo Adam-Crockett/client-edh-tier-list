@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import SetList from './Components/SetList';
+import SetList from './components/SetList';
 
 function App() {
   return (
