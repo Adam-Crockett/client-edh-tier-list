@@ -1,6 +1,18 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Chip,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  OutlinedInput,
+  Select
+} from '@mui/material';
+import { SelectChangeEvent } from '@mui/material/Select';
 import Typography from '@mui/material/Typography';
 
 type SetData = {
@@ -11,13 +23,24 @@ type SetData = {
 
 function SetList() {
   const [sets, updateSets] = useState<SetData | null>(null);
+  const [setName, setSetName] = useState<string[]>([]);
+
+  const handleChange = (event: SelectChangeEvent<typeof setName>) => {
+    const {
+      target: { value }
+    } = event;
+    setSetName(
+      // On autofill we get a stringified value.
+      typeof value === 'string' ? value.split(',') : value
+    );
+  };
 
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_URL}/sets`).then(({ data }) => {
       updateSets(data);
     });
   }, []);
-  console.log(sets?.sets[0]);
+  // console.log(sets?.sets[0]);
   return (
     <div>
       {sets === null ? (
@@ -29,38 +52,67 @@ function SetList() {
               <Typography>Set List</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              {
-                /* typescript-eslint-disable no-implicit-any */
-                sets.sets.map((set: any) => (
-                  <img
-                    src={set.icon_svg_uri}
-                    alt={set.code}
-                    // width="150"
-                    height="50"
-                    width="50"
-                  />
-                ))
-              }
+              <FormControl sx={{ m: 1, width: 1000 }}>
+                <InputLabel id="multiple-chip-label">Sets</InputLabel>
+                <Select
+                  labelId="multiple-chip-label"
+                  id="multiple-chip"
+                  multiple
+                  value={setName}
+                  onChange={handleChange}
+                  input={
+                    <OutlinedInput id="select-multiple-chip" label="Chip" />
+                  }
+                  renderValue={(selected) => (
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                      {
+                        /* typescript-eslint-disable no-implicit-any */
+                        selected.map((value) => (
+                          <Chip key={value} label={value} />
+                        ))
+                      }
+                    </Box>
+                  )}
+                  // MenuProps={MenuProps}
+                >
+                  {
+                    /* typescript-eslint-disable no-implicit-any */
+                    sets.sets.map((set: any) => (
+                      <MenuItem
+                        key={set.id}
+                        value={set.name}
+                        // style={getStyles(name, personName, theme)}
+                      >
+                        <img
+                          width="50"
+                          height="50"
+                          src={set.icon_svg_uri}
+                          alt={set.code}
+                        />
+                      </MenuItem>
+                    ))
+                  }
+                </Select>
+              </FormControl>
             </AccordionDetails>
           </Accordion>
         </div>
-        // <div>
-        //   {
-        //     /* typescript-eslint-disable no-implicit-any */
-        //     sets.sets.map((set: any) => (
-        //       <img
-        //         src={set.icon_svg_uri}
-        //         alt={set.code}
-        //         // width="150"
-        //         height="50"
-        //         width="50"
-        //       />
-        //     ))
-        //   }
-        // </div>
       )}
     </div>
   );
 }
 
 export default SetList;
+
+// {
+//   /* typescript-eslint-disable no-implicit-any */
+//   sets.sets.map((set: any) => (
+//     <img
+//       src={set.icon_svg_uri}
+//       alt={set.code}
+//       // width="150"
+//       height="50"
+//       width="50"
+//     />
+//   ));
+// }
