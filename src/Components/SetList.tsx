@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
+import useGetSets from '../customHooks/useGetSets';
 import {
   Accordion,
   AccordionDetails,
@@ -15,14 +15,8 @@ import {
 import { SelectChangeEvent } from '@mui/material/Select';
 import Typography from '@mui/material/Typography';
 
-type SetData = {
-  _id: string;
-  createdAt: string;
-  sets: any;
-};
-
 function SetList() {
-  const [sets, updateSets] = useState<SetData | null>(null);
+  const sets = useGetSets();
   const [setName, setSetName] = useState<string[]>([]);
 
   const handleChange = (event: SelectChangeEvent<typeof setName>) => {
@@ -35,12 +29,6 @@ function SetList() {
     );
   };
 
-  useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/sets`).then(({ data }) => {
-      updateSets(data);
-    });
-  }, []);
-  // console.log(sets?.sets[0]);
   return (
     <div>
       {sets === null ? (
