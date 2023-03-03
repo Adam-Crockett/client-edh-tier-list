@@ -43,6 +43,17 @@ function SetList() {
               <FormControl sx={{ m: 1, width: 1000 }}>
                 <InputLabel id="multiple-chip-label">Sets</InputLabel>
                 <Select
+                  MenuProps={{
+                    PaperProps: {
+                      sx: {
+                        width: '80%',
+                        '& .MuiMenu-list': {
+                          display: 'flex',
+                          flexFlow: 'wrap'
+                        }
+                      }
+                    }
+                  }}
                   labelId="multiple-chip-label"
                   id="multiple-chip"
                   multiple
@@ -74,6 +85,7 @@ function SetList() {
                         <img
                           width="50"
                           height="50"
+                          title={set.name}
                           src={set.icon_svg_uri}
                           alt={set.code}
                         />
@@ -91,16 +103,3 @@ function SetList() {
 }
 
 export default SetList;
-
-// {
-//   /* typescript-eslint-disable no-implicit-any */
-//   sets.sets.map((set: any) => (
-//     <img
-//       src={set.icon_svg_uri}
-//       alt={set.code}
-//       // width="150"
-//       height="50"
-//       width="50"
-//     />
-//   ));
-// }
