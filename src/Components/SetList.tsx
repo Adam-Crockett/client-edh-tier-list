@@ -18,16 +18,31 @@ import Typography from '@mui/material/Typography';
 function SetList(props: any) {
   // const sets = useGetSets();
   const [setName, setSetName] = useState<string[]>([]);
-
-  const handleChange = (event: SelectChangeEvent<typeof setName>) => {
+  const handleChange = (event: any) => {
+    console.log(event);
     const {
       target: { value }
     } = event;
+    // if (Array.isArray(value)) {
+    //   value.map((id) => {
+    //     props.setSelectedSets(
+    //       props.selectedSets.has(id)
+    //         ? props.selectedSets.delete(id)
+    //         : props.selectedSets.add(id)
+    //     );
+    //   });
+    //   console.log(props.selectedSets);
+    // }
     setSetName(
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value
     );
   };
+
+  // const handleSetID = (event: any) => {
+  //   console.log(event);
+  //   setSetID([]);
+  // };
 
   return (
     <div>
@@ -59,33 +74,27 @@ function SetList(props: any) {
                   multiple
                   value={setName}
                   onChange={handleChange}
+                  name="id"
                   input={
                     <OutlinedInput id="select-multiple-chip" label="Chip" />
                   }
                   renderValue={(selected) => {
-                    props.onSelect(selected);
-
                     return (
                       <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                         {
                           /* typescript-eslint-disable no-implicit-any */
-                          selected.map((value) => (
+                          selected.map((value: any) => (
                             <Chip key={value} label={value} />
                           ))
                         }
                       </Box>
                     );
                   }}
-                  // MenuProps={MenuProps}
                 >
                   {
                     /* typescript-eslint-disable no-implicit-any */
                     props.sets.sets.map((set: any) => (
-                      <MenuItem
-                        key={set.id}
-                        value={set.name}
-                        // style={getStyles(name, personName, theme)}
-                      >
+                      <MenuItem key={set.id} value={set.id}>
                         <img
                           width="50"
                           height="50"
