@@ -1,28 +1,36 @@
-import React from 'react';
+import React, { createContext, useState } from 'react';
+import useGetSets from './customHooks/useGetSets';
 import logo from './logo.svg';
 import './App.css';
 import SetList from './components/SetList';
+import CardList from './components/CardList';
+
+const SetContext = createContext('');
 
 function App() {
+  const sets = useGetSets();
+  const [selectedSets, setSelectedSets] = useState(null);
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <div>
-        <SetList />
+    <SetContext.Provider value="">
+      <div className="App">
+        <header className="App-header">
+          <p>
+            Edit <code>src/App.tsx</code> and save to reload.
+          </p>
+          <a
+            className="App-link"
+            href="https://reactjs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Learn React
+          </a>
+          <CardList selectedSets={selectedSets} />
+          <SetList sets={sets} onSelect={setSelectedSets} />
+        </header>
+        <div></div>
       </div>
-    </div>
+    </SetContext.Provider>
   );
 }
 

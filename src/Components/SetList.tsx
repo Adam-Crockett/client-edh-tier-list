@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import useGetSets from '../customHooks/useGetSets';
+// import useGetSets from '../customHooks/useGetSets';
 import {
   Accordion,
   AccordionDetails,
@@ -15,8 +15,8 @@ import {
 import { SelectChangeEvent } from '@mui/material/Select';
 import Typography from '@mui/material/Typography';
 
-function SetList() {
-  const sets = useGetSets();
+function SetList(props: any) {
+  // const sets = useGetSets();
   const [setName, setSetName] = useState<string[]>([]);
 
   const handleChange = (event: SelectChangeEvent<typeof setName>) => {
@@ -31,7 +31,7 @@ function SetList() {
 
   return (
     <div>
-      {sets === null ? (
+      {props.sets === null ? (
         <p>Loading Data...</p>
       ) : (
         <div>
@@ -62,21 +62,25 @@ function SetList() {
                   input={
                     <OutlinedInput id="select-multiple-chip" label="Chip" />
                   }
-                  renderValue={(selected) => (
-                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                      {
-                        /* typescript-eslint-disable no-implicit-any */
-                        selected.map((value) => (
-                          <Chip key={value} label={value} />
-                        ))
-                      }
-                    </Box>
-                  )}
+                  renderValue={(selected) => {
+                    props.onSelect(selected);
+
+                    return (
+                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                        {
+                          /* typescript-eslint-disable no-implicit-any */
+                          selected.map((value) => (
+                            <Chip key={value} label={value} />
+                          ))
+                        }
+                      </Box>
+                    );
+                  }}
                   // MenuProps={MenuProps}
                 >
                   {
                     /* typescript-eslint-disable no-implicit-any */
-                    sets.sets.map((set: any) => (
+                    props.sets.sets.map((set: any) => (
                       <MenuItem
                         key={set.id}
                         value={set.name}
