@@ -9,7 +9,7 @@ const SetContext = createContext('');
 
 function App() {
   const sets = useGetSets();
-  const [selectedSets, setSelectedSets] = useState(new Set());
+  const [selectedSets, setSelectedSets] = useState();
   return (
     <SetContext.Provider value="">
       <div className="App">

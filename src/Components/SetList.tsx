@@ -1,5 +1,4 @@
 import { useState } from 'react';
-// import useGetSets from '../customHooks/useGetSets';
 import {
   Accordion,
   AccordionDetails,
@@ -16,33 +15,18 @@ import { SelectChangeEvent } from '@mui/material/Select';
 import Typography from '@mui/material/Typography';
 
 function SetList(props: any) {
-  // const sets = useGetSets();
-  const [setName, setSetName] = useState<string[]>([]);
-  const handleChange = (event: any) => {
-    console.log(event);
+  const [selectedSet, setSelectedSet] = useState<string[]>([]);
+  const handleChange = (event: SelectChangeEvent<typeof selectedSet>) => {
     const {
       target: { value }
     } = event;
-    // if (Array.isArray(value)) {
-    //   value.map((id) => {
-    //     props.setSelectedSets(
-    //       props.selectedSets.has(id)
-    //         ? props.selectedSets.delete(id)
-    //         : props.selectedSets.add(id)
-    //     );
-    //   });
-    //   console.log(props.selectedSets);
-    // }
-    setSetName(
+
+    setSelectedSet(
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value
     );
+    props.onSelect(typeof value === 'string' ? value.split(',') : value);
   };
-
-  // const handleSetID = (event: any) => {
-  //   console.log(event);
-  //   setSetID([]);
-  // };
 
   return (
     <div>
@@ -72,9 +56,8 @@ function SetList(props: any) {
                   labelId="multiple-chip-label"
                   id="multiple-chip"
                   multiple
-                  value={setName}
+                  value={selectedSet}
                   onChange={handleChange}
-                  name="id"
                   input={
                     <OutlinedInput id="select-multiple-chip" label="Chip" />
                   }
@@ -83,7 +66,7 @@ function SetList(props: any) {
                       <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                         {
                           /* typescript-eslint-disable no-implicit-any */
-                          selected.map((value: any) => (
+                          selected.map((value: string) => (
                             <Chip key={value} label={value} />
                           ))
                         }
@@ -94,10 +77,11 @@ function SetList(props: any) {
                   {
                     /* typescript-eslint-disable no-implicit-any */
                     props.sets.sets.map((set: any) => (
-                      <MenuItem key={set.id} value={set.id}>
+                      <MenuItem key={set.id} value={set.name}>
                         <img
                           width="50"
                           height="50"
+                          id={set.id}
                           title={set.name}
                           src={set.icon_svg_uri}
                           alt={set.code}
