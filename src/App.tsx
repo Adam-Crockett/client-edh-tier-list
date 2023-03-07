@@ -9,7 +9,7 @@ const SetContext = createContext('');
 
 function App() {
   const sets = useGetSets();
-  const [selectedSets, setSelectedSets] = useState(null);
+  const [selectedSets, setSelectedSets] = useState(new Set());
   return (
     <SetContext.Provider value="">
       <div className="App">
@@ -26,7 +26,11 @@ function App() {
             Learn React
           </a>
           <CardList selectedSets={selectedSets} />
-          <SetList sets={sets} onSelect={setSelectedSets} />
+          <SetList
+            sets={sets}
+            onSelect={setSelectedSets}
+            selectedSets={selectedSets}
+          />
         </header>
         <div></div>
       </div>
