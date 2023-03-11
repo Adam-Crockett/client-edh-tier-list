@@ -1,29 +1,25 @@
-import { useState } from 'react';
-import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
 import MultiselectSets from './MultiselectSets';
-import Typography from '@mui/material/Typography';
 
-function SetList(props: any) {
-  const [selectedSet, setSelectedSet] = useState<string[]>([]);
+interface SetListProps {
+  sets: [];
+  selectedIds: number[];
+  onMultiselectChange: (selectedIds: number[]) => void;
+}
 
+const SetList = ({ sets, selectedIds, onMultiselectChange }: SetListProps) => {
   return (
     <div>
-      {props.sets === null ? (
+      {sets === null ? (
         <p>Loading Data...</p>
       ) : (
-        <div>
-          <Accordion>
-            <AccordionSummary>
-              <Typography>Set List</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <MultiselectSets></MultiselectSets>
-            </AccordionDetails>
-          </Accordion>
-        </div>
+        <MultiselectSets
+          options={sets}
+          selectedIds={selectedIds}
+          onChange={onMultiselectChange}
+        ></MultiselectSets>
       )}
     </div>
   );
-}
+};
 
 export default SetList;
