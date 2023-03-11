@@ -1,20 +1,31 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-// type SetData = {
-//   _id: string;
-//   createdAt: string;
-//   sets: any;
-// };
+interface SetData {
+  id: number;
+  src: string;
+  name: string;
+  code: string;
+}
 
 export default function useGetSets() {
-  const [sets, updateSets] = useState(null);
+  const [data, setData] = useState<SetData[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/sets`).then(({ data }) => {
-      updateSets(data);
-      // console.log(data);
-    });
+    const fetchData = async () => {
+      try {
+        axios.get(`${process.env.REACT_APP_API_URL}/sets`).then(({ data }) => {
+          setData(data);
+        });
+      } catch (e) {
+        setError('Error fetching data');
+      }
+      setLoading(false);
+    };
+    fetchData();
   }, []);
-  return sets;
+  // console.log(data);
+  return { data, loading, error };
 }
