@@ -1,19 +1,19 @@
 interface MultiselectSetsProps {
   options: { id: number; src: string; name: string; code: string }[];
-  selectedIds: number[];
-  onChange: (selectedIds: number[]) => void;
+  selectedCodes: string[];
+  onChange: (selectedCodes: string[]) => void;
 }
 
 const MultiselectSets = ({
   options,
-  selectedIds,
+  selectedCodes,
   onChange
 }: MultiselectSetsProps) => {
-  const handleOptionClick = (id: number) => {
-    const newSelectedIds = selectedIds.includes(id)
-      ? selectedIds.filter((selectedId) => selectedId !== id)
-      : [...selectedIds, id];
-    onChange(newSelectedIds);
+  const handleOptionClick = (code: string) => {
+    const newSelectedCodes = selectedCodes.includes(code)
+      ? selectedCodes.filter((selectedCode) => selectedCode !== code)
+      : [...selectedCodes, code];
+    onChange(newSelectedCodes);
   };
   return (
     <div>
@@ -23,11 +23,11 @@ const MultiselectSets = ({
           src={option.src}
           alt={option.name}
           title={option.name}
-          onClick={() => handleOptionClick(option.id)}
+          onClick={() => handleOptionClick(option.code)}
           style={{
             width: 50,
             height: 50,
-            opacity: selectedIds.includes(option.id) ? 0.5 : 1
+            opacity: selectedCodes.includes(option.code) ? 0.5 : 1
           }}
         />
       ))}

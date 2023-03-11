@@ -1,12 +1,23 @@
 import MultiselectSets from './MultiselectSets';
 
-interface SetListProps {
-  sets: [];
-  selectedIds: number[];
-  onMultiselectChange: (selectedIds: number[]) => void;
+interface SetData {
+  id: number;
+  src: string;
+  name: string;
+  code: string;
 }
 
-const SetList = ({ sets, selectedIds, onMultiselectChange }: SetListProps) => {
+interface SetListProps {
+  sets: SetData[] | null;
+  selectedCodes: string[];
+  onMultiselectChange: (selectedCodes: string[]) => void;
+}
+
+const SetList = ({
+  sets,
+  selectedCodes,
+  onMultiselectChange
+}: SetListProps) => {
   return (
     <div>
       {sets === null ? (
@@ -14,7 +25,7 @@ const SetList = ({ sets, selectedIds, onMultiselectChange }: SetListProps) => {
       ) : (
         <MultiselectSets
           options={sets}
-          selectedIds={selectedIds}
+          selectedCodes={selectedCodes}
           onChange={onMultiselectChange}
         ></MultiselectSets>
       )}

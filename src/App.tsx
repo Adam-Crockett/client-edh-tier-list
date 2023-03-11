@@ -7,25 +7,18 @@ import CardList from './components/CardList';
 const SetContext = createContext('');
 
 interface AppState {
-  selectedIds: number[];
+  selectedCodes: string[];
 }
 
-// interface SetsData {
-//   sets: FetchedSetsData[];
-// }
-
-// interface FetchedSetsData {
-//   options: { id: number; src: string; name: string; code: string }[];
-// }
-
 function App() {
-  const sets = useGetSets();
-  const [selectedIds, setSelectedSets] = useState<AppState>({
-    selectedIds: []
+  const { data, loading, error } = useGetSets();
+  const [selectedCodes, setSelectedCodes] = useState<AppState>({
+    selectedCodes: []
   });
-  const handleMultiselectChange = (selectedIds: number[]) => {
-    setSelectedSets({ selectedIds });
+  const handleMultiselectChange = (selectedCodes: string[]) => {
+    setSelectedCodes({ selectedCodes });
   };
+
   return (
     <SetContext.Provider value="">
       <div className="App">
@@ -42,15 +35,15 @@ function App() {
             Learn React
           </a>
           {/* <CardList selectedSets={selectedIds} /> */}
-          <div>{selectedIds.selectedIds}</div>
-          {sets ? (
+          <div>{selectedCodes.selectedCodes}</div>
+          {loading ? (
+            <></>
+          ) : (
             <SetList
-              sets={sets}
-              selectedIds={selectedIds.selectedIds}
+              sets={data}
+              selectedCodes={selectedCodes.selectedCodes}
               onMultiselectChange={handleMultiselectChange}
             />
-          ) : (
-            <></>
           )}
         </header>
         <div></div>
