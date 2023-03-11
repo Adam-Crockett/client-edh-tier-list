@@ -13,7 +13,7 @@ export default function useGetSets() {
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_URL}/sets`).then(({ data }) => {
       updateSets(data);
-      console.log(data);
+      // console.log(data);
     });
   }, []);
   return sets;
