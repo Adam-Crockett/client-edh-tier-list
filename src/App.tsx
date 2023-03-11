@@ -1,15 +1,31 @@
-import React, { createContext, useState } from 'react';
+import { createContext, useState } from 'react';
 import useGetSets from './customHooks/useGetSets';
-import logo from './logo.svg';
 import './App.css';
 import SetList from './components/SetList';
 import CardList from './components/CardList';
 
 const SetContext = createContext('');
 
+interface AppState {
+  selectedIds: number[];
+}
+
+// interface SetsData {
+//   sets: FetchedSetsData[];
+// }
+
+// interface FetchedSetsData {
+//   options: { id: number; src: string; name: string; code: string }[];
+// }
+
 function App() {
   const sets = useGetSets();
-  const [selectedSets, setSelectedSets] = useState();
+  const [selectedIds, setSelectedSets] = useState<AppState>({
+    selectedIds: []
+  });
+  const handleMultiselectChange = (selectedIds: number[]) => {
+    setSelectedSets({ selectedIds });
+  };
   return (
     <SetContext.Provider value="">
       <div className="App">
@@ -25,12 +41,17 @@ function App() {
           >
             Learn React
           </a>
-          <CardList selectedSets={selectedSets} />
-          <SetList
-            sets={sets}
-            onSelect={setSelectedSets}
-            selectedSets={selectedSets}
-          />
+          {/* <CardList selectedSets={selectedIds} /> */}
+          <div>{selectedIds.selectedIds}</div>
+          {sets ? (
+            <SetList
+              sets={sets}
+              selectedIds={selectedIds.selectedIds}
+              onMultiselectChange={handleMultiselectChange}
+            />
+          ) : (
+            <></>
+          )}
         </header>
         <div></div>
       </div>
