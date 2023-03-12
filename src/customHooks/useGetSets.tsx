@@ -6,6 +6,7 @@ interface SetData {
   src: string;
   name: string;
   code: string;
+  releaseDate: Date;
 }
 
 export default function useGetSets() {
@@ -17,7 +18,11 @@ export default function useGetSets() {
     const fetchData = async () => {
       try {
         axios.get(`${process.env.REACT_APP_API_URL}/sets`).then(({ data }) => {
-          setData(data);
+          setData(
+            data.sort((a: SetData, b: SetData) => {
+              return a.releaseDate > b.releaseDate ? -1 : 1;
+            })
+          );
         });
       } catch (e) {
         setError('Error fetching data');

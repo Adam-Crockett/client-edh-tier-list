@@ -5,6 +5,7 @@ interface SetData {
   src: string;
   name: string;
   code: string;
+  releaseDate: Date;
 }
 
 interface SetListProps {
