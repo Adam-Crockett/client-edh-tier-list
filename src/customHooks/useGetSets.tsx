@@ -1,13 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-
-interface SetData {
-  id: number;
-  src: string;
-  name: string;
-  code: string;
-  releaseDate: Date;
-}
+import { SetData } from '../interfaces';
 
 export default function useGetSets() {
   const [data, setData] = useState<SetData[]>([]);

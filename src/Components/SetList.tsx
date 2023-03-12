@@ -1,18 +1,5 @@
 import MultiselectSets from './MultiselectSets';
-
-interface SetData {
-  id: number;
-  src: string;
-  name: string;
-  code: string;
-  releaseDate: Date;
-}
-
-interface SetListProps {
-  sets: SetData[] | null;
-  selectedCodes: string[];
-  onMultiselectChange: (selectedCodes: string[]) => void;
-}
+import { SetListProps } from '../interfaces';
 
 const SetList = ({
   sets,

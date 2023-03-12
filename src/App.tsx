@@ -3,12 +3,9 @@ import useGetSets from './customHooks/useGetSets';
 import './App.css';
 import SetList from './components/SetList';
 import CardList from './components/CardList';
+import { AppState } from './interfaces';
 
 const SetContext = createContext('');
-
-interface AppState {
-  selectedCodes: string[];
-}
 
 function App() {
   const { data, loading, error } = useGetSets();
