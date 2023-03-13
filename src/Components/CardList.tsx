@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { CardData } from '../interfaces';
 
-function CardList(props: any) {
-  return <ul>{props.selectedSets}</ul>;
+function CardList({ currentCards }: any) {
+  console.log(currentCards);
+  return <ul>{currentCards}</ul>;
 }
 
 export default CardList;
