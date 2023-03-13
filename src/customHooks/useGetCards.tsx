@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { SelectedSets, CardData } from '../interfaces';
 
+// Check to send to client
 export default function useGetCards({ selectedCodes }: SelectedSets) {
   const [currentCards, setCurrentCards] = useState<CardData[]>([]);
   const [loadingCards, setLoading] = useState(true);
