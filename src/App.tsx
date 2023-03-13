@@ -3,15 +3,17 @@ import useGetSets from './customHooks/useGetSets';
 import './App.css';
 import SetList from './components/SetList';
 import CardList from './components/CardList';
-import { AppState } from './interfaces';
+import { SelectedSets } from './interfaces';
+import useGetCards from './customHooks/useGetCards';
 
 const SetContext = createContext('');
 
 function App() {
   const { data, loading, error } = useGetSets();
-  const [selectedCodes, setSelectedCodes] = useState<AppState>({
+  const [selectedCodes, setSelectedCodes] = useState<SelectedSets>({
     selectedCodes: []
   });
+  const { currentCards, loadingCards, cardError } = useGetCards(selectedCodes);
   const handleMultiselectChange = (selectedCodes: string[]) => {
     setSelectedCodes({ selectedCodes });
   };
@@ -31,7 +33,7 @@ function App() {
           >
             Learn React
           </a>
-          {/* <CardList selectedSets={selectedIds} /> */}
+          <CardList selectedSets={currentCards} />
           <div>{selectedCodes.selectedCodes}</div>
           {loading ? (
             <></>
