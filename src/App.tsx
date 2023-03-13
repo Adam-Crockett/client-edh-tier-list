@@ -10,6 +10,7 @@ const SetContext = createContext('');
 
 function App() {
   const { data, loading, error } = useGetSets();
+  // Implement a solution to deal with removing a set from selectedCodes and updating currentCards
   const [selectedCodes, setSelectedCodes] = useState<SelectedSets>({
     selectedCodes: []
   });
