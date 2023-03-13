@@ -18,6 +18,8 @@ function App() {
     setSelectedCodes({ selectedCodes });
   };
 
+  // console.log(data);
+
   return (
     <SetContext.Provider value="">
       <div className="App">
@@ -33,8 +35,9 @@ function App() {
           >
             Learn React
           </a>
-          <CardList selectedSets={currentCards} />
-          <div>{selectedCodes.selectedCodes}</div>
+        </header>
+        <div>
+          <CardList currentCards={currentCards} loadingCards={loadingCards} />
           {loading ? (
             <></>
           ) : (
@@ -44,8 +47,7 @@ function App() {
               onMultiselectChange={handleMultiselectChange}
             />
           )}
-        </header>
-        <div></div>
+        </div>
       </div>
     </SetContext.Provider>
   );
