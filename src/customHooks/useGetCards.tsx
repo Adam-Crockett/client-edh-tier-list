@@ -9,7 +9,7 @@ export default function useGetCards({ selectedCodes }: SelectedSets) {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log(selectedCodes);
+      // console.log(selectedCodes);
       try {
         axios
           .get(`${process.env.REACT_APP_API_URL}/cards`, {
@@ -17,6 +17,7 @@ export default function useGetCards({ selectedCodes }: SelectedSets) {
           })
           .then((fetchedData: any) => {
             setCurrentCards(fetchedData);
+            console.log(currentCards);
           });
       } catch (e) {
         setCardError('Error fetching data');
