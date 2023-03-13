@@ -24,6 +24,5 @@ export default function useGetSets() {
     };
     fetchData();
   }, []);
-  // console.log(data);
   return { data, loading, error };
 }
