@@ -1,6 +1,3 @@
-import { useState } from 'react';
-import { CardData } from '../interfaces';
-
 const CardList = ({ currentCards, loadingCards }: any) => {
   console.log(currentCards);
   return (
