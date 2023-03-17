@@ -1,8 +1,9 @@
 export interface CardData {
+  cardFaces?: object[];
   createdAt: Date;
   id: string;
   imageStatus: boolean;
-  imageUris: string[];
+  imageUris?: string[];
   name: string;
   set: string;
 }
