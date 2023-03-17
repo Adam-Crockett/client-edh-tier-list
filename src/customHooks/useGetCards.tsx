@@ -3,10 +3,11 @@ import axios from 'axios';
 import { SelectedSets, CardData } from '../interfaces';
 
 // Check to send to client
-export default function useGetCards({ selectedCodes }: SelectedSets) {
+export default function useGetCards(selectedCodes: string[]) {
   const [currentCards, setCurrentCards] = useState<CardData[]>([]);
   const [loadingCards, setLoading] = useState(true);
   const [cardError, setCardError] = useState('');
+  const [previousCodes, setPreviousCodes] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,7 +24,12 @@ export default function useGetCards({ selectedCodes }: SelectedSets) {
       }
       setLoading(false);
     };
-    fetchData();
+    if (previousCodes.length > selectedCodes.length) {
+      // Function to remove cards from currentCards that on in the removed sets
+      // Update current cards
+    } else {
+      fetchData();
+    }
   }, [selectedCodes]);
   return { currentCards, loadingCards, cardError };
 }

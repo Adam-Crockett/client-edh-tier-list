@@ -11,15 +11,11 @@ const SetContext = createContext('');
 function App() {
   const { data, loading, error } = useGetSets();
   // Implement a solution to deal with removing a set from selectedCodes and updating currentCards
-  const [selectedCodes, setSelectedCodes] = useState<SelectedSets>({
-    selectedCodes: []
-  });
+  const [selectedCodes, setSelectedCodes] = useState<string[]>([]);
   const { currentCards, loadingCards, cardError } = useGetCards(selectedCodes);
-  const handleMultiselectChange = (selectedCodes: string[]) => {
-    setSelectedCodes({ selectedCodes });
+  const handleMultiselectChange = (newSelectedCodes: string[]) => {
+    setSelectedCodes(newSelectedCodes);
   };
-
-  // console.log(data);
 
   return (
     <SetContext.Provider value="">
@@ -44,7 +40,7 @@ function App() {
           ) : (
             <SetList
               sets={data}
-              selectedCodes={selectedCodes.selectedCodes}
+              selectedCodes={selectedCodes}
               onMultiselectChange={handleMultiselectChange}
             />
           )}
