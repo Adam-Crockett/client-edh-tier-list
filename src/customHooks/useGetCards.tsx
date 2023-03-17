@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
-import { SelectedSets, CardData } from '../interfaces';
+import axios, { AxiosResponse } from 'axios';
+import { CardData } from '../interfaces';
 
 // Check to send to client
 export default function useGetCards(selectedCodes: string[]) {
@@ -16,7 +16,7 @@ export default function useGetCards(selectedCodes: string[]) {
           .get(`${process.env.REACT_APP_API_URL}/cards`, {
             params: { setCodes: selectedCodes }
           })
-          .then((fetchedData: any) => {
+          .then((fetchedData: AxiosResponse) => {
             setCurrentCards(fetchedData.data);
           });
       } catch (e) {
@@ -25,11 +25,24 @@ export default function useGetCards(selectedCodes: string[]) {
       setLoading(false);
     };
     if (previousCodes.length > selectedCodes.length) {
-      // Function to remove cards from currentCards that on in the removed sets
-      // Update current cards
+      const removedCodes = getRemovedCodes(previousCodes);
+      setCurrentCards((currentCards) => {
+        return currentCards.filter((card) => {
+          return !removedCodes.includes(card.set);
+        });
+      });
     } else {
       fetchData();
     }
+    setPreviousCodes(selectedCodes);
   }, [selectedCodes]);
+
+  function getRemovedCodes(prevCodes: string[]) {
+    return prevCodes.map((code) => {
+      if (!selectedCodes.includes(code)) {
+        return code;
+      }
+    });
+  }
   return { currentCards, loadingCards, cardError };
 }
