@@ -4,6 +4,7 @@ import './App.css';
 import SetList from './components/SetList';
 import CardList from './components/CardList';
 import useGetCards from './customHooks/useGetCards';
+import TierLevelManager from './components/TierLevelManager';
 
 const SetContext = createContext('');
 
@@ -24,6 +25,7 @@ function App() {
           </p>
         </header>
         <main>
+          <TierLevelManager />
           <div>
             <CardList currentCards={currentCards} loadingCards={loadingCards} />
             {loading ? (
