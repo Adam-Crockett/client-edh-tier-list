@@ -1,5 +1,5 @@
 export interface SetData {
-  id: number;
+  id: string;
   src: string;
   name: string;
   code: string;
