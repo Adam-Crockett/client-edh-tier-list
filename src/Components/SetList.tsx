@@ -15,7 +15,7 @@ const SetList = ({
           options={sets}
           selectedCodes={selectedCodes}
           onChange={onMultiselectChange}
-        ></MultiselectSets>
+        />
       )}
     </div>
   );

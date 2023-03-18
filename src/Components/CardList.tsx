@@ -23,7 +23,6 @@ const CardList = ({ currentCards, loadingCards }: any) => {
             return <img key={card.id} src={card.image_uris.small} />;
           } else {
             return (
-              // <img key={card.id} src={card.image_faces} />
               <img
                 key={card.id}
                 src={card.card_faces[0].image_uris.small}
