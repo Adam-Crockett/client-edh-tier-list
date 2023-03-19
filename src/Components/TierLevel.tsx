@@ -1,6 +1,10 @@
-const TierLevel = ({ levelData }: any) => {
+const TierLevel = ({ index, levelData, handleRemoveTierLevel }: any) => {
+  const handleRemoveClick = () => {
+    handleRemoveTierLevel(index);
+  };
   return (
-    <li id={levelData.id}>
+    <li>
+      <button onClick={handleRemoveClick}>Remove tier level</button>
       <p>{levelData.name}</p>
     </li>
   );
