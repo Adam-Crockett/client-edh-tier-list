@@ -1,5 +1,15 @@
+import { useState } from 'react';
 import { CardData } from '../interfaces';
 const CardList = ({ currentCards, loadingCards }: any) => {
+  const [isPopOutVisable, setIsPopOutVisable] = useState(false);
+
+  const handleMouseOver = () => {
+    setIsPopOutVisable(true);
+  };
+  const handleMouseOut = () => {
+    setIsPopOutVisable(false);
+  };
+
   const handleClickOnMDFC = (
     event: React.MouseEvent<HTMLImageElement>,
     card: any
@@ -19,8 +29,34 @@ const CardList = ({ currentCards, loadingCards }: any) => {
         <></>
       ) : (
         currentCards.map((card: any) => {
+          console.log(card);
           if (card.image_uris) {
-            return <img key={card.id} src={card.image_uris.small} />;
+            return (
+              <>
+                <img
+                  key={card.id}
+                  src={card.image_uris.small}
+                  onMouseOver={handleMouseOver}
+                  onMouseOut={handleMouseOut}
+                />
+                {isPopOutVisable && (
+                  <div
+                    style={{
+                      position: 'absolute',
+                      left: '50%',
+                      top: '50%',
+                      // transform: 'translate(-50%, -50%)',
+                      zIndex: 1,
+                      backgroundColor: 'white',
+                      boxShadow: '0 0 5px grey',
+                      padding: '10px'
+                    }}
+                  >
+                    <img src={card.image_uris.normal} alt="Pop Out Image" />
+                  </div>
+                )}
+              </>
+            );
           } else {
             return (
               <img
