@@ -29,7 +29,6 @@ const CardList = ({ currentCards, loadingCards }: any) => {
         <></>
       ) : (
         currentCards.map((card: any) => {
-          console.log(card);
           if (card.image_uris) {
             return (
               <>
