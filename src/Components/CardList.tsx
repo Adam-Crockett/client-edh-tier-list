@@ -33,12 +33,13 @@ const CardList = ({ currentCards, loadingCards }: any) => {
             return (
               <>
                 <img
+                  draggable
                   key={card.id}
                   src={card.image_uris.small}
                   onMouseOver={handleMouseOver}
                   onMouseOut={handleMouseOut}
                 />
-                {isPopOutVisable && (
+                {/* {isPopOutVisable && (
                   <div
                     style={{
                       position: 'absolute',
@@ -53,7 +54,7 @@ const CardList = ({ currentCards, loadingCards }: any) => {
                   >
                     <img src={card.image_uris.normal} alt="Pop Out Image" />
                   </div>
-                )}
+                )} */}
               </>
             );
           } else {

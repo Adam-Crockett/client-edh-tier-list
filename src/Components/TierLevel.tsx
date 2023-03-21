@@ -20,20 +20,37 @@ const TierLevel = ({
     setInEditMode(false);
   };
   return (
-    <li style={{ background: 'grey' }}>
-      <div>
+    <li
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        background: 'grey',
+        minHeight: '100px',
+        margin: '20px'
+      }}
+    >
+      <div style={{ alignSelf: 'flex-start' }}>
         {inEditMode ? (
           <div>
-            <input value={levelData.name} onChange={handleNameInputChange} />
+            <input
+              value={levelData.tierName}
+              onChange={handleNameInputChange}
+            />
             <button onClick={handleSaveClick}>Done</button>
             <button onClick={handleRemoveClick}>Remove tier level</button>
           </div>
         ) : (
           <div>
             <button onClick={() => setInEditMode(true)}>Edit</button>
-            <p>{levelData.name}</p>
+            <p>{levelData.tierName}</p>
           </div>
         )}
+      </div>
+      <div style={{ width: '100%' }}>
+        {levelData.cards.map((card: any) => {
+          // return <img key={card.id} src={card?.image_uris?.small} />;
+          return <p key={card.id}>{card.name}</p>;
+        })}
       </div>
     </li>
   );

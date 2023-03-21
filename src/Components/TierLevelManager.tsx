@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import TierLevel from './TierLevel';
 
 const TierLevelManager = () => {
   const [tierLevels, setTierLevels] = useState<any[]>([]);
 
   const handleAddTierLevel = () => {
-    setTierLevels([...tierLevels, { name: tierLevels.length }]);
+    setTierLevels([...tierLevels, { tierName: tierLevels.length, cards: [] }]);
   };
 
   const handleRemoveTierLevel = (index: number) => {
@@ -16,7 +16,7 @@ const TierLevelManager = () => {
 
   const handleEditTierLevel = (index: number, newName: string) => {
     const updatedTierLevels = [...tierLevels];
-    updatedTierLevels[index].name = newName;
+    updatedTierLevels[index].tierName = newName;
     setTierLevels(updatedTierLevels);
   };
   return (
