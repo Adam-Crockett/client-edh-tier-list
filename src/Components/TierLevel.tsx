@@ -46,12 +46,12 @@ const TierLevel = ({
           </div>
         )}
       </div>
-      <div style={{ width: '100%' }}>
+      <ul style={{ width: '100%' }}>
         {levelData.cards.map((card: any) => {
           // return <img key={card.id} src={card?.image_uris?.small} />;
-          return <p key={card.id}>{card.name}</p>;
+          return <li key={card.id}>{card.name}</li>;
         })}
-      </div>
+      </ul>
     </li>
   );
 };
