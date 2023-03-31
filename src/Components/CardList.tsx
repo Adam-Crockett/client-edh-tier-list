@@ -1,36 +1,12 @@
-import { useState } from 'react';
-import { CardData } from '../interfaces';
 import Card from './Card';
 const CardList = ({ currentCards, loadingCards }: any) => {
-  const [isPopOutVisable, setIsPopOutVisable] = useState(false);
-
-  const handleMouseOver = () => {
-    setIsPopOutVisable(true);
-  };
-  const handleMouseOut = () => {
-    setIsPopOutVisable(false);
-  };
-
-  const handleClickOnMDFC = (
-    event: React.MouseEvent<HTMLImageElement>,
-    card: any
-  ) => {
-    const element = event.target as HTMLImageElement;
-
-    const swapFace: any =
-      element.src == card.card_faces[0].image_uris.small
-        ? card.card_faces[1].image_uris.small
-        : card.card_faces[0].image_uris.small;
-    element.src = swapFace;
-  };
-
   return (
     <ul>
       {loadingCards ? (
         <></>
       ) : (
-        currentCards.map((card: any) => {
-          return <Card data={card} />;
+        currentCards.map((card: any, index: number) => {
+          return <Card key={index} draggable data={card} />;
         })
       )}
     </ul>
