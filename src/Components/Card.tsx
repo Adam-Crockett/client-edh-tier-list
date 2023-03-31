@@ -26,8 +26,18 @@ const Card = ({ data }: any) => {
   }
 };
 
+export default Card;
 {
-  /* {isPopOutVisable && (
+  /* 
+  const [isPopOutVisable, setIsPopOutVisable] = useState(false);
+    const handleMouseOver = () => {
+    setIsPopOutVisable(true);
+  };
+  const handleMouseOut = () => {
+    setIsPopOutVisable(false);
+  };
+  
+  {isPopOutVisable && (
                   <div
                     style={{
                       position: 'absolute',
@@ -44,5 +54,3 @@ const Card = ({ data }: any) => {
                   </div>
                 )} */
 }
-
-export default Card;
