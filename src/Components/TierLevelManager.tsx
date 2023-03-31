@@ -6,8 +6,8 @@ const TierLevelManager = ({
   handleRemoveTierLevel,
   handleEditTierLevel,
   handleDragStart,
-  handleDragOver,
-  handleDrop
+  handleDragEnter,
+  dragging
 }: any) => {
   return (
     <div>
@@ -15,20 +15,20 @@ const TierLevelManager = ({
         <button onClick={handleAddTierLevel}>Add Tier</button>
       </div>
       <ul>
-        {tierLevels.map((tierLevel: any, index: number) => {
-          if (index == 0) {
+        {tierLevels.map((levelData: any, tierIndex: number) => {
+          if (tierIndex == 0) {
             return null;
           }
           return (
             <TierLevel
-              key={index}
-              index={index}
-              levelData={tierLevel}
+              key={tierIndex}
+              tierIndex={tierIndex}
+              levelData={levelData}
               handleRemoveTierLevel={handleRemoveTierLevel}
               handleEditTierLevel={handleEditTierLevel}
               handleDragStart={handleDragStart}
-              handleDrop={handleDrop}
-              handleDragOver={handleDragOver}
+              handleDragEnter={handleDragEnter}
+              dragging={dragging}
             />
           );
         })}

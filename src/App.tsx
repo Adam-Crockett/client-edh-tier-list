@@ -2,9 +2,7 @@ import { createContext, useState } from 'react';
 import useGetSets from './customHooks/useGetSets';
 import './App.css';
 import SetList from './components/SetList';
-import CardList from './components/CardList';
 import useGetCards from './customHooks/useGetCards';
-import TierLevelManager from './components/TierLevelManager';
 import TierManager from './components/TierManager';
 
 const SetContext = createContext('');

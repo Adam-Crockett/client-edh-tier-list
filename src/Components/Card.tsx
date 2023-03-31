@@ -1,6 +1,13 @@
 import React from 'react';
 
-const Card = ({ data }: any) => {
+const Card = ({
+  data,
+  cardIndex,
+  tierIndex,
+  handleDragStart,
+  handleDragEnter,
+  dragging
+}: any) => {
   const handleClickOnMDFC = (
     event: React.MouseEvent<HTMLImageElement>,
     data: any
@@ -15,7 +22,22 @@ const Card = ({ data }: any) => {
   };
 
   if (data.image_uris) {
-    return <img draggable key={data.id} src={data.image_uris.small} />;
+    return (
+      <img
+        draggable
+        onDragStart={(event) => handleDragStart(event, 0, cardIndex)}
+        onDragEnter={
+          dragging
+            ? (event) => {
+                console.log('dragEnter');
+                handleDragEnter(event, 0, cardIndex);
+              }
+            : undefined
+        }
+        key={data.id}
+        src={data.image_uris.small}
+      />
+    );
   } else {
     return (
       <img

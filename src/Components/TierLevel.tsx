@@ -1,25 +1,25 @@
 import { useState } from 'react';
 import Card from './Card';
 const TierLevel = ({
-  index,
+  tierIndex,
   levelData,
   handleRemoveTierLevel,
   handleEditTierLevel,
   handleDragStart,
-  handleDragOver,
-  handleDrop
+  handleDragEnter,
+  dragging
 }: any) => {
   const [inEditMode, setInEditMode] = useState(false);
   const handleRemoveClick = () => {
     // When the tier level is removed, any Cards in the tier level should be returned to the CardList
-    handleRemoveTierLevel(index);
+    handleRemoveTierLevel(tierIndex);
     setInEditMode(false);
   };
 
   const handleNameInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    handleEditTierLevel(index, event.target.value);
+    handleEditTierLevel(tierIndex, event.target.value);
   };
   const handleSaveClick = () => {
     setInEditMode(false);
@@ -30,7 +30,7 @@ const TierLevel = ({
         display: 'flex',
         flexDirection: 'row',
         background: 'grey',
-        minHeight: '100px',
+        minHeight: '150px',
         margin: '20px'
       }}
     >
@@ -53,11 +53,27 @@ const TierLevel = ({
       </div>
       <ul
         style={{ width: '100%' }}
-        onDrop={handleDrop}
-        onDragOver={handleDragOver}
+        onDragEnter={
+          dragging
+            ? (event) => {
+                console.log('dragEnter a Tier Level');
+                handleDragEnter(event, tierIndex, 0);
+              }
+            : undefined
+        }
       >
-        {levelData.cards.map((card: any, index: number) => {
-          return <Card key={index} data={card} />;
+        {levelData.cards.map((card: any, cardIndex: number) => {
+          return (
+            <Card
+              key={cardIndex}
+              data={card}
+              cardIndex={cardIndex}
+              tierIndex={tierIndex}
+              handleDragStart={handleDragStart}
+              handleDragEnter={handleDragEnter}
+              dragging={dragging}
+            />
+          );
         })}
       </ul>
     </li>

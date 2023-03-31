@@ -15,27 +15,33 @@ const CardList = ({
     margin: 0
   };
 
-  // console.log(tierLevels);
-
   return (
     <ul
       style={cardListStyles}
-      // onDragEnter={dragging ? (event) => handleDragEnter(event) : null}
+      onDragEnter={
+        dragging && tierLevels[0].cards.length == 0
+          ? (event) => {
+              console.log('dragEnter');
+              handleDragEnter(event, 0, 0);
+            }
+          : undefined
+      }
     >
       {loadingCards ? (
         <></>
       ) : (
-        tierLevels[0].cards.map((card: any, index: number) => {
+        tierLevels[0].cards.map((card: any, cardIndex: number) => {
           return (
-            <li
-              key={index}
-              draggable={true}
-              onDragStart={(event) =>
-                handleDragStart(event, card, index, tierLevels)
-              }
-              onDragEnter={(event) => handleDragEnter(event, index, tierLevels)}
-            >
-              <Card data={card} />;
+            <li key={cardIndex}>
+              <Card
+                data={card}
+                cardIndex={cardIndex}
+                tierIndex={0}
+                handleDragStart={handleDragStart}
+                handleDragEnter={handleDragEnter}
+                dragging={dragging}
+              />
+              ;
             </li>
           );
         })
