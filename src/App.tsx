@@ -26,7 +26,10 @@ function App() {
           </p>
         </header>
         <main>
-          <TierManager cardList={currentCards} loadingCards={loadingCards} />
+          <TierManager
+            currentCards={currentCards}
+            loadingCards={loadingCards}
+          />
           <div>
             {loading ? (
               <></>
