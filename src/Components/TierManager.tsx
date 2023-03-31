@@ -6,6 +6,7 @@ const TierManager = ({ currentCards }: any) => {
   const [cardList, setCardList] = useState(currentCards);
   const [tierLevels, setTierLevels] = useState<any[]>([]);
   useEffect(() => {
+    // Implement handling if cards are removed from the card pool
     const newCards = currentCards.filter((card: any) => {
       return !cardList.includes(card);
     });
