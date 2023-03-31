@@ -4,7 +4,10 @@ const TierLevelManager = ({
   tierLevels,
   handleAddTierLevel,
   handleRemoveTierLevel,
-  handleEditTierLevel
+  handleEditTierLevel,
+  handleDragStart,
+  handleDragOver,
+  handleDrop
 }: any) => {
   return (
     <div>
@@ -20,6 +23,9 @@ const TierLevelManager = ({
               levelData={tierLevel}
               handleRemoveTierLevel={handleRemoveTierLevel}
               handleEditTierLevel={handleEditTierLevel}
+              handleDragStart={handleDragStart}
+              handleDrop={handleDrop}
+              handleDragOver={handleDragOver}
             />
           );
         })}

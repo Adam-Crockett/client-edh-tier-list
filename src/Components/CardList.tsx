@@ -1,5 +1,11 @@
 import Card from './Card';
-const CardList = ({ currentCards, loadingCards }: any) => {
+const CardList = ({
+  currentCards,
+  loadingCards,
+  handleDragStart,
+  handleDragEnter,
+  handleDrop
+}: any) => {
   const cardListStyles = {
     display: 'flex',
     'flex-direction': 'row',
@@ -16,8 +22,18 @@ const CardList = ({ currentCards, loadingCards }: any) => {
       ) : (
         currentCards.map((card: any, index: number) => {
           return (
-            <li key={index}>
-              <Card draggable data={card} />;
+            <li
+              key={index}
+              draggable
+              onDragStart={(event) =>
+                handleDragStart(event, card, index, currentCards)
+              }
+              onDragEnter={(event) =>
+                handleDragEnter(event, index, currentCards)
+              }
+              onDrop={handleDrop}
+            >
+              <Card data={card} />;
             </li>
           );
         })

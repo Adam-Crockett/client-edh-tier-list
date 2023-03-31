@@ -4,7 +4,10 @@ const TierLevel = ({
   index,
   levelData,
   handleRemoveTierLevel,
-  handleEditTierLevel
+  handleEditTierLevel,
+  handleDragStart,
+  handleDragOver,
+  handleDrop
 }: any) => {
   const [inEditMode, setInEditMode] = useState(false);
   const handleRemoveClick = () => {
@@ -48,7 +51,11 @@ const TierLevel = ({
           </div>
         )}
       </div>
-      <ul style={{ width: '100%' }}>
+      <ul
+        style={{ width: '100%' }}
+        onDrop={handleDrop}
+        onDragOver={handleDragOver}
+      >
         {levelData.cards.map((card: any, index: number) => {
           return <Card key={index} data={card} />;
         })}
