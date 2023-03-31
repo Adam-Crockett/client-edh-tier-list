@@ -8,16 +8,39 @@ type DragItem = {
   type: string;
 };
 
-const TierManager = ({ cardList, loadingCards }: any) => {
+const TierManager = ({ currentCards, loadingCards }: any) => {
   const [isDragginer, setIsDragging] = useState(false);
-  const [lists, setLists] = useState(cardList);
+  const [cardList, setCardList] = useState(currentCards);
+  const [tierLevels, setTierLevels] = useState<any[]>([]);
+
+  useEffect(() => {
+    setCardList(currentCards);
+  }, [currentCards]);
+
+  const handleAddTierLevel = () => {
+    setTierLevels([...tierLevels, { tierName: tierLevels.length, cards: [] }]);
+  };
+
+  const handleRemoveTierLevel = (index: number) => {
+    const updatedTierLevels = [...tierLevels];
+    updatedTierLevels.splice(index, 1);
+    setTierLevels(updatedTierLevels);
+  };
+
+  const handleEditTierLevel = (index: number, newName: string) => {
+    const updatedTierLevels = [...tierLevels];
+    updatedTierLevels[index].tierName = newName;
+    setTierLevels(updatedTierLevels);
+  };
+
   return (
     <>
       <TierLevelManager
-      // handleDragStart={handleDragStart}
-      // handleDragEnd={handleDragEnd}
-      // handleDragOver={handleDragOver}
-      // handleDrop={handleDrop}
+        tierLevels={tierLevels}
+        tierCards={cardList}
+        handleAddTierLevel={handleAddTierLevel}
+        handleRemoveTierLevel={handleRemoveTierLevel}
+        handleEditTierLevel={handleEditTierLevel}
       />
       <CardList
         currentCards={cardList}
