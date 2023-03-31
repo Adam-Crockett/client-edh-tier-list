@@ -16,6 +16,9 @@ const TierLevelManager = ({
       </div>
       <ul>
         {tierLevels.map((tierLevel: any, index: number) => {
+          if (index == 0) {
+            return null;
+          }
           return (
             <TierLevel
               key={index}

@@ -1,10 +1,10 @@
 import Card from './Card';
 const CardList = ({
-  currentCards,
+  tierLevels,
   loadingCards,
   handleDragStart,
   handleDragEnter,
-  handleDrop
+  dragging
 }: any) => {
   const cardListStyles = {
     display: 'flex',
@@ -15,23 +15,25 @@ const CardList = ({
     margin: 0
   };
 
+  // console.log(tierLevels);
+
   return (
-    <ul style={cardListStyles}>
+    <ul
+      style={cardListStyles}
+      // onDragEnter={dragging ? (event) => handleDragEnter(event) : null}
+    >
       {loadingCards ? (
         <></>
       ) : (
-        currentCards.map((card: any, index: number) => {
+        tierLevels[0].cards.map((card: any, index: number) => {
           return (
             <li
               key={index}
               draggable={true}
               onDragStart={(event) =>
-                handleDragStart(event, card, index, currentCards)
+                handleDragStart(event, card, index, tierLevels)
               }
-              onDragEnter={(event) =>
-                handleDragEnter(event, index, currentCards)
-              }
-              onDrop={handleDrop}
+              onDragEnter={(event) => handleDragEnter(event, index, tierLevels)}
             >
               <Card data={card} />;
             </li>

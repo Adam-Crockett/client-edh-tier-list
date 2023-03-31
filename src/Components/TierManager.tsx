@@ -6,46 +6,62 @@ const TierManager = ({ currentCards }: any) => {
   const [cardList, setCardList] = useState(currentCards);
   const [tierLevels, setTierLevels] = useState<any[]>([]);
   useEffect(() => {
-    setCardList(currentCards);
+    const newCards = currentCards.filter((card: any) => {
+      return !cardList.includes(card);
+    });
+    setCardList([...cardList, ...newCards]);
+    if (tierLevels.length === 0) {
+      setTierLevels([{ tierName: 'cardPool', cards: [...cardList] }]);
+    } else {
+      const updatedTiers = [...tierLevels];
+      const updatedCardPool = [...tierLevels[0].cards, ...newCards];
+      updatedTiers[0].cards = updatedCardPool;
+      setTierLevels(updatedTiers);
+    }
   }, [currentCards]);
 
-  const dragCard = useRef<number | null>();
+  console.log('cardList: ', cardList);
+  console.log('tierLevels: ', tierLevels);
+
+  const [dragging, setDragging] = useState(false);
+  const dragCard = useRef<[number, any] | null>();
+  const dragNode = useRef<EventTarget | null>();
   const dragOverCard = useRef<number | null>();
 
   const handleDragStart = (
-    event: any,
+    event: React.DragEvent<HTMLLIElement>,
     card: any,
-    index: any,
-    parentCollection: any
+    index: number
   ) => {
-    event.preventDefault();
-    dragCard.current = index;
-    console.log('dragStart fired');
+    dragCard.current = [index, card];
+    dragNode.current = event.target;
+    dragNode.current.addEventListener('dragend', handleDrop);
+    console.log('dragStart');
+
+    setTimeout(() => {
+      setDragging(true);
+    }, 0);
   };
 
-  const handleDragEnter = (
-    event: any,
-    index: number,
-    parentCollection: any
-  ) => {
+  const handleDragEnter = (event: React.DragEvent<HTMLLIElement>) => {
     event.preventDefault();
-    console.log('dragOver fired');
-    if (dragCard.current && index) {
-      dragOverCard.current = index;
-      const tempCardList = [...cardList];
-      const dragCardContent = tempCardList[dragCard.current];
-      console.log(dragCard.current);
-      console.log(dragOverCard.current);
-      tempCardList.splice(dragCard.current, 1);
-      tempCardList.splice(dragOverCard.current, 0, dragCardContent);
-      dragCard.current = null;
-      dragOverCard.current = null;
-      setCardList(tempCardList);
-    }
+    console.log('dragEnter');
+    // if (dragCard.current && index) {
+    //   dragOverCard.current = index;
+    //   const tempCardList = [...cardList];
+    //   const dragCardContent = tempCardList[dragCard.current[0]];
+    //   console.log(dragCard.current);
+    //   console.log(dragOverCard.current);
+    //   tempCardList.splice(dragCard.current[0], 1);
+    //   tempCardList.splice(dragOverCard.current, 0, dragCardContent);
+    //   dragCard.current = null;
+    //   dragOverCard.current = null;
+    //   setCardList(tempCardList);
+    // }
   };
   const handleDrop = (event: any) => {
     event.preventDefault();
-    console.log('drop fired');
+    console.log('dragDrop');
   };
 
   const handleAddTierLevel = () => {
@@ -75,12 +91,15 @@ const TierManager = ({ currentCards }: any) => {
         handleDrop={handleDrop}
         handleDragEnter={handleDragEnter}
       />
-      <CardList
-        currentCards={cardList}
-        handleDragStart={handleDragStart}
-        handleDragEnter={handleDragEnter}
-        handleDrop={handleDrop}
-      />
+      {cardList.length > 0 && (
+        <CardList
+          tierLevels={tierLevels}
+          handleDragStart={handleDragStart}
+          handleDragEnter={handleDragEnter}
+          handleDrop={handleDrop}
+          dragging={dragging}
+        />
+      )}
     </>
   );
 };
