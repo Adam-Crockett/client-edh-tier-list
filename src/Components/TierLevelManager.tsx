@@ -1,8 +1,6 @@
-import { useEffect, useState } from 'react';
 import TierLevel from './TierLevel';
 
 const TierLevelManager = ({
-  tierCards,
   tierLevels,
   handleAddTierLevel,
   handleRemoveTierLevel,
