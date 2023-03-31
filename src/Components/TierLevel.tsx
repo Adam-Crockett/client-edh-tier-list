@@ -54,7 +54,7 @@ const TierLevel = ({
       <ul
         style={{ width: '100%' }}
         onDragEnter={
-          dragging
+          dragging && levelData.cards.length === 0
             ? (event) => {
                 console.log('dragEnter a Tier Level');
                 handleDragEnter(event, tierIndex, 0);

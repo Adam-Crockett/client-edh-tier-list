@@ -25,12 +25,12 @@ const Card = ({
     return (
       <img
         draggable
-        onDragStart={(event) => handleDragStart(event, 0, cardIndex)}
+        onDragStart={(event) => handleDragStart(event, tierIndex, cardIndex)}
         onDragEnter={
           dragging
             ? (event) => {
                 console.log('dragEnter');
-                handleDragEnter(event, 0, cardIndex);
+                handleDragEnter(event, tierIndex, cardIndex);
               }
             : undefined
         }
@@ -41,6 +41,16 @@ const Card = ({
   } else {
     return (
       <img
+        draggable
+        onDragStart={(event) => handleDragStart(event, tierIndex, cardIndex)}
+        onDragEnter={
+          dragging
+            ? (event) => {
+                console.log('dragEnter');
+                handleDragEnter(event, tierIndex, cardIndex);
+              }
+            : undefined
+        }
         src={data.card_faces[0].image_uris.small}
         onClick={(event) => handleClickOnMDFC(event, data)}
       />
