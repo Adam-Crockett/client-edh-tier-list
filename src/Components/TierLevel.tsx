@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Card from './Card';
 const TierLevel = ({
   index,
   levelData,
@@ -7,6 +8,7 @@ const TierLevel = ({
 }: any) => {
   const [inEditMode, setInEditMode] = useState(false);
   const handleRemoveClick = () => {
+    // When the tier level is removed, any Cards in the tier level should be returned to the CardList
     handleRemoveTierLevel(index);
     setInEditMode(false);
   };
@@ -47,9 +49,8 @@ const TierLevel = ({
         )}
       </div>
       <ul style={{ width: '100%' }}>
-        {levelData.cards.map((card: any) => {
-          // return <img key={card.id} src={card?.image_uris?.small} />;
-          return <li key={card.id}>{card.name}</li>;
+        {levelData.cards.map((card: any, index: number) => {
+          return <Card key={index} data={card} />;
         })}
       </ul>
     </li>
