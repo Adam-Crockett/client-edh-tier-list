@@ -18,6 +18,7 @@ const TierManager = ({ currentCards }: any) => {
     index: any,
     parentCollection: any
   ) => {
+    event.preventDefault();
     dragCard.current = index;
     console.log('dragStart fired');
   };
@@ -27,7 +28,7 @@ const TierManager = ({ currentCards }: any) => {
     index: number,
     parentCollection: any
   ) => {
-    // event.preventDefault();
+    event.preventDefault();
     console.log('dragOver fired');
     if (dragCard.current && index) {
       dragOverCard.current = index;
@@ -43,8 +44,8 @@ const TierManager = ({ currentCards }: any) => {
     }
   };
   const handleDrop = (event: any) => {
-    console.log('drop fired');
     event.preventDefault();
+    console.log('drop fired');
   };
 
   const handleAddTierLevel = () => {

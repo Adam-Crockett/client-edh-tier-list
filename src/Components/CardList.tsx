@@ -24,7 +24,7 @@ const CardList = ({
           return (
             <li
               key={index}
-              draggable
+              draggable={true}
               onDragStart={(event) =>
                 handleDragStart(event, card, index, currentCards)
               }
