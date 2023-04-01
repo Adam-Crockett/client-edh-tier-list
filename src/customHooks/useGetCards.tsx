@@ -3,7 +3,6 @@ import axios, { AxiosResponse } from 'axios';
 import { CardData } from '../interfaces';
 import getRemovedCodes from '../helpers/getRemovedCodes';
 
-// Check to send to client
 export default function useGetCards(selectedCodes: string[]) {
   const [currentCards, setCurrentCards] = useState<CardData[]>([]);
   const [loadingCards, setLoading] = useState(true);
@@ -23,7 +22,6 @@ export default function useGetCards(selectedCodes: string[]) {
       } catch (e) {
         setCardError('Error fetching data');
       }
-      setLoading(false);
     };
     if (previousCodes.length > selectedCodes.length) {
       const removedCodes = getRemovedCodes(previousCodes, selectedCodes);
@@ -34,6 +32,7 @@ export default function useGetCards(selectedCodes: string[]) {
       });
     } else {
       fetchData();
+      setLoading(false);
     }
     setPreviousCodes(selectedCodes);
   }, [selectedCodes]);

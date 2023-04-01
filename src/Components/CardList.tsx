@@ -1,11 +1,13 @@
+import { CardData, CardListProps } from '../interfaces';
 import Card from './Card';
+
 const CardList = ({
   tierLevels,
   loadingCards,
   handleDragStart,
   handleDragEnter,
   dragging
-}: any) => {
+}: CardListProps) => {
   const cardListStyles = {
     display: 'flex',
     'flex-direction': 'row',
@@ -15,22 +17,21 @@ const CardList = ({
     margin: 0
   };
 
-  return (
-    <ul
-      style={cardListStyles}
-      onDragEnter={
-        dragging && tierLevels[0].cards.length == 0
-          ? (event) => {
-              console.log('dragEnter');
-              handleDragEnter(event, 0, 0);
-            }
-          : undefined
-      }
-    >
-      {loadingCards ? (
-        <></>
-      ) : (
-        tierLevels[0].cards.map((card: any, cardIndex: number) => {
+  if (loadingCards) {
+    return <></>;
+  } else {
+    return (
+      <ul
+        style={cardListStyles}
+        onDragEnter={
+          dragging && tierLevels[0]?.cards.length == 0
+            ? (event) => {
+                handleDragEnter(event, 0, 0);
+              }
+            : undefined
+        }
+      >
+        {tierLevels[0].cards.map((card: CardData, cardIndex: number) => {
           return (
             <li key={cardIndex}>
               <Card
@@ -41,13 +42,12 @@ const CardList = ({
                 handleDragEnter={handleDragEnter}
                 dragging={dragging}
               />
-              ;
             </li>
           );
-        })
-      )}
-    </ul>
-  );
+        })}
+      </ul>
+    );
+  }
 };
 
 export default CardList;

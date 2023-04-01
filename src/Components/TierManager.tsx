@@ -2,28 +2,30 @@ import { useState, useEffect, useRef } from 'react';
 import TierLevelManager from './TierLevelManager';
 import CardList from './CardList';
 import getRemovedCodes from '../helpers/getRemovedCodes';
+import { TierLevel, CardData, TierManagerProps } from '../interfaces';
 
-const TierManager = ({ currentCards, selectedCodes }: any) => {
-  const [cardList, setCardList] = useState<any>(currentCards);
+const TierManager = ({
+  currentCards,
+  selectedCodes,
+  loadingCards
+}: TierManagerProps) => {
+  const [cardList, setCardList] = useState<CardData[]>(currentCards);
   const [currentCodes, setCurrentCodes] = useState<string[]>(selectedCodes);
-  const [tierLevels, setTierLevels] = useState<any[]>([]);
+  const [tierLevels, setTierLevels] = useState<TierLevel[]>([]);
   useEffect(() => {
-    // Implement handling if cards are removed from the card pool
-    const newCards = currentCards.filter((card: any) => {
-      return !cardList.some(
-        (existingCard: any) => existingCard.set === card.set
-      );
+    const newCards = currentCards.filter((card) => {
+      return !cardList.some((existingCard) => existingCard.set === card.set);
     });
     if (currentCodes.length > selectedCodes.length) {
       const removedCodes = getRemovedCodes(currentCodes, selectedCodes);
       const updatedTiers = [...tierLevels];
       const updatedCards = [...cardList];
       updatedTiers.forEach((tier) => {
-        tier.cards = tier.cards.filter((card: any) => {
+        tier.cards = tier.cards.filter((card) => {
           return !removedCodes.includes(card.set);
         });
       });
-      updatedCards.forEach((card: any) => {
+      updatedCards.forEach((card) => {
         if (removedCodes.includes(card.set)) {
           updatedCards.splice(updatedCards.indexOf(card), 1);
         }
@@ -52,7 +54,7 @@ const TierManager = ({ currentCards, selectedCodes }: any) => {
   const dragOverCard = useRef<number | null>();
 
   const handleDragStart = (
-    event: React.DragEvent<HTMLLIElement>,
+    event: React.DragEvent<HTMLImageElement>,
     tierIndex: number,
     cardIndex: number
   ) => {
@@ -66,7 +68,9 @@ const TierManager = ({ currentCards, selectedCodes }: any) => {
   };
 
   const handleDragEnter = (
-    event: React.DragEvent<HTMLLIElement>,
+    event:
+      | React.DragEvent<HTMLImageElement>
+      | React.DragEvent<HTMLUListElement>,
     tierIndex: number,
     cardIndex: number
   ) => {
@@ -82,7 +86,7 @@ const TierManager = ({ currentCards, selectedCodes }: any) => {
       dragCard.current = [tierIndex, cardIndex];
     }
   };
-  const handleDrop = (event: any) => {
+  const handleDrop = () => {
     setDragging(false);
     dragCard.current = null;
     dragNode.current?.removeEventListener('dragend', handleDrop);
@@ -121,9 +125,10 @@ const TierManager = ({ currentCards, selectedCodes }: any) => {
         handleDragEnter={handleDragEnter}
         dragging={dragging}
       />
-      {cardList.length > 0 && (
+      {!loadingCards && (
         <CardList
           tierLevels={tierLevels}
+          loadingCards={loadingCards}
           handleDragStart={handleDragStart}
           handleDragEnter={handleDragEnter}
           dragging={dragging}

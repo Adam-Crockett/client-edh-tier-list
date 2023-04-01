@@ -1,4 +1,5 @@
 import React from 'react';
+import { CardProps } from '../interfaces';
 
 const Card = ({
   data,
@@ -7,14 +8,14 @@ const Card = ({
   handleDragStart,
   handleDragEnter,
   dragging
-}: any) => {
+}: CardProps) => {
   const handleClickOnMDFC = (
     event: React.MouseEvent<HTMLImageElement>,
     data: any
   ) => {
     const element = event.target as HTMLImageElement;
 
-    const swapFace: any =
+    const swapFace =
       element.src == data.card_faces[0].image_uris.small
         ? data.card_faces[1].image_uris.small
         : data.card_faces[0].image_uris.small;
@@ -29,7 +30,6 @@ const Card = ({
         onDragEnter={
           dragging
             ? (event) => {
-                console.log('dragEnter');
                 handleDragEnter(event, tierIndex, cardIndex);
               }
             : undefined
@@ -46,7 +46,6 @@ const Card = ({
         onDragEnter={
           dragging
             ? (event) => {
-                console.log('dragEnter');
                 handleDragEnter(event, tierIndex, cardIndex);
               }
             : undefined
