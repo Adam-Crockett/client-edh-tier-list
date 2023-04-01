@@ -14,10 +14,8 @@ const TierManager = ({ currentCards, selectedCodes }: any) => {
         (existingCard: any) => existingCard.set === card.set
       );
     });
-    console.log(currentCodes.length, selectedCodes.length);
     if (currentCodes.length > selectedCodes.length) {
       const removedCodes = getRemovedCodes(currentCodes, selectedCodes);
-      console.log(removedCodes);
       const updatedTiers = [...tierLevels];
       const updatedCards = [...cardList];
       updatedTiers.forEach((tier) => {
@@ -30,7 +28,6 @@ const TierManager = ({ currentCards, selectedCodes }: any) => {
           updatedCards.splice(updatedCards.indexOf(card), 1);
         }
       });
-      console.log(updatedTiers);
       setCardList(updatedCards);
       setTierLevels(updatedTiers);
       setCurrentCodes(selectedCodes);
@@ -62,7 +59,6 @@ const TierManager = ({ currentCards, selectedCodes }: any) => {
     dragNode.current = event.target;
     dragNode.current.addEventListener('dragend', handleDrop);
     dragCard.current = [tierIndex, cardIndex];
-    console.log('dragStart');
 
     setTimeout(() => {
       setDragging(true);
@@ -74,10 +70,7 @@ const TierManager = ({ currentCards, selectedCodes }: any) => {
     tierIndex: number,
     cardIndex: number
   ) => {
-    console.log('dragEnter');
-    console.log('tierIndex: ', tierIndex);
     if (dragNode.current !== event.target && dragCard.current) {
-      console.log('not over self');
       dragOverCard.current = cardIndex;
       const updatedTierLevels = [...tierLevels];
       const draggedCard = updatedTierLevels[dragCard.current[0]].cards.splice(
@@ -90,7 +83,6 @@ const TierManager = ({ currentCards, selectedCodes }: any) => {
     }
   };
   const handleDrop = (event: any) => {
-    console.log('dragDrop');
     setDragging(false);
     dragCard.current = null;
     dragNode.current?.removeEventListener('dragend', handleDrop);
