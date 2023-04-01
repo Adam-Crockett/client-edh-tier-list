@@ -8,6 +8,7 @@ export default function useGetSets() {
   const [error, setError] = useState('');
 
   useEffect(() => {
+    console.log('test');
     const fetchData = async () => {
       try {
         axios.get(`${process.env.REACT_APP_API_URL}/sets`).then(({ data }) => {
