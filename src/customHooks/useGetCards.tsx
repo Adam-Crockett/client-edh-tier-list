@@ -35,7 +35,7 @@ export default function useGetCards(selectedCodes: string[]) {
       setLoading(false);
     }
     setPreviousCodes(selectedCodes);
-  }, [selectedCodes, previousCodes]);
+  }, [selectedCodes]);
 
   return { currentCards, loadingCards, cardError };
 }
