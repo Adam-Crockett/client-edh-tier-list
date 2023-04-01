@@ -10,7 +10,9 @@ const TierManager = ({ currentCards, selectedCodes }: any) => {
   useEffect(() => {
     // Implement handling if cards are removed from the card pool
     const newCards = currentCards.filter((card: any) => {
-      return !cardList.includes(card);
+      return !cardList.some(
+        (existingCard: any) => existingCard.set === card.set
+      );
     });
     console.log(currentCodes.length, selectedCodes.length);
     if (currentCodes.length > selectedCodes.length) {
