@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios, { AxiosResponse } from 'axios';
 import { CardData } from '../interfaces';
+import getRemovedCodes from '../helpers/getRemovedCodes';
 
 // Check to send to client
 export default function useGetCards(selectedCodes: string[]) {
@@ -25,7 +26,7 @@ export default function useGetCards(selectedCodes: string[]) {
       setLoading(false);
     };
     if (previousCodes.length > selectedCodes.length) {
-      const removedCodes = getRemovedCodes(previousCodes);
+      const removedCodes = getRemovedCodes(previousCodes, selectedCodes);
       setCurrentCards((currentCards) => {
         return currentCards.filter((card) => {
           return !removedCodes.includes(card.set);
@@ -37,12 +38,5 @@ export default function useGetCards(selectedCodes: string[]) {
     setPreviousCodes(selectedCodes);
   }, [selectedCodes]);
 
-  function getRemovedCodes(prevCodes: string[]) {
-    return prevCodes.map((code) => {
-      if (!selectedCodes.includes(code)) {
-        return code;
-      }
-    });
-  }
   return { currentCards, loadingCards, cardError };
 }

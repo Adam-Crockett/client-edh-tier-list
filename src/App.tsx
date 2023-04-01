@@ -25,6 +25,7 @@ function App() {
         </header>
         <main>
           <TierManager
+            selectedCodes={selectedCodes}
             currentCards={currentCards}
             loadingCards={loadingCards}
           />

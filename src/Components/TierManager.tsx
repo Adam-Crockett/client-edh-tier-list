@@ -1,25 +1,50 @@
 import { useState, useEffect, useRef } from 'react';
 import TierLevelManager from './TierLevelManager';
 import CardList from './CardList';
+import getRemovedCodes from '../helpers/getRemovedCodes';
 
-const TierManager = ({ currentCards }: any) => {
-  const [cardList, setCardList] = useState(currentCards);
+const TierManager = ({ currentCards, selectedCodes }: any) => {
+  const [cardList, setCardList] = useState<any>(currentCards);
+  const [currentCodes, setCurrentCodes] = useState<string[]>(selectedCodes);
   const [tierLevels, setTierLevels] = useState<any[]>([]);
   useEffect(() => {
     // Implement handling if cards are removed from the card pool
     const newCards = currentCards.filter((card: any) => {
       return !cardList.includes(card);
     });
-    setCardList([...cardList, ...newCards]);
-    if (tierLevels.length === 0) {
-      setTierLevels([{ tierName: 'cardPool', cards: [...cardList] }]);
-    } else {
+    console.log(currentCodes.length, selectedCodes.length);
+    if (currentCodes.length > selectedCodes.length) {
+      const removedCodes = getRemovedCodes(currentCodes, selectedCodes);
+      console.log(removedCodes);
       const updatedTiers = [...tierLevels];
-      const updatedCardPool = [...tierLevels[0].cards, ...newCards];
-      updatedTiers[0].cards = updatedCardPool;
+      const updatedCards = [...cardList];
+      updatedTiers.forEach((tier) => {
+        tier.cards = tier.cards.filter((card: any) => {
+          return !removedCodes.includes(card.set);
+        });
+      });
+      updatedCards.forEach((card: any) => {
+        if (removedCodes.includes(card.set)) {
+          updatedCards.splice(updatedCards.indexOf(card), 1);
+        }
+      });
+      console.log(updatedTiers);
+      setCardList(updatedCards);
       setTierLevels(updatedTiers);
+      setCurrentCodes(selectedCodes);
+    } else {
+      setCardList([...cardList, ...newCards]);
+      setCurrentCodes(selectedCodes);
+      if (tierLevels.length === 0) {
+        setTierLevels([{ tierName: 'cardPool', cards: [...cardList] }]);
+      } else {
+        const updatedTiers = [...tierLevels];
+        const updatedCardPool = [...tierLevels[0].cards, ...newCards];
+        updatedTiers[0].cards = updatedCardPool;
+        setTierLevels(updatedTiers);
+      }
     }
-  }, [currentCards]);
+  }, [currentCards, selectedCodes]);
 
   const [dragging, setDragging] = useState(false);
   const dragCard = useRef<[number, number] | null>();
