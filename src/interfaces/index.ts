@@ -7,3 +7,5 @@ export * from './TierLevel';
 export * from './TierManagerProps';
 export * from './CardProps';
 export * from './CardListProps';
+export * from './TierLevelManagerProps';
+export * from './TierLevelRowProps';

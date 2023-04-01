@@ -1,4 +1,5 @@
-import TierLevel from './TierLevel';
+import { TierLevel, TierLevelManagerProps } from '../interfaces';
+import TierLevelRow from './TierLevelRow';
 
 const TierLevelManager = ({
   tierLevels,
@@ -8,19 +9,19 @@ const TierLevelManager = ({
   handleDragStart,
   handleDragEnter,
   dragging
-}: any) => {
+}: TierLevelManagerProps) => {
   return (
     <div>
       <div>
         <button onClick={handleAddTierLevel}>Add Tier</button>
       </div>
       <ul>
-        {tierLevels.map((levelData: any, tierIndex: number) => {
+        {tierLevels.map((levelData: TierLevel, tierIndex: number) => {
           if (tierIndex == 0) {
             return null;
           }
           return (
-            <TierLevel
+            <TierLevelRow
               key={tierIndex}
               tierIndex={tierIndex}
               levelData={levelData}
