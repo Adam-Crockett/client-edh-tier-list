@@ -95,6 +95,11 @@ const TierManager = ({ currentCards, selectedCodes }: any) => {
 
   const handleRemoveTierLevel = (index: number) => {
     const updatedTierLevels = [...tierLevels];
+    const removedCards = updatedTierLevels[index].cards;
+    if (removedCards.length > 0) {
+      const updatedCardPool = [...updatedTierLevels[0].cards, ...removedCards];
+      updatedTierLevels[0].cards = updatedCardPool;
+    }
     updatedTierLevels.splice(index, 1);
     setTierLevels(updatedTierLevels);
   };
