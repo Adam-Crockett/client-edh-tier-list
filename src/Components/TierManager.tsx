@@ -33,6 +33,7 @@ const TierManager = ({ currentCards, selectedCodes }: any) => {
       setTierLevels(updatedTiers);
       setCurrentCodes(selectedCodes);
     } else {
+      // Cards already in pool are added to the card pool tier
       setCardList([...cardList, ...newCards]);
       setCurrentCodes(selectedCodes);
       if (tierLevels.length === 0) {
