@@ -16,31 +16,32 @@ const TierManager = ({
     const newCards = currentCards.filter((card) => {
       return !cardList.some((existingCard) => existingCard.set === card.set);
     });
+    const updatedTiers = [...tierLevels];
     if (currentCodes.length > selectedCodes.length) {
       const removedCodes = getRemovedCodes(currentCodes, selectedCodes);
-      const updatedTiers = [...tierLevels];
-      const updatedCards = [...cardList];
+      let updatedCards = [...cardList];
       updatedTiers.forEach((tier) => {
         tier.cards = tier.cards.filter((card) => {
           return !removedCodes.includes(card.set);
         });
       });
-      updatedCards.forEach((card) => {
-        if (removedCodes.includes(card.set)) {
-          updatedCards.splice(updatedCards.indexOf(card), 1);
-        }
+
+      updatedCards = updatedCards.filter((card) => {
+        return !removedCodes.includes(card.set);
       });
       setCardList(updatedCards);
       setTierLevels(updatedTiers);
       setCurrentCodes(selectedCodes);
     } else {
-      // Cards already in pool are added to the card pool tier
-      setCardList([...cardList, ...newCards]);
+      if (cardList.length > 0) {
+        setCardList([...cardList, ...newCards]);
+      } else {
+        setCardList([...newCards]);
+      }
       setCurrentCodes(selectedCodes);
       if (tierLevels.length === 0) {
         setTierLevels([{ tierName: 'cardPool', cards: [...cardList] }]);
       } else {
-        const updatedTiers = [...tierLevels];
         const updatedCardPool = [...tierLevels[0].cards, ...newCards];
         updatedTiers[0].cards = updatedCardPool;
         setTierLevels(updatedTiers);
