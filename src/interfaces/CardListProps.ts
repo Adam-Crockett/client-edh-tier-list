@@ -15,4 +15,8 @@ export interface CardListProps {
     cardIndex: number
   ) => void;
   dragging: boolean;
+  handleMouseOverCardDetails: (
+    card: any,
+    cardFace?: number | undefined
+  ) => void;
 }
