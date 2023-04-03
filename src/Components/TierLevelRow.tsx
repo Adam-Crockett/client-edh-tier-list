@@ -8,7 +8,8 @@ const TierLevelRow = ({
   handleEditTierLevel,
   handleDragStart,
   handleDragEnter,
-  dragging
+  dragging,
+  handleMouseOverCardDetails
 }: TierLevelRowProps) => {
   const [inEditMode, setInEditMode] = useState(false);
   const handleRemoveClick = () => {
@@ -71,6 +72,7 @@ const TierLevelRow = ({
               handleDragStart={handleDragStart}
               handleDragEnter={handleDragEnter}
               dragging={dragging}
+              handleMouseOverCardDetails={handleMouseOverCardDetails}
             />
           );
         })}

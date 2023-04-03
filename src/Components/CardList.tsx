@@ -6,7 +6,8 @@ const CardList = ({
   loadingCards,
   handleDragStart,
   handleDragEnter,
-  dragging
+  dragging,
+  handleMouseOverCardDetails
 }: CardListProps) => {
   const cardListStyles = {
     display: 'flex',
@@ -41,6 +42,7 @@ const CardList = ({
                 handleDragStart={handleDragStart}
                 handleDragEnter={handleDragEnter}
                 dragging={dragging}
+                handleMouseOverCardDetails={handleMouseOverCardDetails}
               />
             </li>
           );

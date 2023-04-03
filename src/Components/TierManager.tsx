@@ -7,7 +7,8 @@ import { TierLevel, CardData, TierManagerProps } from '../interfaces';
 const TierManager = ({
   currentCards,
   selectedCodes,
-  loadingCards
+  loadingCards,
+  handleMouseOverCardDetails
 }: TierManagerProps) => {
   const [cardList, setCardList] = useState<CardData[]>(currentCards);
   const [currentCodes, setCurrentCodes] = useState<string[]>(selectedCodes);
@@ -124,6 +125,7 @@ const TierManager = ({
         handleEditTierLevel={handleEditTierLevel}
         handleDragStart={handleDragStart}
         handleDragEnter={handleDragEnter}
+        handleMouseOverCardDetails={handleMouseOverCardDetails}
         dragging={dragging}
       />
       {!loadingCards && (
@@ -132,6 +134,7 @@ const TierManager = ({
           loadingCards={loadingCards}
           handleDragStart={handleDragStart}
           handleDragEnter={handleDragEnter}
+          handleMouseOverCardDetails={handleMouseOverCardDetails}
           dragging={dragging}
         />
       )}

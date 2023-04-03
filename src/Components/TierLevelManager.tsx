@@ -8,7 +8,8 @@ const TierLevelManager = ({
   handleEditTierLevel,
   handleDragStart,
   handleDragEnter,
-  dragging
+  dragging,
+  handleMouseOverCardDetails
 }: TierLevelManagerProps) => {
   return (
     <div>
@@ -30,6 +31,7 @@ const TierLevelManager = ({
               handleDragStart={handleDragStart}
               handleDragEnter={handleDragEnter}
               dragging={dragging}
+              handleMouseOverCardDetails={handleMouseOverCardDetails}
             />
           );
         })}
