@@ -11,6 +11,9 @@ const Card = ({
   handleMouseOverCardDetails
 }: CardProps) => {
   const [currentFace, setCurrentFace] = useState(0);
+  useEffect(() => {
+    setCurrentFace(0);
+  }, [data]);
 
   useEffect(() => {
     handleMouseOverCardDetails(data, currentFace);
@@ -35,9 +38,7 @@ const Card = ({
         key={data.id}
         src={data.image_uris.small}
         onMouseOver={
-          !dragging
-            ? (event) => handleMouseOverCardDetails(event, data)
-            : undefined
+          !dragging ? () => handleMouseOverCardDetails(data) : undefined
         }
       />
     );
@@ -57,7 +58,7 @@ const Card = ({
         onClick={handleClickOnMDFC}
         onMouseOver={
           !dragging
-            ? (event) => handleMouseOverCardDetails(data, currentFace)
+            ? () => handleMouseOverCardDetails(data, currentFace)
             : undefined
         }
       />

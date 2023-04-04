@@ -4,10 +4,20 @@ import { SetListProps } from '../interfaces';
 const SetList = ({
   sets,
   selectedCodes,
-  onMultiselectChange
+  onMultiselectChange,
+  handleOnClickSetEdit
 }: SetListProps) => {
   return (
-    <div>
+    <div
+      style={{
+        position: 'fixed',
+        backgroundColor: 'white',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        zIndex: 9999
+      }}
+    >
       {sets === null ? (
         <p>Loading Data...</p>
       ) : (
@@ -17,6 +27,7 @@ const SetList = ({
           onChange={onMultiselectChange}
         />
       )}
+      <button onClick={handleOnClickSetEdit}>Close</button>
     </div>
   );
 };
