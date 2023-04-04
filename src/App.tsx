@@ -11,10 +11,9 @@ import useCachedData from './customHooks/useCachedData/useCachedData';
 
 function App() {
   const [cachedData, setCachedData] = useCachedData();
+  const [resetState, setResetState] = useState<boolean>(false);
   const { data, loading, error } = useGetSets();
-  const [selectedCodes, setSelectedCodes] = useState<string[]>(() => {
-    return cachedData?.currentCodes || [];
-  });
+  const [selectedCodes, setSelectedCodes] = useState<string[]>([]);
   const { currentCards, loadingCards, cardError } = useGetCards(selectedCodes);
   const [hoveredCard, setHoveredCard] = useState<[any, number | undefined]>([
     undefined,
@@ -23,11 +22,19 @@ function App() {
   const [setWindowOpen, setSetWindowOpen] = useState<boolean>(false);
 
   useEffect(() => {
+    if (resetState) {
+      setSelectedCodes([]);
+      setHoveredCard([undefined, undefined]);
+    }
+  }, [resetState]);
+
+  useEffect(() => {
     setCachedData({
       cardList: currentCards,
       currentCodes: selectedCodes,
       tierList: cachedData?.tierList || []
     });
+    setResetState(false);
   }, [selectedCodes, currentCards]);
 
   const handleMultiselectChange = (newSelectedCodes: string[]) => {
@@ -48,7 +55,11 @@ function App() {
   return (
     <div className={styles.app}>
       <header>
-        <Navbar handleOnClickSetEdit={handleOnClickSetEdit} />
+        <Navbar
+          handleOnClickSetEdit={handleOnClickSetEdit}
+          setResetState={setResetState}
+          resetState={resetState}
+        />
       </header>
       <main>
         {setWindowOpen && (
@@ -66,6 +77,7 @@ function App() {
           currentCards={currentCards}
           loadingCards={loadingCards}
           handleMouseOverCardDetails={handleMouseOverCardDetails}
+          resetState={resetState}
         />
         <div>
           <CardDetails hoveredCard={hoveredCard} />

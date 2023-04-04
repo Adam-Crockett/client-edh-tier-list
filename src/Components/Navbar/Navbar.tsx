@@ -1,7 +1,10 @@
 import React from 'react';
 import styles from './Navbar.module.css';
 
-const Navbar = ({ handleOnClickSetEdit }: any) => {
+const Navbar = ({ handleOnClickSetEdit, setResetState, resetState }: any) => {
+  function handleOnClickReset() {
+    setResetState(!resetState);
+  }
   return (
     <div className={styles.Navbar}>
       <div className={styles.imageContainer}>
@@ -14,7 +17,7 @@ const Navbar = ({ handleOnClickSetEdit }: any) => {
         <button onClick={handleOnClickSetEdit}>
           <span>Sets</span>
         </button>
-        <button>
+        <button onClick={handleOnClickReset}>
           <span>Reset</span>
         </button>
         <button>

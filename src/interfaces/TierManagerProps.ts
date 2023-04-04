@@ -7,4 +7,5 @@ export interface TierManagerProps {
     card: any,
     cardFace?: number | undefined
   ) => void;
+  resetState: boolean;
 }
