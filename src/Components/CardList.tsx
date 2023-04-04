@@ -9,21 +9,21 @@ const CardList = ({
   dragging,
   handleMouseOverCardDetails
 }: CardListProps) => {
-  // const cardListStyles = {
-  //   display: 'flex',
-  //   'flex-direction': 'row',
-  //   'flex-wrap': 'wrap',
-  //   'list-style': 'none',
-  //   padding: 0,
-  //   margin: 0
-  // };
+  const cardListStyles = {
+    display: 'flex',
+    'flex-direction': 'row',
+    'flex-wrap': 'wrap',
+    'list-style': 'none',
+    padding: 0,
+    margin: 0
+  };
 
   if (loadingCards) {
     return <></>;
   } else {
     return (
       <ul
-        // style={cardListStyles}
+        style={cardListStyles}
         onDragEnter={
           dragging && tierLevels[0]?.cards.length == 0
             ? (event) => {
