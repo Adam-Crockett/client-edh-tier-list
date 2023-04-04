@@ -1,0 +1,52 @@
+.Navbar {
+  display: grid;
+  grid-template-columns: auto 5fr auto;
+  grid-template-rows: 1fr;
+  max-height: 5vh;
+  align-items: center;
+}
+
+.imageContainer {
+  grid-column: 1 / 2;
+  grid-row: 1;
+  display: flex;
+  justify-content: left;
+  align-items: top;
+  height: 5vh;
+}
+
+.logoImage {
+  max-height: 100%;
+  width: auto;
+}
+
+.buttonContainer {
+  grid-column: 3 / 4;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 5vh;
+}
+
+.buttonContainer button {
+  margin: 0.5rem;
+  height: 75%;
+  width: 5rem;
+  border: none;
+  border-radius: 2px;
+  background-color: var(--primary-light-teal);
+  color: var(--primary-dark-grey);
+  transition: background-color 0.5s ease-in-out;
+}
+
+.buttonContainer button span {
+  display: inline-block;
+  transition: transform 0.3s ease-in-out;
+}
+
+.buttonContainer button:hover span {
+  transform: scale(1.1);
+}
+.buttonContainer button:hover {
+  background-color: var(--primary-light-orange);
+}
