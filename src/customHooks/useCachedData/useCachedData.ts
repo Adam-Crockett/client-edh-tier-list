@@ -1,24 +1,32 @@
 import { useState, useEffect } from 'react';
 
-function getCachedData(initialState: any) {
+function getCachedData(initialState: any, cacheDuration: number) {
   const cachedData = localStorage.getItem('cachedData');
-  console.log('before: ', cachedData);
-  try {
-    return cachedData ? JSON.parse(cachedData) : initialState || {};
-  } catch (e) {
-    console.error('Error parsing cached data:', e);
-    return initialState || {};
+  const cachedTimestamp = localStorage.getItem('cachedTimestamp');
+
+  if (cachedTimestamp && cachedData) {
+    const now = Date.now();
+    const timeStamp = parseInt(cachedTimestamp);
+    const isStale = now - timeStamp > cacheDuration;
+    if (!isStale) {
+      try {
+        return JSON.parse(cachedData);
+      } catch (e) {
+        console.error('caching error', e);
+      }
+    }
   }
+  return initialState || {};
 }
 
-const useCachedData = (initialState: any = {}) => {
+const useCachedData = (initialState: any = {}, cacheDuration = 1.728e8) => {
   const [cachedData, setCachedData] = useState<any>(() => {
-    return getCachedData(initialState);
+    return getCachedData(initialState, cacheDuration);
   });
 
   useEffect(() => {
-    console.log('setting data: ', cachedData);
     localStorage.setItem('cachedData', JSON.stringify(cachedData));
+    localStorage.setItem('cachedTimestamp', Date.now().toString());
   }, [cachedData]);
 
   return [cachedData, setCachedData];

@@ -12,7 +12,9 @@ import useCachedData from './customHooks/useCachedData/useCachedData';
 function App() {
   const [cachedData, setCachedData] = useCachedData();
   const { data, loading, error } = useGetSets();
-  const [selectedCodes, setSelectedCodes] = useState<string[]>([]);
+  const [selectedCodes, setSelectedCodes] = useState<string[]>(() => {
+    return cachedData?.currentCodes || [];
+  });
   const { currentCards, loadingCards, cardError } = useGetCards(selectedCodes);
   const [hoveredCard, setHoveredCard] = useState<[any, number | undefined]>([
     undefined,
@@ -23,7 +25,8 @@ function App() {
   useEffect(() => {
     setCachedData({
       cardList: currentCards,
-      currentCodes: selectedCodes
+      currentCodes: selectedCodes,
+      tierList: cachedData?.tierList || []
     });
   }, [selectedCodes, currentCards]);
 
