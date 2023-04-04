@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useGetSets from './customHooks/useGetSets';
 import './App.css';
 import SetList from './components/SetList';
@@ -7,8 +7,10 @@ import TierManager from './components/TierManager';
 import CardDetails from './components/CardDetails';
 import styles from './App.module.css';
 import Navbar from './components/Navbar/Navbar';
+import useCachedData from './customHooks/useCachedData/useCachedData';
 
 function App() {
+  const [cachedData, setCachedData] = useCachedData();
   const { data, loading, error } = useGetSets();
   const [selectedCodes, setSelectedCodes] = useState<string[]>([]);
   const { currentCards, loadingCards, cardError } = useGetCards(selectedCodes);
@@ -17,6 +19,14 @@ function App() {
     undefined
   ]);
   const [setWindowOpen, setSetWindowOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    setCachedData({
+      cardList: currentCards,
+      currentCodes: selectedCodes
+    });
+  }, [selectedCodes, currentCards]);
+
   const handleMultiselectChange = (newSelectedCodes: string[]) => {
     setSelectedCodes(newSelectedCodes);
   };

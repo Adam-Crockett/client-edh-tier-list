@@ -3,6 +3,7 @@ import TierLevelManager from './TierLevelManager';
 import CardList from './CardList';
 import getRemovedCodes from '../helpers/getRemovedCodes';
 import { TierLevel, CardData, TierManagerProps } from '../interfaces';
+import useCachedData from '../customHooks/useCachedData/useCachedData';
 
 const TierManager = ({
   currentCards,
@@ -10,9 +11,17 @@ const TierManager = ({
   loadingCards,
   handleMouseOverCardDetails
 }: TierManagerProps) => {
-  const [cardList, setCardList] = useState<CardData[]>(currentCards);
-  const [currentCodes, setCurrentCodes] = useState<string[]>(selectedCodes);
-  const [tierLevels, setTierLevels] = useState<TierLevel[]>([]);
+  const [cachedData, setCachedData] = useCachedData();
+  const [cardList, setCardList] = useState<CardData[]>(() => {
+    return cachedData?.cardList || currentCards;
+  });
+  const [currentCodes, setCurrentCodes] = useState<string[]>(() => {
+    return cachedData?.currentCodes || selectedCodes;
+  });
+  const [tierLevels, setTierLevels] = useState<TierLevel[]>(() => {
+    return cachedData?.tierLevels || [];
+  });
+
   useEffect(() => {
     const newCards = currentCards.filter((card) => {
       return !cardList.some((existingCard) => existingCard.set === card.set);
@@ -48,7 +57,18 @@ const TierManager = ({
         setTierLevels(updatedTiers);
       }
     }
+    // setCachedData({
+    //   tierLevels: tierLevels,
+    //   cardList: cardList,
+    //   currentCodes: currentCodes
+    // });
   }, [currentCards, selectedCodes]);
+
+  useEffect(() => {
+    setCachedData({
+      tierLevels: tierLevels
+    });
+  }, [tierLevels]);
 
   const [dragging, setDragging] = useState(false);
   const dragCard = useRef<[number, number] | null>();
