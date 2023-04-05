@@ -5,7 +5,8 @@ const TierLevelManager = ({
   tierLevels,
   handleAddTierLevel,
   handleRemoveTierLevel,
-  handleEditTierLevel,
+  handleEditTierLevelName,
+  handleEditTierLevelColor,
   handleDragStart,
   handleDragEnter,
   dragging,
@@ -27,7 +28,8 @@ const TierLevelManager = ({
               tierIndex={tierIndex}
               levelData={levelData}
               handleRemoveTierLevel={handleRemoveTierLevel}
-              handleEditTierLevel={handleEditTierLevel}
+              handleEditTierLevelName={handleEditTierLevelName}
+              handleEditTierLevelColor={handleEditTierLevelColor}
               handleDragStart={handleDragStart}
               handleDragEnter={handleDragEnter}
               dragging={dragging}

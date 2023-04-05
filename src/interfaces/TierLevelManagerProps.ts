@@ -4,7 +4,8 @@ export interface TierLevelManagerProps {
   tierLevels: TierLevel[];
   handleAddTierLevel: () => void;
   handleRemoveTierLevel: (index: number) => void;
-  handleEditTierLevel: (index: number, newName: string) => void;
+  handleEditTierLevelName: (index: number, newName: string) => void;
+  handleEditTierLevelColor: (index: number, newColor: string) => void;
   handleDragStart: (
     event: React.DragEvent<HTMLImageElement>,
     tierIndex: number,

@@ -115,7 +115,14 @@ const TierManager = ({
     setTierLevels(updatedTierLevels);
   };
 
-  const handleEditTierLevel = (index: number, newName: string) => {
+  const handleEditTierLevelColor = (index: number, newColor: string) => {
+    const updatedTierLevels = [...tierLevels];
+    updatedTierLevels[index].color = newColor;
+    setTierLevels(updatedTierLevels);
+  };
+
+  // Create handeler specific to edit tier level name - Rename this function
+  const handleEditTierLevelName = (index: number, newName: string) => {
     const updatedTierLevels = [...tierLevels];
     updatedTierLevels[index].tierName = newName;
     setTierLevels(updatedTierLevels);
@@ -127,10 +134,11 @@ const TierManager = ({
         tierLevels={tierLevels}
         handleAddTierLevel={handleAddTierLevel}
         handleRemoveTierLevel={handleRemoveTierLevel}
-        handleEditTierLevel={handleEditTierLevel}
+        handleEditTierLevelName={handleEditTierLevelName}
         handleDragStart={handleDragStart}
         handleDragEnter={handleDragEnter}
         handleMouseOverCardDetails={handleMouseOverCardDetails}
+        handleEditTierLevelColor={handleEditTierLevelColor}
         dragging={dragging}
       />
       {!loadingCards && tierLevels.length > 0 && (

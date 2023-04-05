@@ -5,7 +5,8 @@ const TierLevelRow = ({
   tierIndex,
   levelData,
   handleRemoveTierLevel,
-  handleEditTierLevel,
+  handleEditTierLevelName,
+  handleEditTierLevelColor,
   handleDragStart,
   handleDragEnter,
   dragging,
@@ -20,7 +21,11 @@ const TierLevelRow = ({
   const handleNameInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    handleEditTierLevel(tierIndex, event.target.value);
+    handleEditTierLevelName(tierIndex, event.target.value);
+  };
+
+  const handleColorInputChange = (color) => {
+    handleEditTierLevelColor(tierIndex, color.hex);
   };
   const handleSaveClick = () => {
     setInEditMode(false);

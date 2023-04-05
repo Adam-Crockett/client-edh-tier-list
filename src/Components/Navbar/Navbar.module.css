@@ -12,7 +12,8 @@
   display: flex;
   justify-content: left;
   align-items: top;
-  height: 5vh;
+  height: 4vh;
+  margin-left: 0.5rem;
 }
 
 .logoImage {
@@ -30,22 +31,13 @@
 
 .buttonContainer button {
   margin: 0.5rem;
-  height: 75%;
+  height: 60%;
   width: 5rem;
   border: none;
   border-radius: 2px;
   background-color: var(--primary-light-teal);
   color: var(--primary-dark-grey);
   transition: background-color 0.5s ease-in-out;
-}
-
-.buttonContainer button span {
-  display: inline-block;
-  transition: transform 0.3s ease-in-out;
-}
-
-.buttonContainer button:hover span {
-  transform: scale(1.1);
 }
 .buttonContainer button:hover {
   background-color: var(--primary-light-orange);
