@@ -1,5 +1,7 @@
 import { MultiselectSets } from '../../components';
 import { SetListProps } from '../../interfaces';
+import Close from '@mui/icons-material/Close';
+import styles from './SetList.module.css';
 
 export const SetList = ({
   sets,
@@ -8,26 +10,19 @@ export const SetList = ({
   handleOnClickSetEdit
 }: SetListProps) => {
   return (
-    <div
-      style={{
-        position: 'fixed',
-        backgroundColor: 'white',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        zIndex: 9999
-      }}
-    >
-      {sets === null ? (
-        <p>Loading Data...</p>
-      ) : (
-        <MultiselectSets
-          options={sets}
-          selectedCodes={selectedCodes}
-          onChange={onMultiselectChange}
-        />
+    <div className={styles.container}>
+      {sets && (
+        <div className={styles.setListWrapper}>
+          <MultiselectSets
+            options={sets}
+            selectedCodes={selectedCodes}
+            onChange={onMultiselectChange}
+          />
+        </div>
       )}
-      <button onClick={handleOnClickSetEdit}>Close</button>
+      <button onClick={handleOnClickSetEdit}>
+        <Close />
+      </button>
     </div>
   );
 };
