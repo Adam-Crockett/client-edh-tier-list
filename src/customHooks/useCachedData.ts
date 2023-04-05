@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
+import { CachedData } from '../interfaces';
 
-function getCachedData(initialState: any, cacheDuration: number) {
+function getCachedData(initialState: CachedData, cacheDuration: number) {
   const cachedData = localStorage.getItem('cachedData');
   const cachedTimestamp = localStorage.getItem('cachedTimestamp');
 
@@ -10,17 +11,25 @@ function getCachedData(initialState: any, cacheDuration: number) {
     const isStale = now - timeStamp > cacheDuration;
     if (!isStale) {
       try {
-        return JSON.parse(cachedData);
+        const updatedData: CachedData = JSON.parse(cachedData);
+        return {
+          cardList: updatedData.cardList,
+          currentCodes: updatedData.currentCodes,
+          tierLevels: updatedData.tierLevels
+        };
       } catch (e) {
         console.error('caching error', e);
       }
     }
   }
-  return initialState || {};
+  return initialState || { cardList: [], currentCodes: [], tierLevels: [] };
 }
 
-const useCachedData = (initialState: any = {}, cacheDuration = 1.728e8) => {
-  const [cachedData, setCachedData] = useState<any>(() => {
+const useCachedData = (
+  initialState: CachedData = { cardList: [], currentCodes: [], tierLevels: [] },
+  cacheDuration = 1.728e8
+) => {
+  const [cachedData, setCachedData] = useState<CachedData>(() => {
     return getCachedData(initialState, cacheDuration);
   });
 
@@ -29,6 +38,6 @@ const useCachedData = (initialState: any = {}, cacheDuration = 1.728e8) => {
     localStorage.setItem('cachedTimestamp', Date.now().toString());
   }, [cachedData]);
 
-  return [cachedData, setCachedData];
+  return { cachedData, setCachedData };
 };
 export default useCachedData;

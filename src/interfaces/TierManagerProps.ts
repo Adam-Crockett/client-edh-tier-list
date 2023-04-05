@@ -1,14 +1,15 @@
 import { CardData } from './CardData';
+import { TierLevel } from './TierLevel';
 export interface TierManagerProps {
   currentCards: CardData[];
   selectedCodes: string[];
   loadingCards: boolean;
-  tierLevels: any;
-  setTierLevels: any;
-  cardList: any;
-  setCardList: any;
+  tierLevels: TierLevel[];
+  setTierLevels: React.Dispatch<React.SetStateAction<TierLevel[]>>;
+  cardList: CardData[];
+  setCardList: React.Dispatch<React.SetStateAction<CardData[]>>;
   handleMouseOverCardDetails: (
-    card: any,
+    card: CardData,
     cardFace?: number | undefined
   ) => void;
 }

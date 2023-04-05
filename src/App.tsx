@@ -10,7 +10,7 @@ import './App.css';
 import styles from './App.module.css';
 
 function App() {
-  const [cachedData, setCachedData] = useCachedData();
+  const { cachedData, setCachedData } = useCachedData();
   const [resetState, setResetState] = useState<boolean>(false);
   const { data, loading, error } = useGetSets();
   const [selectedCodes, setSelectedCodes] = useState<string[]>(
@@ -22,10 +22,9 @@ function App() {
   const [tierLevels, setTierLevels] = useState<TierLevel[]>(
     cachedData.tierLevels
   );
-  const [hoveredCard, setHoveredCard] = useState<[any, number | undefined]>([
-    undefined,
-    undefined
-  ]);
+  const [hoveredCard, setHoveredCard] = useState<
+    [CardData | undefined, number]
+  >([undefined, -1]);
   const [setWindowOpen, setSetWindowOpen] = useState<boolean>(false);
   const [cardList, setCardList] = useState<CardData[]>(cachedData.cardList);
 
@@ -33,19 +32,15 @@ function App() {
     if (resetState) {
       setSelectedCodes([]);
       setTierLevels([]);
-      setHoveredCard([undefined, undefined]);
-      setCachedData({
-        cardList: [],
-        currentCodes: [],
-        tierLevels: []
-      });
+      setHoveredCard([undefined, -1]);
+      setCachedData({ cardList: [], currentCodes: [], tierLevels: [] });
     }
   }, [resetState]);
 
   useEffect(() => {
     setCachedData({
-      currentCodes: selectedCodes,
       cardList: currentCards,
+      currentCodes: selectedCodes,
       tierLevels: tierLevels
     });
     setResetState(false);
@@ -55,10 +50,7 @@ function App() {
     setSelectedCodes(newSelectedCodes);
   };
 
-  function handleMouseOverCardDetails(
-    card: any,
-    cardFace: number | undefined = undefined
-  ) {
+  function handleMouseOverCardDetails(card: CardData, cardFace = -1) {
     setHoveredCard([card, cardFace]);
   }
 

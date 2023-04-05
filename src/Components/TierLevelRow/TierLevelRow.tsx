@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Card } from '../../components';
-import { TierLevelRowProps } from '../../interfaces';
+import { CardData, TierLevelRowProps } from '../../interfaces';
 import { GithubPicker, ColorResult } from 'react-color';
 
 export const TierLevelRow = ({
@@ -85,7 +85,7 @@ export const TierLevelRow = ({
           }
         }}
       >
-        {levelData.cards.map((card: any, cardIndex: number) => {
+        {levelData.cards.map((card: CardData, cardIndex: number) => {
           return (
             <Card
               key={cardIndex}

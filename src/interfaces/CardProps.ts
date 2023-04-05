@@ -1,7 +1,7 @@
 import { CardData } from './CardData';
 export interface CardProps {
   // Correectly defined data type for the data prop:
-  data: any;
+  data: CardData;
   cardIndex: number;
   tierIndex: number;
   handleDragStart: (
@@ -16,7 +16,7 @@ export interface CardProps {
   ) => void;
   dragging: boolean;
   handleMouseOverCardDetails: (
-    card: any,
+    card: CardData,
     cardFace?: number | undefined
   ) => void;
 }

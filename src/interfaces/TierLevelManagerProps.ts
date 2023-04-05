@@ -1,3 +1,4 @@
+import { CardData } from './CardData';
 import { TierLevel } from './TierLevel';
 
 export interface TierLevelManagerProps {
@@ -20,7 +21,7 @@ export interface TierLevelManagerProps {
   ) => void;
   dragging: boolean;
   handleMouseOverCardDetails: (
-    card: any,
+    card: CardData,
     cardFace?: number | undefined
   ) => void;
 }

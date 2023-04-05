@@ -42,7 +42,7 @@ export const Card = ({
         }
       />
     );
-  } else {
+  } else if (data.card_faces) {
     return (
       <img
         draggable
@@ -63,5 +63,7 @@ export const Card = ({
         }
       />
     );
+  } else {
+    return <></>;
   }
 };

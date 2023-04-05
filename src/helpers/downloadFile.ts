@@ -1,4 +1,6 @@
-export default function downloadFile(data: any) {
+import { CardData, CachedData } from '../interfaces';
+
+export default function downloadFile(data: CachedData) {
   const builtFile = buildExportFile(data);
   const blob = new Blob([builtFile], { type: 'text/html' });
   const url = URL.createObjectURL(blob);
@@ -11,7 +13,7 @@ export default function downloadFile(data: any) {
   URL.revokeObjectURL(url);
 }
 
-function buildExportFile(data: any) {
+function buildExportFile(data: CachedData) {
   if (data) {
     let result = `<DOCTYPE html>
     <html>
@@ -19,7 +21,10 @@ function buildExportFile(data: any) {
         <title>Tier List for ${'Test'}</title>
       </head>
         <body>
-          <h1>Tier List for ${data.currentCodes}</h1>
+          <h1>Tier List for ${data.currentCodes
+            .toString()
+            .toUpperCase()
+            .split(',')}</h1>
         <hr>`;
     for (let i = 1; i < data.tierLevels.length; i++) {
       result += `<h2>Tier: ${data.tierLevels[i].tierName}</h2>`;
@@ -39,7 +44,7 @@ function buildExportFile(data: any) {
   }
 }
 
-function buildCardOutput(card: any) {
+function buildCardOutput(card: CardData) {
   let result = `${card.name}<br>`;
   const tab = '&emsp;';
 

@@ -1,3 +1,4 @@
+import { NavbarProps } from '../../interfaces';
 import styles from './Navbar.module.css';
 
 export const Navbar = ({
@@ -5,7 +6,7 @@ export const Navbar = ({
   setResetState,
   resetState,
   handleOnClickExport
-}: any) => {
+}: NavbarProps) => {
   function handleOnClickReset() {
     setResetState(!resetState);
   }

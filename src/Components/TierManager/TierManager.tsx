@@ -26,7 +26,7 @@ export const TierManager = ({
       const removedCodes = getRemovedCodes(currentCodes, selectedCodes);
       let updatedCards = [...cardList];
       updatedTiers.forEach((tier) => {
-        tier.cards = tier.cards.filter((card: any) => {
+        tier.cards = tier.cards.filter((card: CardData) => {
           return !removedCodes.includes(card.set);
         });
       });
@@ -45,7 +45,9 @@ export const TierManager = ({
       }
       setCurrentCodes(selectedCodes);
       if (tierLevels.length === 0) {
-        setTierLevels([{ tierName: 'cardPool', cards: [...cardList] }]);
+        setTierLevels([
+          { tierName: 'cardPool', color: '#04293a', cards: [...cardList] }
+        ]);
       } else {
         const updatedCardPool = [...tierLevels[0].cards, ...newCards];
         updatedTiers[0].cards = updatedCardPool;
@@ -102,7 +104,7 @@ export const TierManager = ({
   const handleAddTierLevel = () => {
     setTierLevels([
       ...tierLevels,
-      { tierName: tierLevels.length, color: 'grey', cards: [] }
+      { tierName: tierLevels.length, color: '#04293a', cards: [] }
     ]);
   };
 
