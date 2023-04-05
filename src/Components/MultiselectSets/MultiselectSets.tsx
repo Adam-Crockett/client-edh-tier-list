@@ -1,4 +1,5 @@
 import { MultiselectSetsProps } from '../../interfaces';
+import styles from './MultiselectSets.module.css';
 
 export const MultiselectSets = ({
   options,
@@ -11,19 +12,24 @@ export const MultiselectSets = ({
       : [...selectedCodes, code];
     onChange(newSelectedCodes);
   };
+  const selectedColor =
+    'invert(72%) sepia(61%) saturate(413%) hue-rotate(343deg) brightness(99%) contrast(88%)';
+  const unselectedColor =
+    'invert(97%) sepia(98%) saturate(512%) hue-rotate(62deg) brightness(80%) contrast(94%)';
   return (
-    <div>
+    <div className={styles.container}>
       {options.map((option) => (
         <img
+          className={styles.setImage}
           key={option.id}
           src={option.src}
           alt={option.name}
           title={option.name}
           onClick={() => handleOptionClick(option.code)}
           style={{
-            width: 50,
-            height: 50,
-            opacity: selectedCodes.includes(option.code) ? 0.5 : 1
+            filter: selectedCodes.includes(option.code)
+              ? selectedColor
+              : unselectedColor
           }}
         />
       ))}
