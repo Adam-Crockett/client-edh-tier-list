@@ -54,13 +54,17 @@ const TierLevelRow = ({
       </div>
       <ul
         style={{ width: '100%' }}
-        onDragEnter={
-          dragging && levelData.cards.length === 0
-            ? (event) => {
-                handleDragEnter(event, tierIndex, 0);
-              }
-            : undefined
-        }
+        onDragEnter={(event) => {
+          if (event.target === event.currentTarget) {
+            handleDragEnter(
+              event,
+              tierIndex,
+              levelData.cards.length === 0 ? 0 : levelData.cards.length - 1
+            );
+          } else {
+            undefined;
+          }
+        }}
       >
         {levelData.cards.map((card: any, cardIndex: number) => {
           return (
