@@ -1,7 +1,6 @@
 export default function downloadFile(data: any) {
   const builtFile = buildExportFile(data);
   const blob = new Blob([builtFile], { type: 'text/html' });
-  console.log(blob);
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
