@@ -15,7 +15,7 @@
 .app header {
   grid-row: 1 / 2;
   height: 5vh;
-  border-bottom: 1px solid var(--primary-light-orange);
+  border-bottom: 1px solid var(--primary-mint);
 }
 .app main {
   grid-row: 2 / 3;
@@ -23,7 +23,7 @@
 .app footer {
   grid-row: 3 / 4;
   height: 3vh;
-  border-top: 1px solid var(--primary-light-orange);
+  border-top: 1px solid var(--primary-mint);
 }
 
 .overlay {
