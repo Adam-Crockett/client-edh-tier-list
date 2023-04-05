@@ -1,7 +1,12 @@
 import React from 'react';
 import styles from './Navbar.module.css';
 
-const Navbar = ({ handleOnClickSetEdit, setResetState, resetState }: any) => {
+const Navbar = ({
+  handleOnClickSetEdit,
+  setResetState,
+  resetState,
+  handleOnClickExport
+}: any) => {
   function handleOnClickReset() {
     setResetState(!resetState);
   }
@@ -20,7 +25,7 @@ const Navbar = ({ handleOnClickSetEdit, setResetState, resetState }: any) => {
         <button onClick={handleOnClickReset}>
           <span>Reset</span>
         </button>
-        <button>
+        <button onClick={handleOnClickExport}>
           <span>Export</span>
         </button>
       </div>

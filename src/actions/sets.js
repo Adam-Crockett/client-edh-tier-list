@@ -14,6 +14,6 @@ export const getSets = () => async (dispatch) => {
     dispatch({ type: FETCH_ALL, payload: data });
     dispatch({ type: END_LOADING });
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };

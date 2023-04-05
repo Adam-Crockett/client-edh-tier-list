@@ -8,34 +8,50 @@ import CardDetails from './components/CardDetails';
 import styles from './App.module.css';
 import Navbar from './components/Navbar/Navbar';
 import useCachedData from './customHooks/useCachedData/useCachedData';
+import downloadFile from './helpers/downloadFile';
+import { TierLevel, CardData } from './interfaces';
 
 function App() {
   const [cachedData, setCachedData] = useCachedData();
   const [resetState, setResetState] = useState<boolean>(false);
   const { data, loading, error } = useGetSets();
-  const [selectedCodes, setSelectedCodes] = useState<string[]>([]);
-  const { currentCards, loadingCards, cardError } = useGetCards(selectedCodes);
+  const [selectedCodes, setSelectedCodes] = useState<string[]>(
+    cachedData.currentCodes
+  );
+  const { currentCards, loadingCards, cardError } = useGetCards(
+    cachedData.currentCodes
+  );
+  const [tierLevels, setTierLevels] = useState<TierLevel[]>(
+    cachedData.tierLevels
+  );
   const [hoveredCard, setHoveredCard] = useState<[any, number | undefined]>([
     undefined,
     undefined
   ]);
   const [setWindowOpen, setSetWindowOpen] = useState<boolean>(false);
+  const [cardList, setCardList] = useState<CardData[]>(cachedData.cardList);
 
   useEffect(() => {
     if (resetState) {
       setSelectedCodes([]);
+      setTierLevels([]);
       setHoveredCard([undefined, undefined]);
+      setCachedData({
+        cardList: [],
+        currentCodes: [],
+        tierLevels: []
+      });
     }
   }, [resetState]);
 
   useEffect(() => {
     setCachedData({
-      cardList: currentCards,
       currentCodes: selectedCodes,
-      tierList: cachedData?.tierList || []
+      cardList: currentCards,
+      tierLevels: tierLevels
     });
     setResetState(false);
-  }, [selectedCodes, currentCards]);
+  }, [selectedCodes, currentCards, tierLevels]);
 
   const handleMultiselectChange = (newSelectedCodes: string[]) => {
     setSelectedCodes(newSelectedCodes);
@@ -52,6 +68,10 @@ function App() {
     setSetWindowOpen(!setWindowOpen);
   }
 
+  function handleOnClickExport() {
+    downloadFile(cachedData);
+  }
+
   return (
     <div className={styles.app}>
       <header>
@@ -59,6 +79,7 @@ function App() {
           handleOnClickSetEdit={handleOnClickSetEdit}
           setResetState={setResetState}
           resetState={resetState}
+          handleOnClickExport={handleOnClickExport}
         />
       </header>
       <main>
@@ -75,9 +96,12 @@ function App() {
         <TierManager
           selectedCodes={selectedCodes}
           currentCards={currentCards}
+          tierLevels={tierLevels}
+          setTierLevels={setTierLevels}
+          cardList={cardList}
+          setCardList={setCardList}
           loadingCards={loadingCards}
           handleMouseOverCardDetails={handleMouseOverCardDetails}
-          resetState={resetState}
         />
         <div>
           <CardDetails hoveredCard={hoveredCard} />

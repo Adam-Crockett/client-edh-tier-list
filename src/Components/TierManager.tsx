@@ -2,39 +2,32 @@ import { useState, useEffect, useRef } from 'react';
 import TierLevelManager from './TierLevelManager';
 import CardList from './CardList';
 import getRemovedCodes from '../helpers/getRemovedCodes';
-import { TierLevel, CardData, TierManagerProps } from '../interfaces';
-import useCachedData from '../customHooks/useCachedData/useCachedData';
+import { CardData, TierManagerProps } from '../interfaces';
 
 const TierManager = ({
   currentCards,
   selectedCodes,
+  tierLevels,
+  setTierLevels,
+  cardList,
+  setCardList,
   loadingCards,
-  handleMouseOverCardDetails,
-  resetState
+  handleMouseOverCardDetails
 }: TierManagerProps) => {
-  const [cachedData, setCachedData] = useCachedData();
-  const [cardList, setCardList] = useState<CardData[]>(currentCards);
   const [currentCodes, setCurrentCodes] = useState<string[]>(selectedCodes);
-  const [tierLevels, setTierLevels] = useState<TierLevel[]>(() => {
-    return cachedData?.tierLevels || [];
-  });
-
-  useEffect(() => {
-    if (resetState) {
-      setTierLevels([]);
-    }
-  }, [resetState]);
 
   useEffect(() => {
     const newCards = currentCards.filter((card) => {
-      return !cardList.some((existingCard) => existingCard.set === card.set);
+      return !cardList.some(
+        (existingCard: CardData) => existingCard.set === card.set
+      );
     });
     const updatedTiers = [...tierLevels];
     if (currentCodes.length > selectedCodes.length) {
       const removedCodes = getRemovedCodes(currentCodes, selectedCodes);
       let updatedCards = [...cardList];
       updatedTiers.forEach((tier) => {
-        tier.cards = tier.cards.filter((card) => {
+        tier.cards = tier.cards.filter((card: any) => {
           return !removedCodes.includes(card.set);
         });
       });
@@ -61,14 +54,6 @@ const TierManager = ({
       }
     }
   }, [currentCards, selectedCodes]);
-
-  useEffect(() => {
-    setCachedData({
-      currentCodes: cachedData?.currentCodes || [],
-      cardList: cachedData?.cardList || [],
-      tierLevels: tierLevels
-    });
-  }, [tierLevels]);
 
   const [dragging, setDragging] = useState(false);
   const dragCard = useRef<[number, number] | null>();
