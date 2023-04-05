@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Card from './Card';
 import { TierLevelRowProps } from '../interfaces';
+import { GithubPicker, ColorResult } from 'react-color';
 const TierLevelRow = ({
   tierIndex,
   levelData,
@@ -13,6 +14,7 @@ const TierLevelRow = ({
   handleMouseOverCardDetails
 }: TierLevelRowProps) => {
   const [inEditMode, setInEditMode] = useState(false);
+  const [bgColor, setBgColor] = useState(levelData.color);
   const handleRemoveClick = () => {
     handleRemoveTierLevel(tierIndex);
     setInEditMode(false);
@@ -24,8 +26,9 @@ const TierLevelRow = ({
     handleEditTierLevelName(tierIndex, event.target.value);
   };
 
-  const handleColorInputChange = (color) => {
+  const handleColorInputChange = (color: ColorResult) => {
     handleEditTierLevelColor(tierIndex, color.hex);
+    setBgColor(color.hex);
   };
   const handleSaveClick = () => {
     setInEditMode(false);
@@ -35,7 +38,7 @@ const TierLevelRow = ({
       style={{
         display: 'flex',
         flexDirection: 'row',
-        background: 'grey',
+        background: bgColor,
         minHeight: '150px',
         margin: '20px'
       }}
@@ -47,6 +50,16 @@ const TierLevelRow = ({
               value={levelData.tierName}
               onChange={handleNameInputChange}
             />
+            {true && (
+              <div style={{ backgroundColor: 'black' }}>
+                <GithubPicker
+                  color={bgColor}
+                  triangle="hide"
+                  width="7rem"
+                  onChange={(color) => handleColorInputChange(color)}
+                />
+              </div>
+            )}
             <button onClick={handleSaveClick}>Done</button>
             <button onClick={handleRemoveClick}>Remove tier level</button>
           </div>

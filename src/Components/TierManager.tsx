@@ -101,7 +101,10 @@ const TierManager = ({
   };
 
   const handleAddTierLevel = () => {
-    setTierLevels([...tierLevels, { tierName: tierLevels.length, cards: [] }]);
+    setTierLevels([
+      ...tierLevels,
+      { tierName: tierLevels.length, color: 'grey', cards: [] }
+    ]);
   };
 
   const handleRemoveTierLevel = (index: number) => {
