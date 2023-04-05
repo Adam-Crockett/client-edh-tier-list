@@ -1,7 +1,7 @@
-import MultiselectSets from './MultiselectSets';
-import { SetListProps } from '../interfaces';
+import { MultiselectSets } from '../../components';
+import { SetListProps } from '../../interfaces';
 
-const SetList = ({
+export const SetList = ({
   sets,
   selectedCodes,
   onMultiselectChange,
@@ -31,5 +31,3 @@ const SetList = ({
     </div>
   );
 };
-
-export default SetList;

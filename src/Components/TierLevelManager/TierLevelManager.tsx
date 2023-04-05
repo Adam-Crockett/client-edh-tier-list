@@ -1,7 +1,7 @@
-import { TierLevel, TierLevelManagerProps } from '../interfaces';
-import TierLevelRow from './TierLevelRow';
+import { TierLevel, TierLevelManagerProps } from '../../interfaces';
+import { TierLevelRow } from '../../components';
 
-const TierLevelManager = ({
+export const TierLevelManager = ({
   tierLevels,
   handleAddTierLevel,
   handleRemoveTierLevel,
@@ -41,5 +41,3 @@ const TierLevelManager = ({
     </div>
   );
 };
-
-export default TierLevelManager;

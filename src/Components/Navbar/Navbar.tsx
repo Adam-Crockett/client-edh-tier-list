@@ -1,7 +1,6 @@
-import React from 'react';
 import styles from './Navbar.module.css';
 
-const Navbar = ({
+export const Navbar = ({
   handleOnClickSetEdit,
   setResetState,
   resetState,
@@ -32,5 +31,3 @@ const Navbar = ({
     </div>
   );
 };
-
-export default Navbar;

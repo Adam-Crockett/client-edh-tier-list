@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { CardProps } from '../interfaces';
+import { useState, useEffect } from 'react';
+import { CardProps } from '../../interfaces';
 
-const Card = ({
+export const Card = ({
   data,
   cardIndex,
   tierIndex,
@@ -65,5 +65,3 @@ const Card = ({
     );
   }
 };
-
-export default Card;

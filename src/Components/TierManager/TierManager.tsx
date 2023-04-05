@@ -1,10 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
-import TierLevelManager from './TierLevelManager';
-import CardList from './CardList';
-import getRemovedCodes from '../helpers/getRemovedCodes';
-import { CardData, TierManagerProps } from '../interfaces';
+import { CardList, TierLevelManager } from '../../components';
+import getRemovedCodes from '../../helpers/getRemovedCodes';
+import { CardData, TierManagerProps } from '../../interfaces';
 
-const TierManager = ({
+export const TierManager = ({
   currentCards,
   selectedCodes,
   tierLevels,
@@ -157,5 +156,3 @@ const TierManager = ({
     </>
   );
 };
-
-export default TierManager;

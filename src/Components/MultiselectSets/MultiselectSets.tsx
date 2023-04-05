@@ -1,6 +1,6 @@
-import { MultiselectSetsProps } from '../interfaces';
+import { MultiselectSetsProps } from '../../interfaces';
 
-const MultiselectSets = ({
+export const MultiselectSets = ({
   options,
   selectedCodes,
   onChange
@@ -30,5 +30,3 @@ const MultiselectSets = ({
     </div>
   );
 };
-
-export default MultiselectSets;

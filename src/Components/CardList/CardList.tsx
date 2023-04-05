@@ -1,7 +1,7 @@
-import { CardData, CardListProps } from '../interfaces';
-import Card from './Card';
+import { CardData, CardListProps } from '../../interfaces';
+import { Card } from '../../components';
 
-const CardList = ({
+export const CardList = ({
   tierLevels,
   loadingCards,
   handleDragStart,
@@ -51,5 +51,3 @@ const CardList = ({
     );
   }
 };
-
-export default CardList;

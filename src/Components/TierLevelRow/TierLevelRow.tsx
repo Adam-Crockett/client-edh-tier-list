@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import Card from './Card';
-import { TierLevelRowProps } from '../interfaces';
+import { Card } from '../../components';
+import { TierLevelRowProps } from '../../interfaces';
 import { GithubPicker, ColorResult } from 'react-color';
-const TierLevelRow = ({
+
+export const TierLevelRow = ({
   tierIndex,
   levelData,
   handleRemoveTierLevel,
@@ -102,5 +103,3 @@ const TierLevelRow = ({
     </li>
   );
 };
-
-export default TierLevelRow;

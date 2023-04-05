@@ -1,15 +1,13 @@
 import { useState, useEffect } from 'react';
-import useGetSets from './customHooks/useGetSets';
-import './App.css';
-import SetList from './components/SetList';
+import { Navbar, CardDetails, SetList, TierManager } from './components';
 import useGetCards from './customHooks/useGetCards';
-import TierManager from './components/TierManager';
-import CardDetails from './components/CardDetails';
-import styles from './App.module.css';
-import Navbar from './components/Navbar/Navbar';
-import useCachedData from './customHooks/useCachedData/useCachedData';
-import downloadFile from './helpers/downloadFile';
+import useGetSets from './customHooks/useGetSets';
 import { TierLevel, CardData } from './interfaces';
+
+import useCachedData from './customHooks/useCachedData';
+import downloadFile from './helpers/downloadFile';
+import './App.css';
+import styles from './App.module.css';
 
 function App() {
   const [cachedData, setCachedData] = useCachedData();

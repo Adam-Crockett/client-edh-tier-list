@@ -1,6 +1,4 @@
-import React from 'react';
-
-const CardDetails = ({ hoveredCard }: any) => {
+export const CardDetails = ({ hoveredCard }: any) => {
   const data = hoveredCard[0];
   const cardFace = hoveredCard[1];
   let cardImage = '';
@@ -16,5 +14,3 @@ const CardDetails = ({ hoveredCard }: any) => {
     </div>
   );
 };
-
-export default CardDetails;
