@@ -1,5 +1,9 @@
 import { NavbarProps } from '../../interfaces';
+
 import styles from './Navbar.module.css';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import FilterListIcon from '@mui/icons-material/FilterList';
 
 export const Navbar = ({
   handleOnClickSetEdit,
@@ -12,21 +16,19 @@ export const Navbar = ({
   }
   return (
     <div className={styles.Navbar}>
-      <div className={styles.imageContainer}>
-        <img
-          className={styles.logoImage}
-          src="https://static.wikia.nocookie.net/mtgsalvation_gamepedia/images/7/70/ONE_expansion_symbol.png"
-        />
+      <div className={styles.logoContainer}>
+        <p className={styles.siteName}>POWER LEVEL</p>
+        <p className={styles.siteSubName}>An EDH Tier Tool</p>
       </div>
       <div className={styles.buttonContainer}>
         <button onClick={handleOnClickSetEdit}>
-          <span>Sets</span>
+          <FilterListIcon />
         </button>
         <button onClick={handleOnClickReset}>
-          <span>Reset</span>
+          <DeleteOutlineIcon />
         </button>
         <button onClick={handleOnClickExport}>
-          <span>Export</span>
+          <FileDownloadIcon />
         </button>
       </div>
     </div>
