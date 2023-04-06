@@ -13,28 +13,26 @@ export const TierLevelManager = ({
   handleMouseOverCardDetails
 }: TierLevelManagerProps) => {
   return (
-    <div className={styles.container}>
-      <ul className={styles.tierList}>
-        {tierLevels.map((levelData: TierLevel, tierIndex: number) => {
-          if (tierIndex == 0) {
-            return null;
-          }
-          return (
-            <TierLevelRow
-              key={tierIndex}
-              tierIndex={tierIndex}
-              levelData={levelData}
-              handleRemoveTierLevel={handleRemoveTierLevel}
-              handleEditTierLevelName={handleEditTierLevelName}
-              handleEditTierLevelColor={handleEditTierLevelColor}
-              handleDragStart={handleDragStart}
-              handleDragEnter={handleDragEnter}
-              dragging={dragging}
-              handleMouseOverCardDetails={handleMouseOverCardDetails}
-            />
-          );
-        })}
-      </ul>
-    </div>
+    <ul className={styles.container}>
+      {tierLevels.map((levelData: TierLevel, tierIndex: number) => {
+        if (tierIndex == 0) {
+          return null;
+        }
+        return (
+          <TierLevelRow
+            key={tierIndex}
+            tierIndex={tierIndex}
+            levelData={levelData}
+            handleRemoveTierLevel={handleRemoveTierLevel}
+            handleEditTierLevelName={handleEditTierLevelName}
+            handleEditTierLevelColor={handleEditTierLevelColor}
+            handleDragStart={handleDragStart}
+            handleDragEnter={handleDragEnter}
+            dragging={dragging}
+            handleMouseOverCardDetails={handleMouseOverCardDetails}
+          />
+        );
+      })}
+    </ul>
   );
 };

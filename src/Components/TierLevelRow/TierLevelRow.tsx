@@ -1,7 +1,30 @@
 import { useState } from 'react';
 import { Card } from '../../components';
 import { CardData, TierLevelRowProps } from '../../interfaces';
-import { GithubPicker, ColorResult } from 'react-color';
+import { CirclePicker, ColorResult } from 'react-color';
+import MenuIcon from '@mui/icons-material/Menu';
+import styles from './TierLevelRow.module.css';
+import DoneIcon from '@mui/icons-material/Done';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+
+const colorPickerOptions = [
+  '#B80000',
+  '#DB3E00',
+  '#FCCB00',
+  '#008B02',
+  '#006B76',
+  '#1273DE',
+  '#004DCF',
+  '#6e34d8',
+  '#EB9694',
+  '#FAD0C3',
+  '#FEF3BD',
+  '#C1E1C5',
+  '#BEDADC',
+  '#C4DEF6',
+  '#BED3F3',
+  '#D4C4FB'
+];
 
 export const TierLevelRow = ({
   tierIndex,
@@ -35,44 +58,52 @@ export const TierLevelRow = ({
     setInEditMode(false);
   };
   return (
-    <li
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-        background: bgColor,
-        minHeight: '90px',
-        marginBottom: '.5rem'
-      }}
-    >
-      <div style={{ alignSelf: 'flex-start' }}>
+    <li className={styles.container}>
+      <div
+        className={styles.tierLevelInfo}
+        style={{
+          background: bgColor
+        }}
+      >
         {inEditMode ? (
-          <div>
+          <div className={styles.editTierInfo}>
             <input
+              className={styles.editName}
               value={levelData.tierName}
               onChange={handleNameInputChange}
+              maxLength={3}
             />
-            {true && (
-              <div style={{ backgroundColor: 'black' }}>
-                <GithubPicker
-                  color={bgColor}
-                  triangle="hide"
-                  width="7rem"
-                  onChange={(color) => handleColorInputChange(color)}
-                />
-              </div>
-            )}
-            <button onClick={handleSaveClick}>Done</button>
-            <button onClick={handleRemoveClick}>Remove tier level</button>
+            <CirclePicker
+              className={styles.editColor}
+              color={bgColor}
+              width="12rem"
+              circleSize={20}
+              circleSpacing={7}
+              colors={colorPickerOptions}
+              onChange={(color) => handleColorInputChange(color)}
+            />
+            <button className={styles.acceptChanges} onClick={handleSaveClick}>
+              <DoneIcon />
+            </button>
+            <button className={styles.deleteTier} onClick={handleRemoveClick}>
+              <DeleteOutlineIcon />
+            </button>
           </div>
         ) : (
-          <div>
-            <button onClick={() => setInEditMode(true)}>Edit</button>
-            <p>{levelData.tierName}</p>
+          <div className={styles.currentTierInfo}>
+            <h3 className={styles.tierName}>{levelData.tierName}</h3>
+            <button
+              className={styles.editTierButton}
+              onClick={() => setInEditMode(true)}
+              title="Edit Tier"
+            >
+              <MenuIcon />
+            </button>
           </div>
         )}
       </div>
       <ul
-        style={{ width: '100%' }}
+        className={styles.tierContent}
         onDragEnter={(event) => {
           if (event.target === event.currentTarget) {
             handleDragEnter(

@@ -1,0 +1,104 @@
+.container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr;
+  height: 100%;
+  width: 100%;
+  margin-top: 0.5rem;
+  border-radius: 3px;
+}
+
+.tierLevelInfo {
+  margin-right: 4px;
+}
+
+.currentTierInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  min-width: 5rem;
+}
+
+.tierName {
+  cursor: default;
+  text-align: center;
+  color: var(--primary-grey);
+  font-size: xx-large;
+  font-weight: 700;
+  margin-block-end: 1rem;
+  margin-block-start: 1rem;
+}
+.editTierButton {
+  width: 100%;
+  border: none;
+  align-self: end;
+  background-color: rgba(0, 0, 0, 0);
+  color: var(--primary-grey);
+  transition: background-color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out;
+}
+
+.tierContent {
+  background-color: var(--secondary-grey);
+}
+
+.editTierInfo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: 'editName editName' 'editColor editColor' 'acceptChanges deleteTier';
+  justify-items: stretch;
+  align-items: stretch;
+  height: 100%;
+  min-width: 5rem;
+  border: 1px solid var(--primary-mint);
+}
+
+.editName {
+  grid-area: editName;
+  margin: 0;
+  border: 1px solid var(--primary-grey);
+  border-bottom: 1px solid var(--primary-mint);
+  background-color: var(--primary-grey);
+  font-size: large;
+  text-align: center;
+  color: var(--primary-mint);
+  height: 100%;
+}
+
+.editName:focus {
+  outline: none;
+}
+
+.editColor {
+  grid-area: editColor;
+  justify-self: center;
+  padding: 0.5rem;
+}
+
+.editTierInfo button {
+  height: 100%;
+  border-top: 1px solid var(--primary-mint);
+  background-color: var(--primary-grey);
+  color: var(--primary-mint);
+  transition: background-color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out;
+}
+
+.editTierInfo button:hover {
+  background-color: var(--primary-mint);
+  color: var(--primary-grey);
+}
+
+.acceptChanges {
+  grid-area: acceptChanges;
+  border: none;
+  border-right: 1px solid var(--primary-mint);
+}
+
+.deleteTier {
+  grid-area: deleteTier;
+  border: none;
+}

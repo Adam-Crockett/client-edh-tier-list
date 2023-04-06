@@ -9,6 +9,7 @@ import downloadFile from './helpers/downloadFile';
 import './index.css';
 import './App.css';
 import styles from './App.module.css';
+import { defaultTiers } from './helpers/defaultTiers';
 
 function App() {
   const { cachedData, setCachedData } = useCachedData();
@@ -34,7 +35,11 @@ function App() {
       setSelectedCodes([]);
       setTierLevels([]);
       setHoveredCard([undefined, -1]);
-      setCachedData({ cardList: [], currentCodes: [], tierLevels: [] });
+      setCachedData({
+        cardList: [],
+        currentCodes: [],
+        tierLevels: defaultTiers
+      });
     }
   }, [resetState]);
 
@@ -66,7 +71,7 @@ function App() {
   const handleAddTierLevel = () => {
     setTierLevels([
       ...tierLevels,
-      { tierName: tierLevels.length, color: '#04293a', cards: [] }
+      { tierName: tierLevels.length, color: '#006B76', cards: [] }
     ]);
   };
 
