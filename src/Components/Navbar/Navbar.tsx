@@ -3,7 +3,7 @@ import { NavbarProps } from '../../interfaces';
 import styles from './Navbar.module.css';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import FilterListIcon from '@mui/icons-material/FilterList';
+import SortIcon from '@mui/icons-material/Sort';
 import AddIcon from '@mui/icons-material/Add';
 
 export const Navbar = ({
@@ -24,7 +24,7 @@ export const Navbar = ({
       </div>
       <div className={styles.buttonContainer}>
         <button onClick={handleOnClickSetEdit} title="Select Sets">
-          <FilterListIcon />
+          <SortIcon />
         </button>
         <button onClick={handleAddTierLevel} title="Add Tier">
           <AddIcon />

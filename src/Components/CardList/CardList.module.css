@@ -1,0 +1,23 @@
+.cardListWrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.container {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: baseline;
+  background-color: var(--secondary-grey);
+  border: 1px solid var(--primary-grey-teal);
+  border-radius: 3px;
+  padding-top: 150px;
+  margin: 0 auto;
+}
+
+.container li {
+  margin: 0.25rem;
+}

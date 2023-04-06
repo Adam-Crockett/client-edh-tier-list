@@ -1,9 +1,10 @@
 .container {
   display: grid;
   grid-template-columns: auto 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 1fr auto;
   grid-template-areas: 'cardDetails tierLevels' 'cardList cardList';
   grid-column-gap: 0rem;
+  grid-row-gap: 1rem;
   width: 100%;
 }
 
@@ -18,6 +19,6 @@
 .CardDetailsContainer {
   align-self: flex-start;
   justify-self: center;
-  padding-top: 10rem;
+  padding-top: 4.5rem;
   grid-area: cardDetails;
 }

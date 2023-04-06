@@ -1,5 +1,6 @@
 import { CardData, CardListProps } from '../../interfaces';
 import { Card } from '../../components';
+import styles from './CardList.module.css';
 
 export const CardList = ({
   tierLevels,
@@ -9,21 +10,13 @@ export const CardList = ({
   dragging,
   handleMouseOverCardDetails
 }: CardListProps) => {
-  const cardListStyles = {
-    display: 'flex',
-    'flex-direction': 'row',
-    'flex-wrap': 'wrap',
-    'list-style': 'none',
-    padding: 0,
-    marginTop: '160px'
-  };
-
   if (loadingCards) {
     return <></>;
   } else {
     return (
+      // <div className={styles.cardListWrapper}>
       <ul
-        style={cardListStyles}
+        className={styles.container}
         onDragEnter={
           dragging && tierLevels[0]?.cards.length == 0
             ? (event) => {
@@ -48,6 +41,7 @@ export const CardList = ({
           );
         })}
       </ul>
+      // </div>
     );
   }
 };
