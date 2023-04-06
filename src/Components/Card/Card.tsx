@@ -26,6 +26,7 @@ export const Card = ({
   if (data.image_uris) {
     return (
       <img
+        style={{ height: '240px', borderRadius: '3px', marginTop: '-140px' }}
         draggable
         onDragStart={(event) => handleDragStart(event, tierIndex, cardIndex)}
         onDragEnter={
@@ -36,7 +37,7 @@ export const Card = ({
             : undefined
         }
         key={data.id}
-        src={data.image_uris.small}
+        src={data.image_uris.border_crop}
         onMouseOver={
           !dragging ? () => handleMouseOverCardDetails(data) : undefined
         }
@@ -44,24 +45,27 @@ export const Card = ({
     );
   } else if (data.card_faces) {
     return (
-      <img
-        draggable
-        onDragStart={(event) => handleDragStart(event, tierIndex, cardIndex)}
-        onDragEnter={
-          dragging
-            ? (event) => {
-                handleDragEnter(event, tierIndex, cardIndex);
-              }
-            : undefined
-        }
-        src={data.card_faces[currentFace].image_uris.small}
-        onClick={handleClickOnMDFC}
-        onMouseOver={
-          !dragging
-            ? () => handleMouseOverCardDetails(data, currentFace)
-            : undefined
-        }
-      />
+      <div style={{ height: '240px' }}>
+        <img
+          style={{ height: '240px' }}
+          draggable
+          onDragStart={(event) => handleDragStart(event, tierIndex, cardIndex)}
+          onDragEnter={
+            dragging
+              ? (event) => {
+                  handleDragEnter(event, tierIndex, cardIndex);
+                }
+              : undefined
+          }
+          src={data.card_faces[currentFace].image_uris.border_crop}
+          onClick={handleClickOnMDFC}
+          onMouseOver={
+            !dragging
+              ? () => handleMouseOverCardDetails(data, currentFace)
+              : undefined
+          }
+        />
+      </div>
     );
   } else {
     return <></>;
