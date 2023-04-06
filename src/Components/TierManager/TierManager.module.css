@@ -9,6 +9,7 @@
 
 .TierLevelContainer {
   grid-area: tierLevels;
+  display: block;
 }
 
 .CardListContainer {

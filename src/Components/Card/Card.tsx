@@ -27,7 +27,7 @@ export const Card = ({
     return (
       <img
         style={{
-          height: '240px',
+          height: tierIndex > 0 ? '125px' : '240px',
           borderRadius: '3px',
           marginTop: tierIndex > 0 ? '0px' : '-140px'
         }}
@@ -41,7 +41,11 @@ export const Card = ({
             : undefined
         }
         key={data.id}
-        src={data.image_uris.border_crop}
+        src={
+          tierIndex > 0
+            ? data.image_uris.border_crop
+            : data.image_uris.border_crop
+        }
         onMouseOver={
           !dragging ? () => handleMouseOverCardDetails(data) : undefined
         }

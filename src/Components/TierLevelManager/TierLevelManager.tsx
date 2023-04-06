@@ -1,5 +1,6 @@
 import { TierLevel, TierLevelManagerProps } from '../../interfaces';
 import { TierLevelRow } from '../../components';
+import styles from './TierLevelManager.module.css';
 
 export const TierLevelManager = ({
   tierLevels,
@@ -12,8 +13,8 @@ export const TierLevelManager = ({
   handleMouseOverCardDetails
 }: TierLevelManagerProps) => {
   return (
-    <div>
-      <ul>
+    <div className={styles.container}>
+      <ul className={styles.tierList}>
         {tierLevels.map((levelData: TierLevel, tierIndex: number) => {
           if (tierIndex == 0) {
             return null;

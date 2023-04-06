@@ -40,8 +40,8 @@ export const TierLevelRow = ({
         display: 'flex',
         flexDirection: 'row',
         background: bgColor,
-        minHeight: '150px',
-        margin: '10px'
+        minHeight: '90px',
+        marginBottom: '.5rem'
       }}
     >
       <div style={{ alignSelf: 'flex-start' }}>
@@ -78,7 +78,7 @@ export const TierLevelRow = ({
             handleDragEnter(
               event,
               tierIndex,
-              levelData.cards.length === 0 ? 0 : levelData.cards.length - 1
+              levelData.cards.length === 0 ? 0 : levelData.cards.length
             );
           } else {
             undefined;
