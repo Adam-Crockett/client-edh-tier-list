@@ -42,9 +42,7 @@ export const Card = ({
         }
         key={data.id}
         src={
-          tierIndex > 0
-            ? data.image_uris.border_crop
-            : data.image_uris.border_crop
+          tierIndex > 0 ? data.image_uris.art_crop : data.image_uris.border_crop
         }
         onMouseOver={
           !dragging ? () => handleMouseOverCardDetails(data) : undefined
