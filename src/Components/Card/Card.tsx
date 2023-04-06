@@ -26,7 +26,11 @@ export const Card = ({
   if (data.image_uris) {
     return (
       <img
-        style={{ height: '240px', borderRadius: '3px', marginTop: '-140px' }}
+        style={{
+          height: '240px',
+          borderRadius: '3px',
+          marginTop: tierIndex > 0 ? '0px' : '-140px'
+        }}
         draggable
         onDragStart={(event) => handleDragStart(event, tierIndex, cardIndex)}
         onDragEnter={

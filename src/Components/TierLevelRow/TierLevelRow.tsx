@@ -41,7 +41,7 @@ export const TierLevelRow = ({
         flexDirection: 'row',
         background: bgColor,
         minHeight: '150px',
-        margin: '20px'
+        margin: '10px'
       }}
     >
       <div style={{ alignSelf: 'flex-start' }}>

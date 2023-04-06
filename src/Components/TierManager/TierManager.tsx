@@ -135,6 +135,9 @@ export const TierManager = ({
 
   return (
     <div className={styles.container}>
+      <div className={styles.CardDetailsContainer}>
+        <CardDetails hoveredCard={hoveredCard} />
+      </div>
       <div className={styles.TierLevelContainer}>
         <TierLevelManager
           tierLevels={tierLevels}
@@ -159,9 +162,6 @@ export const TierManager = ({
             dragging={dragging}
           />
         )}
-      </div>
-      <div className={styles.CardDetailsContainer}>
-        <CardDetails hoveredCard={hoveredCard} />
       </div>
     </div>
   );
