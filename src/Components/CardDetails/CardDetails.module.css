@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0rem;
+  margin-left: 1rem;
+  width: 100%;
+  max-width: 1200px;
+  /* padding: 1rem 0.5rem; */
+}
+
+.detailsImage {
+  width: 250px;
+  height: 100%;
+  border-radius: 5px;
+  /* margin: 0.5rem; */
+  /* border: 1px solid var(--primary-mint); */
+  box-shadow: 0px 3px 10px var(--primary-teal);
+}
+
+.detailsImage:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: -10%;
+  width: 1px;
+  height: 120%;
+  background-image: linear-gradient(to top, #f37676 75%, transparent);
+}

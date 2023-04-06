@@ -1,4 +1,5 @@
 import { CardDetailsProps } from '../../interfaces';
+import styles from './CardDetails.module.css';
 export const CardDetails = ({ hoveredCard }: CardDetailsProps) => {
   if (hoveredCard[0] === undefined) {
     return <div></div>;
@@ -14,8 +15,8 @@ export const CardDetails = ({ hoveredCard }: CardDetailsProps) => {
     }
 
     return (
-      <div>
-        <img style={{ width: '300px', height: '100%' }} src={cardImage} />
+      <div className={styles.container}>
+        <img className={styles.detailsImage} src={cardImage} />
       </div>
     );
   }

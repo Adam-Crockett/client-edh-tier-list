@@ -3,6 +3,7 @@
   grid-template-columns: auto 1fr;
   grid-template-rows: 1fr 1fr;
   grid-template-areas: 'cardDetails tierLevels' 'cardList cardList';
+  grid-column-gap: 0rem;
   width: 100%;
 }
 
@@ -14,7 +15,8 @@
   grid-area: cardList;
 }
 .CardDetailsContainer {
-  align-self: center;
-  justify-self: flex-end;
+  align-self: flex-start;
+  justify-self: center;
+  padding-top: 10rem;
   grid-area: cardDetails;
 }
