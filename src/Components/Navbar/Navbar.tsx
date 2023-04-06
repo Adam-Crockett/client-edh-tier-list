@@ -23,18 +23,16 @@ export const Navbar = ({
         <p className={styles.siteSubName}>An EDH Tier Tool</p>
       </div>
       <div className={styles.buttonContainer}>
-        <button onClick={handleOnClickSetEdit}>
+        <button onClick={handleOnClickSetEdit} title="Select Sets">
           <FilterListIcon />
         </button>
-
-        <button onClick={handleAddTierLevel}>
+        <button onClick={handleAddTierLevel} title="Add Tier">
           <AddIcon />
         </button>
-
-        <button onClick={handleOnClickReset}>
+        <button onClick={handleOnClickReset} title="Reset All Data">
           <DeleteOutlineIcon />
         </button>
-        <button onClick={handleOnClickExport}>
+        <button onClick={handleOnClickExport} title="Download">
           <FileDownloadIcon />
         </button>
       </div>

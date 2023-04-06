@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { CardList, TierLevelManager, CardDetails } from '../../components';
 import getRemovedCodes from '../../helpers/getRemovedCodes';
 import { CardData, TierManagerProps } from '../../interfaces';
+import { defaultTiers } from '../../helpers/defaultTiers';
 import styles from './TierManager.module.css';
 
 export const TierManager = ({
@@ -47,9 +48,9 @@ export const TierManager = ({
       }
       setCurrentCodes(selectedCodes);
       if (tierLevels.length === 0) {
-        setTierLevels([
-          { tierName: 'cardPool', color: '#04293a', cards: [...cardList] }
-        ]);
+        const newTierLevels = [...defaultTiers];
+        newTierLevels[0].cards = [...cardList];
+        setTierLevels(newTierLevels);
       } else {
         const updatedCardPool = [...tierLevels[0].cards, ...newCards];
         updatedTiers[0].cards = updatedCardPool;
@@ -91,7 +92,11 @@ export const TierManager = ({
         dragCard.current[1],
         1
       )[0];
-      updatedTierLevels[tierIndex].cards.splice(cardIndex, 0, draggedCard);
+      if (event.target instanceof HTMLImageElement) {
+        updatedTierLevels[tierIndex].cards.splice(cardIndex, 0, draggedCard);
+      } else if (event.target instanceof HTMLUListElement) {
+        updatedTierLevels[tierIndex].cards.push(draggedCard);
+      }
       setTierLevels(updatedTierLevels);
       dragCard.current = [tierIndex, cardIndex];
     }

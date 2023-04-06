@@ -11,6 +11,14 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+button {
+  cursor: pointer;
+}
+button[title] {
+  background-color: var(--primary-grey);
+  color: var(--primary-mint);
+  border: 1px solid var(--primary-mint);
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

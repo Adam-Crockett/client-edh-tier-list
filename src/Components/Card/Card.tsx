@@ -27,7 +27,7 @@ export const Card = ({
     return (
       <img
         style={{
-          height: tierIndex > 0 ? '125px' : '240px',
+          height: tierIndex > 0 ? '100px' : '240px',
           borderRadius: '3px',
           marginTop: tierIndex > 0 ? '0px' : '-140px'
         }}
