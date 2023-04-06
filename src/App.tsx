@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Navbar, CardDetails, SetList, TierManager } from './components';
+import { Navbar, SetList, TierManager } from './components';
 import useGetCards from './customHooks/useGetCards';
 import useGetSets from './customHooks/useGetSets';
 import { TierLevel, CardData } from './interfaces';
 
 import useCachedData from './customHooks/useCachedData';
 import downloadFile from './helpers/downloadFile';
+import './index.css';
 import './App.css';
 import styles from './App.module.css';
 
@@ -82,20 +83,20 @@ function App() {
           />
         )}
         {setWindowOpen && <div className={styles.overlay} />}
-
-        <TierManager
-          selectedCodes={selectedCodes}
-          currentCards={currentCards}
-          tierLevels={tierLevels}
-          setTierLevels={setTierLevels}
-          cardList={cardList}
-          setCardList={setCardList}
-          loadingCards={loadingCards}
-          handleMouseOverCardDetails={handleMouseOverCardDetails}
-        />
         <div>
-          <CardDetails hoveredCard={hoveredCard} />
+          <TierManager
+            selectedCodes={selectedCodes}
+            currentCards={currentCards}
+            tierLevels={tierLevels}
+            setTierLevels={setTierLevels}
+            cardList={cardList}
+            setCardList={setCardList}
+            loadingCards={loadingCards}
+            hoveredCard={hoveredCard}
+            handleMouseOverCardDetails={handleMouseOverCardDetails}
+          />
         </div>
+        <div></div>
       </main>
       <footer className={styles.footer}>Disclaimer Stuff</footer>
     </div>

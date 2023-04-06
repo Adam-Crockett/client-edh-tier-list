@@ -2,9 +2,11 @@
 .app {
   background-color: var(--primary-grey);
   display: grid;
-  grid-template-columns: 5% 1fr 5%;
-  grid-template-rows: 1fr;
-  height: 100vh;
+  grid-template-columns: 1fr;
+  grid-template-rows: minmax(5vh, auto) minmax(89.9vh, auto) minmax(5vh, auto);
+  justify-content: start;
+  align-content: start;
+  height: 100%;
 }
 .app header,
 .app main,
@@ -14,15 +16,19 @@
 
 .app header {
   grid-row: 1 / 2;
-  height: 5vh;
   border-bottom: 1px solid var(--primary-mint);
 }
 .app main {
   grid-row: 2 / 3;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto;
+  padding-right: 1rem;
+  padding-left: 1rem;
 }
 .app footer {
+  align-self: end;
   grid-row: 3 / 4;
-  height: 3vh;
   border-top: 1px solid var(--primary-mint);
 }
 
