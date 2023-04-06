@@ -3,7 +3,6 @@ import { TierLevelRow } from '../../components';
 
 export const TierLevelManager = ({
   tierLevels,
-  handleAddTierLevel,
   handleRemoveTierLevel,
   handleEditTierLevelName,
   handleEditTierLevelColor,
@@ -14,9 +13,6 @@ export const TierLevelManager = ({
 }: TierLevelManagerProps) => {
   return (
     <div>
-      <div>
-        <button onClick={handleAddTierLevel}>Add Tier</button>
-      </div>
       <ul>
         {tierLevels.map((levelData: TierLevel, tierIndex: number) => {
           if (tierIndex == 0) {

@@ -3,7 +3,6 @@ import { TierLevel } from './TierLevel';
 
 export interface TierLevelManagerProps {
   tierLevels: TierLevel[];
-  handleAddTierLevel: () => void;
   handleRemoveTierLevel: (index: number) => void;
   handleEditTierLevelName: (index: number, newName: string) => void;
   handleEditTierLevelColor: (index: number, newColor: string) => void;

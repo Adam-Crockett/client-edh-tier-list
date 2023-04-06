@@ -103,13 +103,6 @@ export const TierManager = ({
     dragNode.current = null;
   };
 
-  const handleAddTierLevel = () => {
-    setTierLevels([
-      ...tierLevels,
-      { tierName: tierLevels.length, color: '#04293a', cards: [] }
-    ]);
-  };
-
   const handleRemoveTierLevel = (index: number) => {
     const updatedTierLevels = [...tierLevels];
     const removedCards = updatedTierLevels[index].cards;
@@ -141,7 +134,6 @@ export const TierManager = ({
       <div className={styles.TierLevelContainer}>
         <TierLevelManager
           tierLevels={tierLevels}
-          handleAddTierLevel={handleAddTierLevel}
           handleRemoveTierLevel={handleRemoveTierLevel}
           handleEditTierLevelName={handleEditTierLevelName}
           handleDragStart={handleDragStart}

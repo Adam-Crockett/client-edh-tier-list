@@ -63,6 +63,13 @@ function App() {
     downloadFile(cachedData);
   }
 
+  const handleAddTierLevel = () => {
+    setTierLevels([
+      ...tierLevels,
+      { tierName: tierLevels.length, color: '#04293a', cards: [] }
+    ]);
+  };
+
   return (
     <div className={styles.app}>
       <header>
@@ -70,6 +77,7 @@ function App() {
           handleOnClickSetEdit={handleOnClickSetEdit}
           setResetState={setResetState}
           resetState={resetState}
+          handleAddTierLevel={handleAddTierLevel}
           handleOnClickExport={handleOnClickExport}
         />
       </header>
@@ -96,7 +104,6 @@ function App() {
             handleMouseOverCardDetails={handleMouseOverCardDetails}
           />
         </div>
-        <div></div>
       </main>
       <footer className={styles.footer}>Disclaimer Stuff</footer>
     </div>

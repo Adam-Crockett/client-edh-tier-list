@@ -4,11 +4,13 @@ import styles from './Navbar.module.css';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import FilterListIcon from '@mui/icons-material/FilterList';
+import AddIcon from '@mui/icons-material/Add';
 
 export const Navbar = ({
   handleOnClickSetEdit,
   setResetState,
   resetState,
+  handleAddTierLevel,
   handleOnClickExport
 }: NavbarProps) => {
   function handleOnClickReset() {
@@ -24,6 +26,11 @@ export const Navbar = ({
         <button onClick={handleOnClickSetEdit}>
           <FilterListIcon />
         </button>
+
+        <button onClick={handleAddTierLevel}>
+          <AddIcon />
+        </button>
+
         <button onClick={handleOnClickReset}>
           <DeleteOutlineIcon />
         </button>
