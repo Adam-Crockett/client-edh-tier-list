@@ -1,0 +1,19 @@
+.container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: 'tierLevels tierLevels' 'cardList cardDetails';
+  width: 100%;
+}
+
+.TierLevelContainer {
+  grid-area: tierLevels;
+}
+
+.CardListContainer {
+  grid-area: cardList;
+}
+.CardDetailsContainer {
+  justify-self: flex-end;
+  grid-area: cardDetails;
+}

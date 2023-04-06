@@ -1,13 +1,15 @@
 import { useState, useEffect, useRef } from 'react';
-import { CardList, TierLevelManager } from '../../components';
+import { CardList, TierLevelManager, CardDetails } from '../../components';
 import getRemovedCodes from '../../helpers/getRemovedCodes';
 import { CardData, TierManagerProps } from '../../interfaces';
+import styles from './TierManager.module.css';
 
 export const TierManager = ({
   currentCards,
   selectedCodes,
   tierLevels,
   setTierLevels,
+  hoveredCard,
   cardList,
   setCardList,
   loadingCards,
@@ -125,7 +127,6 @@ export const TierManager = ({
     setTierLevels(updatedTierLevels);
   };
 
-  // Create handeler specific to edit tier level name - Rename this function
   const handleEditTierLevelName = (index: number, newName: string) => {
     const updatedTierLevels = [...tierLevels];
     updatedTierLevels[index].tierName = newName;
@@ -133,28 +134,35 @@ export const TierManager = ({
   };
 
   return (
-    <>
-      <TierLevelManager
-        tierLevels={tierLevels}
-        handleAddTierLevel={handleAddTierLevel}
-        handleRemoveTierLevel={handleRemoveTierLevel}
-        handleEditTierLevelName={handleEditTierLevelName}
-        handleDragStart={handleDragStart}
-        handleDragEnter={handleDragEnter}
-        handleMouseOverCardDetails={handleMouseOverCardDetails}
-        handleEditTierLevelColor={handleEditTierLevelColor}
-        dragging={dragging}
-      />
-      {!loadingCards && tierLevels.length > 0 && (
-        <CardList
+    <div className={styles.container}>
+      <div className={styles.TierLevelContainer}>
+        <TierLevelManager
           tierLevels={tierLevels}
-          loadingCards={loadingCards}
+          handleAddTierLevel={handleAddTierLevel}
+          handleRemoveTierLevel={handleRemoveTierLevel}
+          handleEditTierLevelName={handleEditTierLevelName}
           handleDragStart={handleDragStart}
           handleDragEnter={handleDragEnter}
           handleMouseOverCardDetails={handleMouseOverCardDetails}
+          handleEditTierLevelColor={handleEditTierLevelColor}
           dragging={dragging}
         />
-      )}
-    </>
+      </div>
+      <div className={styles.CardListContainer}>
+        {!loadingCards && tierLevels.length > 0 && (
+          <CardList
+            tierLevels={tierLevels}
+            loadingCards={loadingCards}
+            handleDragStart={handleDragStart}
+            handleDragEnter={handleDragEnter}
+            handleMouseOverCardDetails={handleMouseOverCardDetails}
+            dragging={dragging}
+          />
+        )}
+      </div>
+      <div className={styles.CardDetailsContainer}>
+        <CardDetails hoveredCard={hoveredCard} />
+      </div>
+    </div>
   );
 };

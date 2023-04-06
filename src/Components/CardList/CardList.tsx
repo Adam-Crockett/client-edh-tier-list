@@ -15,7 +15,7 @@ export const CardList = ({
     'flex-wrap': 'wrap',
     'list-style': 'none',
     padding: 0,
-    margin: 0
+    marginTop: '160px'
   };
 
   if (loadingCards) {
