@@ -78,7 +78,7 @@ export const TierLevelRow = ({
             handleDragEnter(
               event,
               tierIndex,
-              levelData.cards.length === 0 ? 0 : levelData.cards.length
+              levelData.cards.length === 0 ? 0 : levelData.cards.length - 1
             );
           } else {
             undefined;
