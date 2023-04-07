@@ -55,7 +55,7 @@
 .editTierInfo {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
+  grid-template-rows: auto 1fr auto;
   grid-template-areas: 'editName editName' 'editColor editColor' 'acceptChanges deleteTier';
   justify-items: stretch;
   align-items: stretch;
@@ -73,7 +73,7 @@
   font-size: large;
   text-align: center;
   color: var(--primary-mint);
-  height: 100%;
+  height: 1.2rem;
 }
 
 .editName:focus {
@@ -83,7 +83,7 @@
 .editColor {
   grid-area: editColor;
   justify-self: center;
-  padding: 0.5rem;
+  padding: 0.2rem;
 }
 
 .editTierInfo button {

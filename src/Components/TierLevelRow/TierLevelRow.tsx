@@ -77,8 +77,8 @@ export const TierLevelRow = ({
             <CirclePicker
               className={styles.editColor}
               color={bgColor}
-              width="12rem"
-              circleSize={20}
+              width="13rem"
+              circleSize={18}
               circleSpacing={7}
               colors={colorPickerOptions}
               onChange={(color) => handleColorInputChange(color)}
