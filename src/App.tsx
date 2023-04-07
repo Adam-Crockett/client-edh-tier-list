@@ -6,6 +6,7 @@ import { TierLevel, CardData } from './interfaces';
 
 import useCachedData from './customHooks/useCachedData';
 import downloadFile from './helpers/downloadFile';
+import GitHubIcon from '@mui/icons-material/GitHub';
 import './index.css';
 import './App.css';
 import styles from './App.module.css';
@@ -110,7 +111,11 @@ function App() {
           />
         </div>
       </main>
-      <footer className={styles.footer}>Disclaimer Stuff</footer>
+      <footer className={styles.footer}>
+        <div className={styles.gitHubButton}>
+          <GitHubIcon />
+        </div>
+      </footer>
     </div>
   );
 }

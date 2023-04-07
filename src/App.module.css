@@ -30,6 +30,31 @@
   align-self: end;
   grid-row: 3 / 4;
   border-top: 1px solid var(--primary-mint);
+  display: flex;
+}
+
+.gitHubButton {
+  height: 100%;
+  width: 5rem;
+  border: none;
+  border-left: 1px solid var(--primary-mint);
+  border-right: 1px solid var(--primary-mint);
+  background-color: var(--primary-grey);
+  color: var(--primary-mint);
+  transition: background-color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out;
+}
+
+.buttonContainer button:first-child {
+  border: none;
+  border-left: 1px solid var(--primary-mint);
+}
+.buttonContainer button:last-child {
+  border-right: none;
+}
+.buttonContainer button:hover {
+  background-color: var(--primary-mint);
+  color: var(--primary-grey);
 }
 
 .overlay {
