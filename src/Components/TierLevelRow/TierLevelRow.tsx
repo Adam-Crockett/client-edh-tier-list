@@ -72,6 +72,7 @@ export const TierLevelRow = ({
               value={levelData.tierName}
               onChange={handleNameInputChange}
               maxLength={3}
+              title="Change Tier Name"
             />
             <CirclePicker
               className={styles.editColor}
@@ -82,10 +83,18 @@ export const TierLevelRow = ({
               colors={colorPickerOptions}
               onChange={(color) => handleColorInputChange(color)}
             />
-            <button className={styles.acceptChanges} onClick={handleSaveClick}>
+            <button
+              className={styles.acceptChanges}
+              onClick={handleSaveClick}
+              title="Accept Changes"
+            >
               <DoneIcon />
             </button>
-            <button className={styles.deleteTier} onClick={handleRemoveClick}>
+            <button
+              className={styles.deleteTier}
+              onClick={handleRemoveClick}
+              title="Delete Tier"
+            >
               <DeleteOutlineIcon />
             </button>
           </div>

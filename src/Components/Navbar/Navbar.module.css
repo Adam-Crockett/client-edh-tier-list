@@ -100,3 +100,26 @@
     font-size: 12px;
   }
 }
+
+.glowingButton {
+  background-color: var(--primary-mint);
+  color: #ffffff;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  animation: glowing 2s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes glowing {
+  0% {
+    box-shadow: 0 0 0 var(--primary-mint);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--primary-mint);
+  }
+  100% {
+    box-shadow: 0 0 0 var(--primary-mint);
+  }
+}

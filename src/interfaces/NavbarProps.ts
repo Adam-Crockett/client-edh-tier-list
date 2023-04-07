@@ -4,4 +4,5 @@ export interface NavbarProps {
   resetState: boolean;
   handleAddTierLevel: () => void;
   handleOnClickExport: () => void;
+  selectedCodes: string[];
 }

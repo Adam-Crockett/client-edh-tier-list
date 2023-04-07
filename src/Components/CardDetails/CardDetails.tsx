@@ -1,8 +1,11 @@
 import { CardDetailsProps } from '../../interfaces';
 import styles from './CardDetails.module.css';
-export const CardDetails = ({ hoveredCard }: CardDetailsProps) => {
-  if (hoveredCard[0] === undefined) {
-    return <div></div>;
+export const CardDetails = ({
+  hoveredCard,
+  selectedCodes
+}: CardDetailsProps) => {
+  if (hoveredCard[0] === undefined || selectedCodes.length === 0) {
+    return <></>;
   } else {
     const data = hoveredCard[0];
     let cardImage = '';

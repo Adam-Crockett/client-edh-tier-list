@@ -11,7 +11,8 @@ export const Navbar = ({
   setResetState,
   resetState,
   handleAddTierLevel,
-  handleOnClickExport
+  handleOnClickExport,
+  selectedCodes
 }: NavbarProps) => {
   function handleOnClickReset() {
     setResetState(!resetState);
@@ -23,7 +24,13 @@ export const Navbar = ({
         <p className={styles.siteSubName}>An EDH Tier Tool</p>
       </div>
       <div className={styles.buttonContainer}>
-        <button onClick={handleOnClickSetEdit} title="Select Sets">
+        <button
+          className={
+            selectedCodes.length === 0 ? styles.glowingButton : undefined
+          }
+          onClick={handleOnClickSetEdit}
+          title="Select Sets"
+        >
           <SortIcon />
         </button>
         <button onClick={handleAddTierLevel} title="Add Tier">

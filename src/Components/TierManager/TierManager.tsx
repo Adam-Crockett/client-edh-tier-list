@@ -130,7 +130,7 @@ export const TierManager = ({
   return (
     <div className={styles.container}>
       <div className={styles.CardDetailsContainer}>
-        <CardDetails hoveredCard={hoveredCard} />
+        <CardDetails hoveredCard={hoveredCard} selectedCodes={selectedCodes} />
       </div>
       <div className={styles.TierLevelContainer}>
         <TierLevelManager

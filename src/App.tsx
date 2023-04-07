@@ -85,6 +85,7 @@ function App() {
           resetState={resetState}
           handleAddTierLevel={handleAddTierLevel}
           handleOnClickExport={handleOnClickExport}
+          selectedCodes={selectedCodes}
         />
       </header>
       <main>
