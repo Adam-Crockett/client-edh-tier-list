@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { CardProps } from '../../interfaces';
+// For Card flip Icon
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 import styles from './Card.module.css';
 
@@ -30,6 +31,7 @@ export const Card = ({
     marginTop: tierIndex > 0 ? '3px' : '-140px',
     marginRight: tierIndex > 0 ? '3px' : '0px'
   };
+  // For Card flip Icon, current issue with absolute positioning and flexbox
   const mdfcFlipStyling = {
     marginTop: tierIndex > 0 ? '3px' : '-140px',
     top: tierIndex > 0 ? '0.2rem' : '1.6rem'
