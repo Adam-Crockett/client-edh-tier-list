@@ -14,16 +14,15 @@ export const CardList = ({
     return <></>;
   } else {
     return (
-      // <div className={styles.cardListWrapper}>
       <ul
         className={styles.container}
-        onDragEnter={
-          dragging && tierLevels[0]?.cards.length == 0
-            ? (event) => {
-                handleDragEnter(event, 0, 0);
-              }
-            : undefined
-        }
+        onDragEnter={(event) => {
+          if (event.target === event.currentTarget) {
+            handleDragEnter(event, 0, tierLevels[0].cards.length - 1);
+          } else {
+            undefined;
+          }
+        }}
       >
         {tierLevels[0].cards.map((card: CardData, cardIndex: number) => {
           return (
@@ -41,7 +40,6 @@ export const CardList = ({
           );
         })}
       </ul>
-      // </div>
     );
   }
 };

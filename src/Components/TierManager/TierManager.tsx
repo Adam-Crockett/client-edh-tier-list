@@ -93,11 +93,6 @@ export const TierManager = ({
         1
       )[0];
       updatedTierLevels[tierIndex].cards.splice(cardIndex, 0, draggedCard);
-      // if (event.target instanceof HTMLImageElement) {
-      //   updatedTierLevels[tierIndex].cards.splice(cardIndex, 0, draggedCard);
-      // } else if (event.target instanceof HTMLUListElement) {
-      //   updatedTierLevels[tierIndex].cards.push(draggedCard);
-      // }
       setTierLevels(updatedTierLevels);
       dragCard.current = [tierIndex, cardIndex];
     }
