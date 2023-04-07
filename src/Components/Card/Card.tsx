@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { CardProps } from '../../interfaces';
+import AutorenewIcon from '@mui/icons-material/Autorenew';
+import styles from './Card.module.css';
 
 export const Card = ({
   data,
@@ -17,20 +19,27 @@ export const Card = ({
 
   useEffect(() => {
     handleMouseOverCardDetails(data, currentFace);
-  }, [currentFace]);
+  }, [data, currentFace]);
 
   const handleClickOnMDFC = () => {
     setCurrentFace(currentFace === 0 ? 1 : 0);
   };
 
+  const cardVariableStyling = {
+    height: tierIndex > 0 ? '100px' : '240px',
+    marginTop: tierIndex > 0 ? '3px' : '-140px',
+    marginRight: tierIndex > 0 ? '3px' : '0px'
+  };
+  const mdfcFlipStyling = {
+    marginTop: tierIndex > 0 ? '3px' : '-140px',
+    top: tierIndex > 0 ? '0.2rem' : '1.6rem'
+  };
+
   if (data.image_uris) {
     return (
       <img
-        style={{
-          height: tierIndex > 0 ? '100px' : '240px',
-          borderRadius: '3px',
-          marginTop: tierIndex > 0 ? '0px' : '-140px'
-        }}
+        className={styles.card}
+        style={cardVariableStyling}
         draggable
         onDragStart={(event) => handleDragStart(event, tierIndex, cardIndex)}
         onDragEnter={
@@ -51,27 +60,30 @@ export const Card = ({
     );
   } else if (data.card_faces) {
     return (
-      <div style={{ height: '240px' }}>
-        <img
-          style={{ height: '240px' }}
-          draggable
-          onDragStart={(event) => handleDragStart(event, tierIndex, cardIndex)}
-          onDragEnter={
-            dragging
-              ? (event) => {
-                  handleDragEnter(event, tierIndex, cardIndex);
-                }
-              : undefined
-          }
-          src={data.card_faces[currentFace].image_uris.border_crop}
-          onClick={handleClickOnMDFC}
-          onMouseOver={
-            !dragging
-              ? () => handleMouseOverCardDetails(data, currentFace)
-              : undefined
-          }
-        />
-      </div>
+      <img
+        className={styles.card}
+        style={cardVariableStyling}
+        draggable
+        onDragStart={(event) => handleDragStart(event, tierIndex, cardIndex)}
+        onDragEnter={
+          dragging
+            ? (event) => {
+                handleDragEnter(event, tierIndex, cardIndex);
+              }
+            : undefined
+        }
+        onClick={handleClickOnMDFC}
+        src={
+          tierIndex > 0
+            ? data.card_faces[currentFace].image_uris.art_crop
+            : data.card_faces[currentFace].image_uris.border_crop
+        }
+        onMouseOver={
+          !dragging
+            ? () => handleMouseOverCardDetails(data, currentFace)
+            : undefined
+        }
+      />
     );
   } else {
     return <></>;

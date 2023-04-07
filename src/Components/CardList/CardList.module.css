@@ -13,7 +13,6 @@
   align-items: baseline;
   background-color: var(--secondary-grey);
   border: 1px solid var(--primary-grey-teal);
-  border-radius: 3px;
   padding-top: 150px;
   margin: 0 auto;
 }

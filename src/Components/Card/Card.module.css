@@ -1,0 +1,18 @@
+.mdfcContainer {
+  /* position: relative; */
+}
+.card {
+  border-radius: 3px;
+  border: 1px solid var(--card-border);
+  z-index: 0;
+}
+
+.flipCard {
+  /* position: absolute; */
+  /* left: -10px; */
+  background-color: var(--primary-grey);
+  color: var(--primary-mint);
+  border-radius: 10px;
+  opacity: 0.7;
+  z-index: 1;
+}
