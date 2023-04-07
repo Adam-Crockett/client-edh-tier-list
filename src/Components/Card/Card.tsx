@@ -33,59 +33,70 @@ export const Card = ({
   };
   // For Card flip Icon, current issue with absolute positioning and flexbox
   const mdfcFlipStyling = {
-    marginTop: tierIndex > 0 ? '3px' : '-140px',
-    top: tierIndex > 0 ? '0.2rem' : '1.6rem'
+    right: tierIndex > 0 ? '6px' : '13px',
+    top: tierIndex > 0 ? '6px' : '-112px'
   };
 
   if (data.image_uris) {
     return (
-      <img
-        className={styles.card}
-        style={cardVariableStyling}
-        draggable
-        onDragStart={(event) => handleDragStart(event, tierIndex, cardIndex)}
-        onDragEnter={
-          dragging
-            ? (event) => {
-                handleDragEnter(event, tierIndex, cardIndex);
-              }
-            : undefined
-        }
-        key={data.id}
-        src={
-          tierIndex > 0 ? data.image_uris.art_crop : data.image_uris.border_crop
-        }
-        onMouseOver={
-          !dragging ? () => handleMouseOverCardDetails(data) : undefined
-        }
-      />
+      <div className={styles.cardContainer}>
+        <img
+          className={styles.card}
+          style={cardVariableStyling}
+          draggable
+          onDragStart={(event) => handleDragStart(event, tierIndex, cardIndex)}
+          onDragEnter={
+            dragging
+              ? (event) => {
+                  handleDragEnter(event, tierIndex, cardIndex);
+                }
+              : undefined
+          }
+          key={data.id}
+          src={
+            tierIndex > 0
+              ? data.image_uris.art_crop
+              : data.image_uris.border_crop
+          }
+          onMouseOver={
+            !dragging ? () => handleMouseOverCardDetails(data) : undefined
+          }
+        />
+      </div>
     );
   } else if (data.card_faces) {
+    //MDFC Cards
     return (
-      <img
-        className={styles.card}
-        style={cardVariableStyling}
-        draggable
-        onDragStart={(event) => handleDragStart(event, tierIndex, cardIndex)}
-        onDragEnter={
-          dragging
-            ? (event) => {
-                handleDragEnter(event, tierIndex, cardIndex);
-              }
-            : undefined
-        }
-        onClick={handleClickOnMDFC}
-        src={
-          tierIndex > 0
-            ? data.card_faces[currentFace].image_uris.art_crop
-            : data.card_faces[currentFace].image_uris.border_crop
-        }
-        onMouseOver={
-          !dragging
-            ? () => handleMouseOverCardDetails(data, currentFace)
-            : undefined
-        }
-      />
+      <div className={styles.cardContainer}>
+        <AutorenewIcon
+          className={styles.flipCard}
+          style={mdfcFlipStyling}
+          onClick={handleClickOnMDFC}
+        />
+        <img
+          className={styles.card}
+          style={cardVariableStyling}
+          draggable
+          onDragStart={(event) => handleDragStart(event, tierIndex, cardIndex)}
+          onDragEnter={
+            dragging
+              ? (event) => {
+                  handleDragEnter(event, tierIndex, cardIndex);
+                }
+              : undefined
+          }
+          src={
+            tierIndex > 0
+              ? data.card_faces[currentFace].image_uris.art_crop
+              : data.card_faces[currentFace].image_uris.border_crop
+          }
+          onMouseOver={
+            !dragging
+              ? () => handleMouseOverCardDetails(data, currentFace)
+              : undefined
+          }
+        />
+      </div>
     );
   } else {
     return <></>;
