@@ -34,6 +34,8 @@ function App() {
 
   useEffect(() => {
     setSets(data);
+    console.log(data);
+    console.log(sets);
   }, [data]);
 
   useEffect(() => {
