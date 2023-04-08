@@ -7,22 +7,29 @@ export const SetList = ({
   sets,
   selectedCodes,
   onMultiselectChange,
-  handleOnClickSetEdit
+  handleOnClickSetEdit,
+  loading
 }: SetListProps) => {
-  return (
-    <div className={styles.container}>
-      {sets && (
-        <div className={styles.setListWrapper}>
-          <MultiselectSets
-            options={sets}
-            selectedCodes={selectedCodes}
-            onChange={onMultiselectChange}
-          />
-        </div>
-      )}
-      <button onClick={handleOnClickSetEdit}>
-        <Close />
-      </button>
-    </div>
-  );
+  if (loading) {
+    <div>
+      <p>Fetching Sets</p>
+    </div>;
+  } else {
+    return (
+      <div className={styles.container}>
+        {sets && (
+          <div className={styles.setListWrapper}>
+            <MultiselectSets
+              options={sets}
+              selectedCodes={selectedCodes}
+              onChange={onMultiselectChange}
+            />
+          </div>
+        )}
+        <button onClick={handleOnClickSetEdit}>
+          <Close />
+        </button>
+      </div>
+    );
+  }
 };

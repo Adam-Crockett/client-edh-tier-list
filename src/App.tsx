@@ -95,6 +95,7 @@ function App() {
             selectedCodes={selectedCodes}
             onMultiselectChange={handleMultiselectChange}
             handleOnClickSetEdit={handleOnClickSetEdit}
+            loading={loading}
           />
         )}
         {setWindowOpen && <div className={styles.overlay} />}

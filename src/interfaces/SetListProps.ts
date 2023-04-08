@@ -4,4 +4,5 @@ export interface SetListProps {
   selectedCodes: string[];
   onMultiselectChange: (selectedCodes: string[]) => void;
   handleOnClickSetEdit: () => void;
+  loading: boolean;
 }
