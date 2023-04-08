@@ -11,9 +11,11 @@ export const SetList = ({
   loading
 }: SetListProps) => {
   if (loading) {
-    <div>
-      <p>Fetching Sets</p>
-    </div>;
+    return (
+      <div>
+        <p>Fetching Sets</p>
+      </div>
+    );
   } else {
     return (
       <div className={styles.container}>
