@@ -16,24 +16,26 @@ export const MultiselectSets = ({
     'invert(72%) sepia(61%) saturate(413%) hue-rotate(343deg) brightness(99%) contrast(88%)';
   const unselectedColor =
     'invert(97%) sepia(98%) saturate(512%) hue-rotate(62deg) brightness(80%) contrast(94%)';
+
+  const optionsArray = Array.isArray(options) ? options : [];
+  console.log(optionsArray);
   return (
     <div className={styles.container}>
-      {Array.isArray(options) &&
-        options.map((option) => (
-          <img
-            className={styles.setImage}
-            key={option.id}
-            src={option.src}
-            alt={option.name}
-            title={option.name}
-            onClick={() => handleOptionClick(option.code)}
-            style={{
-              filter: selectedCodes.includes(option.code)
-                ? selectedColor
-                : unselectedColor
-            }}
-          />
-        ))}
+      {optionsArray.map((option) => (
+        <img
+          className={styles.setImage}
+          key={option.id}
+          src={option.src}
+          alt={option.name}
+          title={option.name}
+          onClick={() => handleOptionClick(option.code)}
+          style={{
+            filter: selectedCodes.includes(option.code)
+              ? selectedColor
+              : unselectedColor
+          }}
+        />
+      ))}
     </div>
   );
 };
