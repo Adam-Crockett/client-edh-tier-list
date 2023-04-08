@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Navbar, SetList, TierManager } from './Components';
 import useGetCards from './customHooks/useGetCards';
 import useGetSets from './customHooks/useGetSets';
-import { TierLevel, CardData } from './interfaces';
+import { TierLevel, CardData, SetData } from './interfaces';
 
 import useCachedData from './customHooks/useCachedData';
 import downloadFile from './helpers/downloadFile';
@@ -16,6 +16,7 @@ function App() {
   const { cachedData, setCachedData } = useCachedData();
   const [resetState, setResetState] = useState<boolean>(false);
   const { data, loading, error } = useGetSets();
+  const [sets, setSets] = useState<SetData[]>(data);
   const [selectedCodes, setSelectedCodes] = useState<string[]>(
     cachedData.currentCodes
   );
@@ -91,7 +92,7 @@ function App() {
       <main>
         {setWindowOpen && (
           <SetList
-            sets={data}
+            sets={sets}
             selectedCodes={selectedCodes}
             onMultiselectChange={handleMultiselectChange}
             handleOnClickSetEdit={handleOnClickSetEdit}
