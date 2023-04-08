@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Card } from '../../components';
+import { Card } from '../../Components';
 import { CardData, TierLevelRowProps } from '../../interfaces';
 import { CirclePicker, ColorResult } from 'react-color';
 import MenuIcon from '@mui/icons-material/Menu';

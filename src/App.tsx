@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Navbar, SetList, TierManager } from './components';
+import { Navbar, SetList, TierManager } from './Components';
 import useGetCards from './customHooks/useGetCards';
 import useGetSets from './customHooks/useGetSets';
 import { TierLevel, CardData } from './interfaces';

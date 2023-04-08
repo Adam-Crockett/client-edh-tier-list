@@ -1,5 +1,5 @@
 import { CardData, CardListProps } from '../../interfaces';
-import { Card } from '../../components';
+import { Card } from '../../Components';
 import styles from './CardList.module.css';
 
 export const CardList = ({

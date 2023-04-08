@@ -1,5 +1,5 @@
 import { TierLevel, TierLevelManagerProps } from '../../interfaces';
-import { TierLevelRow } from '../../components';
+import { TierLevelRow } from '../../Components';
 import styles from './TierLevelManager.module.css';
 
 export const TierLevelManager = ({

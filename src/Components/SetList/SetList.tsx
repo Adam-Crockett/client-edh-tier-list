@@ -1,4 +1,4 @@
-import { MultiselectSets } from '../../components';
+import { MultiselectSets } from '../../Components';
 import { SetListProps } from '../../interfaces';
 import Close from '@mui/icons-material/Close';
 import styles from './SetList.module.css';

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { CardList, TierLevelManager, CardDetails } from '../../components';
+import { CardList, TierLevelManager, CardDetails } from '../../Components';
 import getRemovedCodes from '../../helpers/getRemovedCodes';
 import { CardData, TierManagerProps } from '../../interfaces';
 import { defaultTiers } from '../../helpers/defaultTiers';
