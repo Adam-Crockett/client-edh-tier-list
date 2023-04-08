@@ -10,6 +10,7 @@ export const SetList = ({
   handleOnClickSetEdit,
   loading
 }: SetListProps) => {
+  console.log(sets);
   if (loading) {
     return (
       <div>
