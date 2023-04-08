@@ -16,7 +16,9 @@ export default function useGetSets() {
               data.sort((a: SetData, b: SetData) => {
                 return a.releaseDate > b.releaseDate ? -1 : 1;
               });
+              console.log('sorted data', data);
             } else {
+              console.log('data is not an array', data);
               return data;
             }
           });
