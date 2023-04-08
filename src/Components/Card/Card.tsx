@@ -31,7 +31,7 @@ export const Card = ({
     marginTop: tierIndex > 0 ? '3px' : '-140px',
     marginRight: tierIndex > 0 ? '3px' : '0px'
   };
-  // For Card flip Icon, current issue with absolute positioning and flexbox
+
   const mdfcFlipStyling = {
     right: tierIndex > 0 ? '6px' : '13px',
     top: tierIndex > 0 ? '6px' : '-112px'

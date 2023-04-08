@@ -63,6 +63,7 @@ export const TierManager = ({
   const dragCard = useRef<[number, number] | null>();
   const dragNode = useRef<EventTarget | null>();
   const dragOverCard = useRef<number | null>();
+  const [draggedImage, setDraggedImage] = useState<string | null>(null);
 
   const handleDragStart = (
     event: React.DragEvent<HTMLImageElement>,
@@ -72,6 +73,11 @@ export const TierManager = ({
     dragNode.current = event.target;
     dragNode.current.addEventListener('dragend', handleDrop);
     dragCard.current = [tierIndex, cardIndex];
+    setDraggedImage(() => {
+      const image: string | undefined =
+        tierLevels[tierIndex].cards[cardIndex]?.image_uris?.border_crop;
+      return image ? image : null;
+    });
 
     setTimeout(() => {
       setDragging(true);
@@ -108,6 +114,7 @@ export const TierManager = ({
   };
   const handleDrop = () => {
     setDragging(false);
+    setDraggedImage(null);
     dragCard.current = null;
     dragNode.current?.removeEventListener('dragend', handleDrop);
     dragNode.current = null;
@@ -139,7 +146,11 @@ export const TierManager = ({
   return (
     <div className={styles.container}>
       <div className={styles.CardDetailsContainer}>
-        <CardDetails hoveredCard={hoveredCard} selectedCodes={selectedCodes} />
+        <CardDetails
+          hoveredCard={hoveredCard}
+          selectedCodes={selectedCodes}
+          draggedImage={draggedImage}
+        />
       </div>
       <div className={styles.TierLevelContainer}>
         <TierLevelManager

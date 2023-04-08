@@ -2,14 +2,17 @@ import { CardDetailsProps } from '../../interfaces';
 import styles from './CardDetails.module.css';
 export const CardDetails = ({
   hoveredCard,
-  selectedCodes
+  selectedCodes,
+  draggedImage
 }: CardDetailsProps) => {
   if (hoveredCard[0] === undefined || selectedCodes.length === 0) {
     return <></>;
   } else {
     const data = hoveredCard[0];
     let cardImage = '';
-    if (data?.image_uris) {
+    if (draggedImage) {
+      cardImage = draggedImage;
+    } else if (data?.image_uris) {
       cardImage = data.image_uris.border_crop;
     } else if (data?.card_faces) {
       const cardFace =
