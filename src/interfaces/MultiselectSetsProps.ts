@@ -1,5 +1,12 @@
 export interface MultiselectSetsProps {
-  options: { id: string; src: string; name: string; code: string }[];
+  options: Options[];
   selectedCodes: string[];
   onChange: (selectedCodes: string[]) => void;
+}
+
+interface Options {
+  id: string;
+  src: string;
+  name: string;
+  code: string;
 }
