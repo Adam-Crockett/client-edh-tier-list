@@ -11,11 +11,15 @@ export default function useGetSets() {
     const fetchData = async () => {
       try {
         axios.get(`${process.env.REACT_APP_API_URL}/sets`).then(({ data }) => {
-          setData(
-            data.sort((a: SetData, b: SetData) => {
-              return a.releaseDate > b.releaseDate ? -1 : 1;
-            })
-          );
+          setData(() => {
+            if (Array.isArray(data)) {
+              data.sort((a: SetData, b: SetData) => {
+                return a.releaseDate > b.releaseDate ? -1 : 1;
+              });
+            } else {
+              return data;
+            }
+          });
         });
       } catch (e) {
         setError('Error fetching data');

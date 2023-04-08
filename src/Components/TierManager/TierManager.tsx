@@ -19,11 +19,14 @@ export const TierManager = ({
   const [currentCodes, setCurrentCodes] = useState<string[]>(selectedCodes);
 
   useEffect(() => {
-    const newCards = currentCards.filter((card) => {
-      return !cardList.some(
-        (existingCard: CardData) => existingCard.set === card.set
-      );
-    });
+    let newCards: CardData[] = [];
+    if (Array.isArray(currentCards)) {
+      newCards = currentCards.filter((card) => {
+        return !cardList.some(
+          (existingCard: CardData) => existingCard.set === card.set
+        );
+      });
+    }
     const updatedTiers = [...tierLevels];
     if (currentCodes.length > selectedCodes.length) {
       const removedCodes = getRemovedCodes(currentCodes, selectedCodes);
