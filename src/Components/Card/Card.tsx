@@ -28,8 +28,7 @@ export const Card = ({
 
   const cardVariableStyling = {
     height: tierIndex > 0 ? '100px' : '240px',
-    marginTop: tierIndex > 0 ? '3px' : '-140px',
-    marginRight: tierIndex > 0 ? '3px' : '0px'
+    margin: tierIndex > 0 ? '3px 0px 3px 0px' : '-140px 0px 0px 0px'
   };
 
   const mdfcFlipStyling = {

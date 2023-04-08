@@ -1,7 +1,10 @@
 .cardContainer {
   display: flex;
   position: relative;
+  align-items: center;
+  padding-left: 5px;
 }
+
 .mdfcContainer {
   display: flex;
   position: relative;
