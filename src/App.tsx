@@ -15,6 +15,7 @@ import { defaultTiers } from './helpers/defaultTiers';
 function App() {
   const { cachedData, setCachedData } = useCachedData();
   const [resetState, setResetState] = useState<boolean>(false);
+  // Move into useEffect?
   const { data, loading, error } = useGetSets();
   const [sets, setSets] = useState<SetData[]>(data);
   const [selectedCodes, setSelectedCodes] = useState<string[]>(
