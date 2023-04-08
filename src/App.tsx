@@ -33,6 +33,10 @@ function App() {
   const [cardList, setCardList] = useState<CardData[]>(cachedData.cardList);
 
   useEffect(() => {
+    setSets(data);
+  }, [data]);
+
+  useEffect(() => {
     if (resetState) {
       setSelectedCodes([]);
       setTierLevels([]);
