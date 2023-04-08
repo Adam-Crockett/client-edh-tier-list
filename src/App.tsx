@@ -113,8 +113,29 @@ function App() {
         </div>
       </main>
       <footer className={styles.footer}>
-        <div className={styles.gitHubButton}>
+        <a
+          className={styles.gitHubButton}
+          href="https://github.com/Adam-Crockett/client-edh-tier-list"
+          target="_blank"
+        >
           <GitHubIcon />
+        </a>
+        <div className={styles.disclaimerInfo}>
+          <p>
+            Magic: The Gathering is a Trademark of Wizards of the Coast, Inc.
+            and Hasbro, Inc.
+          </p>
+          <p>
+            Card data provided by&nbsp;
+            <a
+              className={styles.scryfallFooterLink}
+              href="https://scryfall.com/"
+              target="_blank"
+            >
+              Scryfall
+            </a>
+            .
+          </p>
         </div>
       </footer>
     </div>
