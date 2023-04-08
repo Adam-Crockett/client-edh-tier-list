@@ -81,7 +81,7 @@ export const TierLevelRow = ({
               circleSize={18}
               circleSpacing={7}
               colors={colorPickerOptions}
-              onChange={(color) => handleColorInputChange(color)}
+              onChange={(color: ColorResult) => handleColorInputChange(color)}
             />
             <button
               className={styles.acceptChanges}
