@@ -15,9 +15,7 @@ import { defaultTiers } from './helpers/defaultTiers';
 function App() {
   const { cachedData, setCachedData } = useCachedData();
   const [resetState, setResetState] = useState<boolean>(false);
-  // Move into useEffect?
   const { resData, loading, error } = useGetSets();
-  const [sets, setSets] = useState<SetData[]>(resData);
   const [selectedCodes, setSelectedCodes] = useState<string[]>(
     cachedData.currentCodes
   );
@@ -32,10 +30,6 @@ function App() {
   >([undefined, -1]);
   const [setWindowOpen, setSetWindowOpen] = useState<boolean>(false);
   const [cardList, setCardList] = useState<CardData[]>(cachedData.cardList);
-
-  useEffect(() => {
-    setSets(resData);
-  }, [resData]);
 
   useEffect(() => {
     if (resetState) {
@@ -97,7 +91,7 @@ function App() {
       <main>
         {setWindowOpen && (
           <SetList
-            sets={sets}
+            sets={resData}
             selectedCodes={selectedCodes}
             onMultiselectChange={handleMultiselectChange}
             handleOnClickSetEdit={handleOnClickSetEdit}

@@ -18,7 +18,6 @@ export const MultiselectSets = ({
     'invert(97%) sepia(98%) saturate(512%) hue-rotate(62deg) brightness(80%) contrast(94%)';
 
   const optionsArray = Array.isArray(options) ? options : [];
-  console.log('Multiselect: ', optionsArray);
   return (
     <div className={styles.container}>
       {optionsArray.map((option) => (
