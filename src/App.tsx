@@ -16,8 +16,8 @@ function App() {
   const { cachedData, setCachedData } = useCachedData();
   const [resetState, setResetState] = useState<boolean>(false);
   // Move into useEffect?
-  const { data, loading, error } = useGetSets();
-  const [sets, setSets] = useState<SetData[]>(data);
+  const { resData, loading, error } = useGetSets();
+  const [sets, setSets] = useState<SetData[]>(resData);
   const [selectedCodes, setSelectedCodes] = useState<string[]>(
     cachedData.currentCodes
   );
@@ -34,10 +34,8 @@ function App() {
   const [cardList, setCardList] = useState<CardData[]>(cachedData.cardList);
 
   useEffect(() => {
-    setSets(data);
-    console.log(data);
-    console.log(sets);
-  }, [data]);
+    setSets(resData);
+  }, [resData]);
 
   useEffect(() => {
     if (resetState) {

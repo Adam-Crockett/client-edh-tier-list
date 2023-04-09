@@ -3,7 +3,7 @@ import axios from 'axios';
 import { SetData } from '../interfaces';
 
 export default function useGetSets() {
-  const [data, setData] = useState<SetData[]>([]);
+  const [resData, setResData] = useState<SetData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
@@ -11,7 +11,7 @@ export default function useGetSets() {
     const fetchData = async () => {
       try {
         axios.get(`${process.env.REACT_APP_API_URL}/sets`).then(({ data }) => {
-          setData(() => {
+          setResData(() => {
             if (Array.isArray(data)) {
               data.sort((a: SetData, b: SetData) => {
                 return a.releaseDate > b.releaseDate ? -1 : 1;
@@ -30,5 +30,5 @@ export default function useGetSets() {
     };
     fetchData();
   }, []);
-  return { data, loading, error };
+  return { resData, loading, error };
 }
