@@ -40,6 +40,7 @@
   justify-content: flex-end;
   align-items: center;
   height: 100%;
+  position: relative;
 }
 
 .buttonContainer button {
@@ -62,6 +63,39 @@
 .buttonContainer button:hover {
   background-color: var(--primary-mint);
   color: var(--primary-grey);
+}
+
+.bouncingArrow {
+  position: absolute;
+  color: var(--primary-light-orange);
+  width: 2rem;
+  height: 2rem;
+  bottom: 0;
+  left: -2.5rem;
+  top: 20%;
+  font-size: large;
+  animation-name: bounce;
+  animation-duration: 0.5s;
+  animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  transform-origin: bottom;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-10px); /* Smaller movement */
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.hiddenArrow {
+  display: none;
 }
 
 @media (max-width: 767px) {

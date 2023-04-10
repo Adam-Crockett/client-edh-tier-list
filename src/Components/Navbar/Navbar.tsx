@@ -5,6 +5,7 @@ import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import SortIcon from '@mui/icons-material/Sort';
 import AddIcon from '@mui/icons-material/Add';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 export const Navbar = ({
   handleOnClickSetEdit,
@@ -24,6 +25,15 @@ export const Navbar = ({
         <p className={styles.siteSubName}>An EDH Tier Tool</p>
       </div>
       <div className={styles.buttonContainer}>
+        <div
+          className={
+            selectedCodes.length === 0
+              ? styles.bouncingArrow
+              : styles.hiddenArrow
+          }
+        >
+          <ArrowForwardIcon fontSize="large" />
+        </div>
         <button
           className={
             selectedCodes.length === 0 ? styles.glowingButton : undefined
