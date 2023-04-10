@@ -26,6 +26,11 @@ export const Card = ({
     setCurrentFace(currentFace === 0 ? 1 : 0);
   };
 
+  const containerVariableStyling = {
+    paddingLeft: tierIndex > 0 ? '5px' : '0px'
+    // marginRight: tierIndex > 0 ? '0px' : '5px'
+  };
+
   const cardVariableStyling = {
     height: tierIndex > 0 ? '100px' : '240px',
     margin: tierIndex > 0 ? '3px 0px 3px 0px' : '-140px 0px 0px 0px'
@@ -38,7 +43,7 @@ export const Card = ({
 
   if (data.image_uris) {
     return (
-      <div className={styles.cardContainer}>
+      <div className={styles.cardContainer} style={containerVariableStyling}>
         <img
           className={styles.card}
           style={cardVariableStyling}

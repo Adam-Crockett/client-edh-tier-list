@@ -101,6 +101,7 @@ export const TierManager = ({
         dragCard.current[1],
         1
       )[0];
+
       if (event.target instanceof HTMLImageElement) {
         updatedTierLevels[tierIndex].cards.splice(cardIndex, 0, draggedCard);
         setTierLevels(updatedTierLevels);
