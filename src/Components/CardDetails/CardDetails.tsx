@@ -22,7 +22,11 @@ export const CardDetails = ({
 
     return (
       <div className={styles.container}>
-        <img className={styles.detailsImage} src={cardImage} />
+        <img
+          className={styles.detailsImage}
+          src={cardImage}
+          title={data.name}
+        />
       </div>
     );
   }

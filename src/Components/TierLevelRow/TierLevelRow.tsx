@@ -100,7 +100,9 @@ export const TierLevelRow = ({
           </div>
         ) : (
           <div className={styles.currentTierInfo}>
-            <h3 className={styles.tierName}>{levelData.tierName}</h3>
+            <h3 className={styles.tierName} title={levelData.tierName + ''}>
+              {levelData.tierName}
+            </h3>
             <button
               className={styles.editTierButton}
               onClick={() => setInEditMode(true)}
