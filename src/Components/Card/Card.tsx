@@ -77,8 +77,6 @@ export const Card = ({
           style={mdfcFlipStyling}
           onClick={handleClickOnMDFC}
         />
-        {/* {!dragging && (
-        )} */}
         <img
           className={styles.card}
           style={cardVariableStyling}
