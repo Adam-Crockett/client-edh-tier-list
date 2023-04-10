@@ -28,11 +28,11 @@ export const Card = ({
 
   const containerVariableStyling = {
     paddingLeft: tierIndex > 0 ? '5px' : '0px'
-    // marginRight: tierIndex > 0 ? '0px' : '5px'
   };
 
   const cardVariableStyling = {
     height: tierIndex > 0 ? '100px' : '240px',
+    width: tierIndex > 0 ? '137.969px' : '',
     margin: tierIndex > 0 ? '3px 0px 3px 0px' : '-140px 0px 0px 0px'
   };
 
@@ -71,12 +71,14 @@ export const Card = ({
   } else if (data.card_faces) {
     //MDFC Cards
     return (
-      <div className={styles.cardContainer}>
+      <div className={styles.cardContainer} style={containerVariableStyling}>
         <AutorenewIcon
           className={styles.flipCard}
           style={mdfcFlipStyling}
           onClick={handleClickOnMDFC}
         />
+        {/* {!dragging && (
+        )} */}
         <img
           className={styles.card}
           style={cardVariableStyling}
