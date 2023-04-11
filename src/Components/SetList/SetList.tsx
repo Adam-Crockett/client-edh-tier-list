@@ -28,7 +28,7 @@ export const SetList = ({
             />
           </div>
         )}
-        <button onClick={handleOnClickSetEdit}>
+        <button title="close" onClick={handleOnClickSetEdit}>
           <Close />
         </button>
       </div>
