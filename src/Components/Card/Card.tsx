@@ -48,6 +48,7 @@ export const Card = ({
           className={styles.card}
           style={cardVariableStyling}
           title={data.name}
+          alt={data.name}
           draggable
           onDragStart={(event) => handleDragStart(event, tierIndex, cardIndex)}
           onDragEnter={
@@ -81,6 +82,7 @@ export const Card = ({
         <img
           className={styles.card}
           title={data.name}
+          alt={data.name}
           style={cardVariableStyling}
           draggable
           onDragStart={(event) => handleDragStart(event, tierIndex, cardIndex)}
