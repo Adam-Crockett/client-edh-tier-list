@@ -1,5 +1,9 @@
 {
   "name": "client-edh-tier-list",
+  "author": {
+    "name": "Adam Crockett",
+    "email": "adamkcrockett@gmail.com"
+  },
   "version": "0.1.0",
   "private": true,
   "dependencies": {
